@@ -1,16 +1,18 @@
 package com.example.nastoyshiishashlik.menuBar;
 
+import android.graphics.Bitmap;
+
 public class Menu {
-    private final int poster;
+    private final Bitmap bitmap;
     private final String name;
 
-    public Menu(int poster, String name) {
-        this.poster = poster;
+    public Menu(Bitmap bitmap, String name) {
+        this.bitmap = bitmap;
         this.name = name;
     }
 
-    public int getPoster() {
-        return poster;
+    public Bitmap getPoster() {
+        return bitmap;
     }
 
     public String getName() {

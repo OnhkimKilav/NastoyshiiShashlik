@@ -48,7 +48,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         }
 
         private void bind(@NonNull Menu menu){
-            posterImageView.setImageResource(menu.getPoster());
+            posterImageView.setImageBitmap(menu.getPoster());
             nameTextView.setText(menu.getName());
         }
     }

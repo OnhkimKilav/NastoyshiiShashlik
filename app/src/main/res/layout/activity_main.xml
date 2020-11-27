@@ -37,32 +37,29 @@
                     />
 
                 <ImageView
-                    android:id="@+id/imageMenu"
+                    android:id="@+id/main_activity__image_menu"
                     android:layout_width="@dimen/menu_button_size"
                     android:layout_height="@dimen/menu_button_size"
                     android:layout_marginEnd="10dp"
-                    app:srcCompat="@drawable/menu"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="@id/imageLogo"
                     app:layout_constraintBottom_toBottomOf="@id/imageLogo" />
 
                 <ImageView
-                    android:id="@+id/imageBasket"
+                    android:id="@+id/main_activity__image_basket"
                     android:layout_width="@dimen/menu_button_size"
                     android:layout_height="@dimen/menu_button_size"
                     android:layout_marginEnd="15dp"
-                    app:srcCompat="@drawable/basket"
-                    app:layout_constraintRight_toLeftOf="@id/imageMenu"
+                    app:layout_constraintRight_toLeftOf="@id/main_activity__image_menu"
                     app:layout_constraintTop_toTopOf="@id/imageLogo"
                     app:layout_constraintBottom_toBottomOf="@id/imageLogo" />
 
                 <ImageView
-                    android:id="@+id/imagePhone"
+                    android:id="@+id/main_activity__image_phone"
                     android:layout_width="@dimen/menu_button_size"
                     android:layout_height="@dimen/menu_button_size"
                     android:layout_marginEnd="15dp"
-                    app:srcCompat="@drawable/phone"
-                    app:layout_constraintRight_toLeftOf="@id/imageBasket"
+                    app:layout_constraintRight_toLeftOf="@id/main_activity__image_basket"
                     app:layout_constraintTop_toTopOf="@id/imageLogo"
                     app:layout_constraintBottom_toBottomOf="@id/imageLogo" />
 

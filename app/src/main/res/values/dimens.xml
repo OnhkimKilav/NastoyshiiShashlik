@@ -6,6 +6,6 @@
     <dimen name="logo_bottom_height">70dp</dimen>
     <dimen name="menu_button_size">25dp</dimen>
     <dimen name="poster_size_menu">60dp</dimen>
-    <dimen name="main_activity__slider_height">400dp</dimen>
-    <dimen name="main_activity__slider_width">250dp</dimen>
+    <dimen name="main_activity__slider_height">400</dimen>
+    <dimen name="main_activity__slider_width">250</dimen>
 </resources>
