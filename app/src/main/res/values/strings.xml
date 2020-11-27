@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">NastoyshiiShashlik</string>
+    <string name="main_activity__weight_price">%1$.0f грн/ %2$d гр</string>
+    <string name="main_activity__min_weight">мин. заказ %1$d гр</string>
+    <string name="main_activity__total_price">Цена %1$.0f грн</string>
+</resources>

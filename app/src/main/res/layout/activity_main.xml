@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/main_activity__guide_line_header"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="100dp"/>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/main_activity__guide_line_menu_button"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="200dp"/>
+
+                <ImageView
+                    android:id="@+id/imageLogo"
+                    android:layout_width="@dimen/logo_width"
+                    android:layout_height="@dimen/logo_height"
+                    android:layout_marginStart="10dp"
+                    app:srcCompat="@drawable/logo"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/main_activity__guide_line_header"
+                    />
+
+                <ImageView
+                    android:id="@+id/imageMenu"
+                    android:layout_width="@dimen/menu_button_size"
+                    android:layout_height="@dimen/menu_button_size"
+                    android:layout_marginEnd="10dp"
+                    app:srcCompat="@drawable/menu"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/imageLogo"
+                    app:layout_constraintBottom_toBottomOf="@id/imageLogo" />
+
+                <ImageView
+                    android:id="@+id/imageBasket"
+                    android:layout_width="@dimen/menu_button_size"
+                    android:layout_height="@dimen/menu_button_size"
+                    android:layout_marginEnd="15dp"
+                    app:srcCompat="@drawable/basket"
+                    app:layout_constraintRight_toLeftOf="@id/imageMenu"
+                    app:layout_constraintTop_toTopOf="@id/imageLogo"
+                    app:layout_constraintBottom_toBottomOf="@id/imageLogo" />
+
+                <ImageView
+                    android:id="@+id/imagePhone"
+                    android:layout_width="@dimen/menu_button_size"
+                    android:layout_height="@dimen/menu_button_size"
+                    android:layout_marginEnd="15dp"
+                    app:srcCompat="@drawable/phone"
+                    app:layout_constraintRight_toLeftOf="@id/imageBasket"
+                    app:layout_constraintTop_toTopOf="@id/imageLogo"
+                    app:layout_constraintBottom_toBottomOf="@id/imageLogo" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/main_activity__rv_menu_icons"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintTop_toTopOf="@id/main_activity__guide_line_header"
+                    app:layout_constraintBottom_toTopOf="@id/main_activity__guide_line_menu_button"
+                    />
+
+                <com.smarteist.autoimageslider.SliderView
+                    android:id="@+id/main_activity__image_slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/main_activity__guide_line_menu_button"
+                    app:layout_constraintTop_toTopOf="@id/main_activity__guide_line_menu_button"
+                    app:sliderAnimationDuration="3000"
+                    app:sliderAutoCycleDirection="back_and_forth"
+                    app:sliderAutoCycleEnabled="true"
+                    app:sliderIndicatorAnimationDuration="1000"
+                    app:sliderIndicatorGravity="center_horizontal|bottom"
+                    app:sliderIndicatorMargin="15dp"
+                    app:sliderIndicatorOrientation="horizontal"
+                    app:sliderIndicatorPadding="3dp"
+                    app:sliderIndicatorRadius="2dp"
+                    app:sliderIndicatorSelectedColor="#5A5A5A"
+                    app:sliderIndicatorUnselectedColor="#FFF"
+                    app:sliderScrollTimeInSec="1"
+                    app:sliderStartAutoCycle="true"
+                    />
+
+                <TextView
+                    android:id="@+id/main_activity__text_view_hits"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/main_activity__image_slider"
+                    app:layout_constraintLeft_toLeftOf="@id/main_activity__image_slider"
+                    app:layout_constraintRight_toRightOf="@id/main_activity__image_slider"
+                    android:layout_marginTop="10dp"
+                    style="@style/style_text.BIG"
+                    android:text="НАШИ ХИТЫ"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/main_activity__rv_hits"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#20FFFFFF"
+                    app:layout_constraintTop_toBottomOf="@id/main_activity__text_view_hits"
+                    />
+
+                <ImageView
+                    android:id="@+id/imageBottomLogo"
+                    android:layout_width="@dimen/logo_bottom_width"
+                    android:layout_height="@dimen/logo_bottom_height"
+                    app:srcCompat="@drawable/logo"
+                    app:layout_constraintTop_toBottomOf="@id/main_activity__rv_hits"
+                    app:layout_constraintLeft_toLeftOf="@id/main_activity__rv_hits"
+                    app:layout_constraintRight_toRightOf="@id/main_activity__rv_hits"
+                    />
+
+                <TextView
+                    android:id="@+id/main_activity__tv_bottom_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="меню"
+                    app:layout_constraintTop_toBottomOf="@id/imageBottomLogo"
+                    app:layout_constraintLeft_toLeftOf="@id/imageBottomLogo"
+                    app:layout_constraintRight_toRightOf="@id/imageBottomLogo"
+                    style="@style/style_text.MEAN" />
+
+                <TextView
+                    android:id="@+id/main_activity__tv_bottom_stock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="акции"
+                    app:layout_constraintTop_toBottomOf="@id/main_activity__tv_bottom_menu"
+                    app:layout_constraintLeft_toLeftOf="@id/main_activity__tv_bottom_menu"
+                    app:layout_constraintRight_toRightOf="@id/main_activity__tv_bottom_menu"
+                    style="@style/style_text.MEAN" />
+
+                <TextView
+                    android:id="@+id/main_activity__tv_bottom_contacts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="контакты"
+                    app:layout_constraintTop_toBottomOf="@id/main_activity__tv_bottom_stock"
+                    app:layout_constraintLeft_toLeftOf="@id/main_activity__tv_bottom_stock"
+                    app:layout_constraintRight_toRightOf="@id/main_activity__tv_bottom_stock"
+                    style="@style/style_text.MEAN" />
+
+                <TextView
+                    android:id="@+id/main_activity__tv_bottom_delivery_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="доставка и оплата"
+                    app:layout_constraintTop_toBottomOf="@id/main_activity__tv_bottom_contacts"
+                    app:layout_constraintLeft_toLeftOf="@id/main_activity__tv_bottom_contacts"
+                    app:layout_constraintRight_toRightOf="@id/main_activity__tv_bottom_contacts"
+                    style="@style/style_text.MEAN" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/main_activity__tv_bottom_delivery_payment"
+                    app:layout_constraintLeft_toLeftOf="@id/main_activity__tv_bottom_delivery_payment"
+                    app:layout_constraintRight_toRightOf="@id/main_activity__tv_bottom_delivery_payment">
+
+                        <ImageView
+                            android:id="@+id/main_activity__iv_facebook"
+                            android:layout_width="@dimen/menu_button_size"
+                            android:layout_height="@dimen/menu_button_size"
+                            android:layout_marginEnd="25dp"
+                            app:srcCompat="@drawable/facebook"
+                            />
+
+                        <ImageView
+                            android:id="@+id/main_activity__iv_instagram"
+                            android:layout_width="@dimen/menu_button_size"
+                            android:layout_height="@dimen/menu_button_size"
+                            app:srcCompat="@drawable/instagram"
+                            />
+
+                </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

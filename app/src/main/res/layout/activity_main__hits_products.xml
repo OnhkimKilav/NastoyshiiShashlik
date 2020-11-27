@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/roundrect"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginBottom="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/hits_products__iv_poster"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/hits_products__tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/hits_products__iv_poster"
+        app:layout_constraintLeft_toLeftOf="@id/hits_products__iv_poster"
+        app:layout_constraintRight_toRightOf="@id/hits_products__iv_poster"
+        android:layout_marginTop="10dp"
+        style="@style/style_text.MEAN"
+        />
+
+    <TextView
+        android:id="@+id/hits_products_tv_weight_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/hits_products__tv_name"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        style="@style/style_text.NOT_BOLD"/>
+
+    <me.himanshusoni.quantityview.QuantityView
+        android:id="@+id/hits_products__quantity_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/hits_products_tv_weight_price"
+        app:layout_constraintLeft_toLeftOf="@id/hits_products_tv_weight_price"
+        android:layout_marginTop="10dp"
+        app:qv_quantity="1" />
+
+    <TextView
+        android:id="@+id/hits_products_tv_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/hits_products_tv_weight_price"
+        app:layout_constraintLeft_toRightOf="@id/hits_products__quantity_view"
+        android:layout_marginLeft="50dp"
+        style="@style/style_text.NOT_BOLD"/>
+
+    <TextView
+        android:id="@+id/hits_products_tv_total_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@id/hits_products_tv_weight"
+        app:layout_constraintTop_toBottomOf="@id/hits_products_tv_weight"
+        app:layout_constraintBottom_toBottomOf="@id/hits_products__quantity_view"
+        style="@style/style_text" />
+
+    <Button
+        android:id="@+id/hits_products__but_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/hits_products_tv_total_price"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"
+        style="@style/style_text.MEAN"
+        android:text="ЗАКАЗАТЬ"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
