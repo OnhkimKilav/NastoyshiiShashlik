@@ -8,18 +8,22 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.nastoyshiishashlik.MainActivity;
 import com.example.nastoyshiishashlik.R;
+import com.example.nastoyshiishashlik.model.SliderItem;
+import com.example.nastoyshiishashlik.optimization.OptimizationImageBitmap;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapterVH> {
-    private Context context;
     private List<SliderItem> mSliderItems = new ArrayList<>();
 
-    public SliderAdapter(Context context) {
-        this.context = context;
+    public SliderAdapter(List<SliderItem> mSliderItems) {
+        this.mSliderItems = mSliderItems;
+        notifyDataSetChanged();
     }
 
     public void renewItems(List<SliderItem> sliderItems) {
@@ -47,16 +51,21 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
     public void onBindViewHolder(SliderAdapterVH viewHolder, final int position) {
 
         SliderItem sliderItem = mSliderItems.get(position);
+        OptimizationImageBitmap optimizationImageBitmap = new OptimizationImageBitmap();
 
-        Glide.with(viewHolder.itemView)
-                .load(sliderItem.getPoster())
-                .fitCenter()
-                .into(viewHolder.imageViewBackground);
+        try {
+            Glide.with(viewHolder.itemView)
+                    .load(optimizationImageBitmap.execute(sliderItem.getPoster(), 400, 250).get())
+                    .fitCenter()
+                    .into(viewHolder.imageViewBackground);
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -75,6 +84,7 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
 
         public SliderAdapterVH(View itemView) {
             super(itemView);
+
             imageViewBackground = itemView.findViewById(R.id.iv_auto_image_slider);
             imageGifContainer = itemView.findViewById(R.id.iv_gif_container);
             this.itemView = itemView;

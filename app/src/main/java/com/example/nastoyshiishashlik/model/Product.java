@@ -1,16 +1,22 @@
-package com.example.nastoyshiishashlik.hitsProductsBar;
+package com.example.nastoyshiishashlik.model;
 
 import android.graphics.Bitmap;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity()
 public class Product {
-    private final Bitmap poster;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+    private final int poster;
     private final String name;
     private final int weight;
     private final double price;
     private final int minWeightForOrder;
     private final double finalPrice;
 
-    public Product(Bitmap poster, String name, int weight, double price, int minWeightForOrder, double finalPrice) {
+    public Product(int poster, String name, int weight, double price, int minWeightForOrder, double finalPrice) {
         this.poster = poster;
         this.name = name;
         this.weight = weight;
@@ -19,7 +25,7 @@ public class Product {
         this.finalPrice = finalPrice;
     }
 
-    public Bitmap getPoster() {
+    public int getPoster() {
         return poster;
     }
 

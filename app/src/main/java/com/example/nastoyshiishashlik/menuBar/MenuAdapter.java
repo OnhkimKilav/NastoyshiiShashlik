@@ -10,8 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nastoyshiishashlik.R;
+import com.example.nastoyshiishashlik.model.Menu;
+import com.example.nastoyshiishashlik.optimization.OptimizationImageBitmap;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder> {
     private final List<Menu> menus;
@@ -48,7 +51,14 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         }
 
         private void bind(@NonNull Menu menu){
-            posterImageView.setImageBitmap(menu.getPoster());
+            OptimizationImageBitmap optimizationImageBitmap = new OptimizationImageBitmap();
+            optimizationImageBitmap.execute(menu.getPoster(), 60, 60);
+
+            try {
+                posterImageView.setImageBitmap(optimizationImageBitmap.get());
+            } catch (ExecutionException | InterruptedException e) {
+                e.printStackTrace();
+            }
             nameTextView.setText(menu.getName());
         }
     }

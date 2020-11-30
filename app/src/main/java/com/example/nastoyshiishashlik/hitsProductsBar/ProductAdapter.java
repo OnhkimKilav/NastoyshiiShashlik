@@ -1,10 +1,6 @@
 package com.example.nastoyshiishashlik.hitsProductsBar;
 
 import android.annotation.SuppressLint;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nastoyshiishashlik.App;
 import com.example.nastoyshiishashlik.R;
+import com.example.nastoyshiishashlik.model.Product;
+import com.example.nastoyshiishashlik.optimization.OptimizationImageBitmap;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     private final List<Product> products;
@@ -60,9 +59,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             this.priceTextView = itemView.findViewById(R.id.hits_products_tv_total_price);
         }
 
-        @SuppressLint({"StringFormatInvalid", "StringFormatMatches"})
         private void bind(@NonNull Product product){
-            posterImageView.setImageBitmap(product.getPoster());
+            OptimizationImageBitmap optimizationImageBitmap = new OptimizationImageBitmap();
+            optimizationImageBitmap.execute(product.getPoster(), 400, 250);
+
+            try {
+                posterImageView.setImageBitmap(optimizationImageBitmap.get());
+            }catch (ExecutionException | InterruptedException e) {
+                e.printStackTrace();
+            }
+
             nameTextView.setText(product.getName());
 
             weightAndPriceTextView.setText(String.format(
