@@ -1,5 +1,6 @@
 package com.example.nastoyshiishashlik;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.nastoyshiishashlik.model.Dishes;
 import com.example.nastoyshiishashlik.model.Product;
 import com.example.nastoyshiishashlik.hitsProductsBar.ProductAdapter;
 import com.example.nastoyshiishashlik.model.Menu;
@@ -32,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Context context = MainActivity.this;
+
+        int id = context.getResources().getIdentifier("teriyaki_wings", "drawable", context.getPackageName());
 
         createTopButton();
         connectToMenuBar();
@@ -138,8 +143,8 @@ public class MainActivity extends AppCompatActivity {
     private List<Product> generationHitProductsList(){
         List<Product> products = new ArrayList<>();
 
-        products.add(new Product(R.drawable.bavarian_sausages, "Баварские соски", 100, 85, 200, 170));
-        products.add(new Product(R.drawable.dorado, "Дорада", 200, 95, 200, 60));
+        products.add(new Product(R.drawable.bavarian_sausages, "Баварские соски", 100, 85, 200, 170, Dishes.KEBAB));
+            products.add(new Product(R.drawable.dorado, "Дорада", 200, 95, 200, 60, Dishes.GRILLED_FISH));
 
         return products;
     }
