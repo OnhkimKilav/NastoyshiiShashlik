@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.nastoyshiishashlik.dao.ProductDao;
 import com.example.nastoyshiishashlik.model.Dishes;
 import com.example.nastoyshiishashlik.model.Product;
 import com.example.nastoyshiishashlik.hitsProductsBar.ProductAdapter;
@@ -34,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Context context = MainActivity.this;
 
-        int id = context.getResources().getIdentifier("teriyaki_wings", "drawable", context.getPackageName());
+        ProductDao productDao = new ProductDao();
+        productDao.createAndWorkDB();
 
         createTopButton();
         connectToMenuBar();

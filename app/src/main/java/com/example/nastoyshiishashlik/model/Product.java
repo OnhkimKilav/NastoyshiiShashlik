@@ -1,12 +1,8 @@
 package com.example.nastoyshiishashlik.model;
 
-import android.graphics.Bitmap;
-
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import org.w3c.dom.Text;
 
 @Entity()
 public class Product {
@@ -22,6 +18,9 @@ public class Product {
     private double finalPrice;
     @ColumnInfo(typeAffinity = ColumnInfo.TEXT)
     private Dishes dishes;
+
+    public Product() {
+    }
 
     public Product(int poster, String name, int weight, double price, int minWeightForOrder, double finalPrice, Dishes dishes) {
         this.poster = poster;

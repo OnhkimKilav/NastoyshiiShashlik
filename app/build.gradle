@@ -40,4 +40,5 @@ dependencies {
     implementation 'me.himanshusoni.quantityview:quantity-view:1.2.0'
 
     implementation 'androidx.room:room-runtime:2.2.5'
+    implementation 'com.opencsv:opencsv:5.3'
 }
