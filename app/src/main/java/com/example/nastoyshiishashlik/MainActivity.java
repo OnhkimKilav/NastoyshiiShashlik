@@ -37,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ProductDao productDao = new ProductDao();
-        productDao.createAndWorkDB();
+        productDao.createTableProducts();
+        productDao.findAll();
+        productDao.findById(1);
 
         createTopButton();
         connectToMenuBar();

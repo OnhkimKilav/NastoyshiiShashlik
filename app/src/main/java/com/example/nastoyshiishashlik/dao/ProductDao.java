@@ -20,14 +20,34 @@ import java.util.List;
 
 public class ProductDao {
     private List<Product> products = new ArrayList<>();
+    private final SQLiteDatabase db = App.getContext().openOrCreateDatabase("app.db", App.MODE_PRIVATE, null);
 
-    public void createAndWorkDB(){
-        SQLiteDatabase db = App.getContext().openOrCreateDatabase("app.db", App.MODE_PRIVATE, null);
+    public void createTableProducts(){
         db.execSQL("CREATE TABLE IF NOT EXISTS products (id INTEGER, poster INTEGER, name TEXT, weight INTEGER, " +
                 "price INTEGER, min_weight_for_order INTEGER, final_price INTEGER, dishes TEXT)");
+    }
 
+    public void deleteAll(){
         db.execSQL("DELETE FROM products");
+    }
 
+    public Product findById(int id){
+        Cursor cursor = db.rawQuery("SELECT * FROM products WHERE id = "+id, null);
+        Product product = new Product();
+        cursor.moveToFirst();
+        product.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex("id"))));
+        product.setPoster(Integer.parseInt(cursor.getString(cursor.getColumnIndex("poster"))));
+        product.setName(cursor.getString(cursor.getColumnIndex("name")));
+        product.setWeight(Integer.parseInt(cursor.getString(cursor.getColumnIndex("weight"))));
+        product.setPrice(Integer.parseInt(cursor.getString(cursor.getColumnIndex("price"))));
+        product.setMinWeightForOrder(Integer.parseInt(cursor.getString(cursor.getColumnIndex("min_weight_for_order"))));
+        product.setFinalPrice(Integer.parseInt(cursor.getString(cursor.getColumnIndex("final_price"))));
+        product.setDishes(Dishes.valueOf(cursor.getString(cursor.getColumnIndex("dishes"))));
+        Log.d("ProductDao", "findById: " + product.toString());
+        return product;
+    }
+
+    public void insertProducts(){
         for(Product product:readProducts()){
             db.execSQL("INSERT INTO products " +
                     "(id, poster, name, weight, price, min_weight_for_order, final_price, dishes)" +
@@ -38,15 +58,30 @@ public class ProductDao {
 
             Log.d("Main activity", "createAndWorkDB: "+product.toString());
         }
+    }
 
+    public List<Product> findAll(){
         Cursor cursor = db.rawQuery("SELECT * FROM products;", null);
-        ArrayList<String> array_list = new ArrayList<String>();
+        List<Product> listProducts = new ArrayList<Product>();
         cursor.moveToFirst();
         while(!cursor.isAfterLast()) {
-            array_list.add(cursor.getString(cursor.getColumnIndex("id")));
+            Product product = new Product();
+
+            product.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex("id"))));
+            product.setPoster(Integer.parseInt(cursor.getString(cursor.getColumnIndex("poster"))));
+            product.setName(cursor.getString(cursor.getColumnIndex("name")));
+            product.setWeight(Integer.parseInt(cursor.getString(cursor.getColumnIndex("weight"))));
+            product.setPrice(Integer.parseInt(cursor.getString(cursor.getColumnIndex("price"))));
+            product.setMinWeightForOrder(Integer.parseInt(cursor.getString(cursor.getColumnIndex("min_weight_for_order"))));
+            product.setFinalPrice(Integer.parseInt(cursor.getString(cursor.getColumnIndex("final_price"))));
+            product.setDishes(Dishes.valueOf(cursor.getString(cursor.getColumnIndex("dishes"))));
+
+            listProducts.add(product);
             cursor.moveToNext();
         }
-        Log.d("Main activity", "createAndWorkDB: " + array_list);
+        Log.d("Main activity", "createAndWorkDB: " + products);
+
+        return products;
     }
 
     private List<Product> readProducts() {
