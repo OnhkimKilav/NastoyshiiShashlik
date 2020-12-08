@@ -1,14 +1,13 @@
 package com.example.nastoyshiishashlik;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.ScrollView;
 
 import com.example.nastoyshiishashlik.hitsProductsBar.Product;
 import com.example.nastoyshiishashlik.hitsProductsBar.ProductAdapter;
@@ -33,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         connectToMenuBar();
         connectToSliderBar();
         connectToHitProductsBar();
+        connectToPopUpMenuBar();
     }
 
     /**
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void connectToMenuBar(){
         RecyclerView recyclerView = findViewById(R.id.main_activity__rv_menu_icons);
-        MenuAdapter menuAdapter = new MenuAdapter(generationMenuList());
+        MenuAdapter menuAdapter = new MenuAdapter(generationMenuList(), R.id.main_activity__rv_menu_icons);
         recyclerView.setAdapter(menuAdapter);
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -137,53 +137,26 @@ public class MainActivity extends AppCompatActivity {
         return products;
     }
 
+    public void onClickButtonMenu(View view) {
+        ScrollView scrollView = findViewById(R.id.pop_up_menu__SV);
+        scrollView.setVisibility(View.VISIBLE);
+    }
+
     /**
-     *  Asynchronous work with optimization image "bitmap"
+     * create and handling menu bar
      */
-   /* private class BitmapAsyncTask extends AsyncTask<Integer, Void, Bitmap>{
+    private void connectToPopUpMenuBar(){
+        RecyclerView recyclerView = findViewById(R.id.main_activity__rv_pop_up_menu_icons);
+        MenuAdapter menuAdapter = new MenuAdapter(generationMenuList(), R.id.main_activity__rv_pop_up_menu_icons);
+        recyclerView.setAdapter(menuAdapter);
 
-        @Override
-        protected Bitmap doInBackground(Integer... integers) {
-            // First decode with inJustDecodeBounds=true to check dimensions
-            final BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inJustDecodeBounds = true;
-            BitmapFactory.decodeResource(getResources(), integers[0], options);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        recyclerView.setLayoutManager(mLayoutManager);
+    }
 
-            // Calculate inSampleSize
-            options.inSampleSize = calculateInSampleSize(options, integers[1], integers[2]);
-
-            // Decode bitmap with inSampleSize set
-            options.inJustDecodeBounds = false;
-            return BitmapFactory.decodeResource(getResources(), integers[0], options);
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            super.onPostExecute(bitmap);
-            bitmap.set
-        }
-
-        private int calculateInSampleSize(
-                BitmapFactory.Options options, int reqWidth, int reqHeight) {
-            // Raw height and width of image
-            final int height = options.outHeight;
-            final int width = options.outWidth;
-            int inSampleSize = 1;
-
-            if (height > reqHeight || width > reqWidth) {
-
-                final int halfHeight = height / 2;
-                final int halfWidth = width / 2;
-
-                // Calculate the largest inSampleSize value that is a power of 2 and keeps both
-                // height and width larger than the requested height and width.
-                while ((halfHeight / inSampleSize) >= reqHeight
-                        && (halfWidth / inSampleSize) >= reqWidth) {
-                    inSampleSize *= 2;
-                }
-            }
-
-            return inSampleSize;
-        }
-    }*/
+    public void onClickExitMenu(View view) {
+        ScrollView scrollView = findViewById(R.id.pop_up_menu__SV);
+        scrollView.setVisibility(View.INVISIBLE);
+    }
 }

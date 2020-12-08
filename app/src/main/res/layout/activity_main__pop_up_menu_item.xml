@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu_item"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/menu_item__menu_poster"
+        android:layout_width="@dimen/poster_size_menu"
+        android:layout_height="@dimen/poster_size_menu"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/stock" />
+
+    <TextView
+        android:id="@+id/menu_item__menu_name"
+        style="@style/style_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        app:layout_constraintLeft_toRightOf="@id/menu_item__menu_poster"
+        app:layout_constraintTop_toTopOf="@id/menu_item__menu_poster"
+        app:layout_constraintBottom_toBottomOf="@id/menu_item__menu_poster"
+        tools:text="name"
+        android:textColor="@color/white"
+        android:textSize="15sp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
