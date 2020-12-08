@@ -15,15 +15,28 @@ import java.util.List;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder> {
     private final List<Menu> menus;
+    private final int id;
 
-    public MenuAdapter(List<Menu> menus) {
+    public MenuAdapter(List<Menu> menus, int id) {
         this.menus = menus;
+        this.id = id;
     }
 
     @NonNull
     @Override
     public MenuViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_main__menu_item, viewGroup, false);
+        View view;
+        switch (id){
+            case R.id.main_activity__rv_pop_up_menu_icons:
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_main__pop_up_menu_item, viewGroup, false);
+                break;
+            case R.id.main_activity__rv_menu_icons:
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_main__menu_item, viewGroup, false);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + id);
+        }
+        
         return new MenuViewHolder(view);
     }
 
