@@ -5,12 +5,18 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nastoyshiishashlik.dao.ProductDao;
 import com.example.nastoyshiishashlik.model.Dishes;
 import com.example.nastoyshiishashlik.model.Product;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ScrollView;
+
+import com.example.nastoyshiishashlik.hitsProductsBar.Product;
 import com.example.nastoyshiishashlik.hitsProductsBar.ProductAdapter;
 import com.example.nastoyshiishashlik.model.Menu;
 import com.example.nastoyshiishashlik.menuBar.MenuAdapter;
@@ -45,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         connectToMenuBar();
         connectToSliderBar();
         connectToHitProductsBar();
+        connectToPopUpMenuBar();
     }
 
     private void createTopButton(){
@@ -77,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void connectToMenuBar(){
         RecyclerView recyclerView = findViewById(R.id.main_activity__rv_menu_icons);
-        MenuAdapter menuAdapter = new MenuAdapter(generationMenuList());
+        MenuAdapter menuAdapter = new MenuAdapter(generationMenuList(), R.id.main_activity__rv_menu_icons);
         recyclerView.setAdapter(menuAdapter);
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -150,5 +157,28 @@ public class MainActivity extends AppCompatActivity {
             products.add(new Product(R.drawable.dorado, "Дорада", 200, 95, 200, 60, Dishes.GRILLED_FISH));
 
         return products;
+    }
+
+    public void onClickButtonMenu(View view) {
+        ScrollView scrollView = findViewById(R.id.pop_up_menu__SV);
+        scrollView.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * create and handling menu bar
+     */
+    private void connectToPopUpMenuBar(){
+        RecyclerView recyclerView = findViewById(R.id.main_activity__rv_pop_up_menu_icons);
+        MenuAdapter menuAdapter = new MenuAdapter(generationMenuList(), R.id.main_activity__rv_pop_up_menu_icons);
+        recyclerView.setAdapter(menuAdapter);
+
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        recyclerView.setLayoutManager(mLayoutManager);
+    }
+
+    public void onClickExitMenu(View view) {
+        ScrollView scrollView = findViewById(R.id.pop_up_menu__SV);
+        scrollView.setVisibility(View.INVISIBLE);
     }
 }

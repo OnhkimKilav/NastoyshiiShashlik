@@ -31,6 +31,7 @@
                     android:layout_width="@dimen/logo_width"
                     android:layout_height="@dimen/logo_height"
                     android:layout_marginStart="10dp"
+                    app:srcCompat="@drawable/logo"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/main_activity__guide_line_header"
                     />
@@ -40,6 +41,8 @@
                     android:layout_width="@dimen/menu_button_size"
                     android:layout_height="@dimen/menu_button_size"
                     android:layout_marginEnd="10dp"
+                    android:onClick="onClickButtonMenu"
+                    app:srcCompat="@drawable/menu"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="@id/main_activity_image_logo"
                     app:layout_constraintBottom_toBottomOf="@id/main_activity_image_logo" />
@@ -191,7 +194,80 @@
 
                 </LinearLayout>
 
+                <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/pop_up_menu__SV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/imageMenu"
+                    app:layout_constraintRight_toRightOf="@id/imageMenu"
+                    android:visibility="invisible">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="@id/imageMenu"
+                            app:layout_constraintRight_toRightOf="@id/imageMenu"
+                            android:background="@color/black">
+                                <ImageView
+                                    android:id="@+id/pop_up_menu__cross"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@drawable/cancel"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    android:onClick="onClickExitMenu"
+                                    />
 
+                                <TextView
+                                    android:id="@+id/pop_up_menu__tv_menu"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="МЕНЮ"
+                                    android:textSize="20sp"
+                                    android:textColor="@color/white"
+                                    app:layout_constraintTop_toBottomOf="@id/pop_up_menu__cross"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    />
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/main_activity__rv_pop_up_menu_icons"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:layout_constraintTop_toBottomOf="@id/pop_up_menu__tv_menu"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    />
+
+                                <TextView
+                                    android:id="@+id/pop_up_menu__tv_payment_and_delivery"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="ОПЛАТА И ДОСТАВКА"
+                                    android:textSize="20sp"
+                                    android:textColor="@color/white"
+                                    app:layout_constraintTop_toBottomOf="@id/main_activity__rv_pop_up_menu_icons"
+                                    app:layout_constraintLeft_toLeftOf="parent"/>
+
+                                <TextView
+                                    android:id="@+id/pop_up_menu__tv_contacts"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="КОНТАКТЫ"
+                                    android:textSize="20sp"
+                                    android:textColor="@color/white"
+                                    app:layout_constraintTop_toBottomOf="@id/pop_up_menu__tv_payment_and_delivery"
+                                    app:layout_constraintLeft_toLeftOf="parent"/>
+                                <TextView
+                                    android:id="@+id/pop_up_menu__tv_keitering"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="КЕЙТЕРИНГ"
+                                    android:textSize="20sp"
+                                    android:textColor="@color/white"
+                                    app:layout_constraintTop_toBottomOf="@id/pop_up_menu__tv_contacts"
+                                    app:layout_constraintLeft_toLeftOf="parent"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                </ScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
