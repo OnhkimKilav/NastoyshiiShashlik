@@ -1,22 +1,27 @@
 package com.example.nastoyshiishashlik;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
-import com.example.nastoyshiishashlik.dao.ProductDao;
+import com.example.nastoyshiishashlik.dao.roomDao.AppDatabase;
+import com.example.nastoyshiishashlik.dao.roomDao.ProductDAOImpl;
+import com.example.nastoyshiishashlik.dao.roomDao.ProductDao;
 import com.example.nastoyshiishashlik.model.Dishes;
 import com.example.nastoyshiishashlik.model.Product;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ScrollView;
 
-import com.example.nastoyshiishashlik.hitsProductsBar.Product;
 import com.example.nastoyshiishashlik.hitsProductsBar.ProductAdapter;
 import com.example.nastoyshiishashlik.model.Menu;
 import com.example.nastoyshiishashlik.menuBar.MenuAdapter;
@@ -42,10 +47,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ProductDao productDao = new ProductDao();
-        productDao.createTableProducts();
-        productDao.findAll();
-        productDao.findById(1);
+
 
         createTopButton();
         connectToMenuBar();
@@ -151,10 +153,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private List<Product> generationHitProductsList(){
-        List<Product> products = new ArrayList<>();
+        ProductDAOImpl productDAO = new ProductDAOImpl();
+        productDAO.deleteAll();
+        productDAO.insertProducts();
+        List<Product> products = new ArrayList<>(productDAO.getByHit());
 
-        products.add(new Product(R.drawable.bavarian_sausages, "Баварские соски", 100, 85, 200, 170, Dishes.KEBAB));
-            products.add(new Product(R.drawable.dorado, "Дорада", 200, 95, 200, 60, Dishes.GRILLED_FISH));
+        //products.add(new Product(1, R.drawable.bavarian_sausages, "Баварские соски", 100, 85, 200, 170, Dishes.KEBAB,true));
+        // products.add(new Product(2, R.drawable.dorado, "Дорада", 200, 95, 200, 60, Dishes.GRILLED_FISH, true));
 
         return products;
     }

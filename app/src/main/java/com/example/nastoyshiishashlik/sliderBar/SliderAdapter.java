@@ -14,6 +14,7 @@ import com.example.nastoyshiishashlik.model.SliderItem;
 import com.example.nastoyshiishashlik.optimization.OptimizationImageBitmap;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;

@@ -6,6 +6,13 @@ import android.os.AsyncTask;
 
 import com.example.nastoyshiishashlik.App;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.net.URI;
+
 public class OptimizationImageBitmap extends AsyncTask<Integer, Void, Bitmap> {
 
     @Override
@@ -18,10 +25,11 @@ public class OptimizationImageBitmap extends AsyncTask<Integer, Void, Bitmap> {
         // First decode with inJustDecodeBounds=true to check dimensions
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
-        BitmapFactory.decodeResource(App.getContext().getResources(), integers[0], options);
+        //BitmapFactory.decodeResource(App.getContext().getResources(), integers[0], options);
+        //BitmapFactory.decodeFile(new File(new URI()))
 
         // Calculate inSampleSize
-        options.inSampleSize = calculateInSampleSize(options, integers[1], integers[2]);
+        options.inSampleSize = calculateInSampleSize(options, integers[1],  integers[2]);
 
         // Decode bitmap with inSampleSize set
         options.inJustDecodeBounds = false;

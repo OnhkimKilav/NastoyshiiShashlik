@@ -194,20 +194,18 @@
 
                 </LinearLayout>
 
-                <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
+                <ScrollView
                     android:id="@+id/pop_up_menu__SV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="@id/imageMenu"
-                    app:layout_constraintRight_toRightOf="@id/imageMenu"
+                    app:layout_constraintTop_toTopOf="@id/main_activity__image_menu"
+                    app:layout_constraintRight_toRightOf="@id/main_activity__image_menu"
                     android:visibility="invisible">
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:layout_constraintTop_toTopOf="@id/imageMenu"
-                            app:layout_constraintRight_toRightOf="@id/imageMenu"
+                            app:layout_constraintTop_toTopOf="@id/main_activity__image_menu"
+                            app:layout_constraintRight_toRightOf="@id/main_activity__image_menu"
                             android:background="@color/black">
                                 <ImageView
                                     android:id="@+id/pop_up_menu__cross"

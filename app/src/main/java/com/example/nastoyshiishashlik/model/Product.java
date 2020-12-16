@@ -3,10 +3,11 @@ package com.example.nastoyshiishashlik.model;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
-@Entity()
+@Entity
 public class Product {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private int id;
     private int poster;
     private String name;
@@ -16,13 +17,16 @@ public class Product {
     private int minWeightForOrder;
     @ColumnInfo(name = "final_price")
     private double finalPrice;
-    @ColumnInfo(typeAffinity = ColumnInfo.TEXT)
+    @TypeConverters({DishesConverter.class})
     private Dishes dishes;
+    private boolean hit;
 
     public Product() {
     }
 
-    public Product(int poster, String name, int weight, double price, int minWeightForOrder, double finalPrice, Dishes dishes) {
+    public Product(int id, int poster, String name, int weight, double price, int minWeightForOrder,
+                   double finalPrice, Dishes dishes, boolean hit) {
+        this.id = id;
         this.poster = poster;
         this.name = name;
         this.weight = weight;
@@ -30,6 +34,7 @@ public class Product {
         this.minWeightForOrder = minWeightForOrder;
         this.finalPrice = finalPrice;
         this.dishes = dishes;
+        this.hit = hit;
     }
 
     public int getId() {
@@ -94,5 +99,28 @@ public class Product {
 
     public void setDishes(Dishes dishes) {
         this.dishes = dishes;
+    }
+
+    public boolean isHit() {
+        return hit;
+    }
+
+    public void setHit(boolean hit) {
+        this.hit = hit;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", poster=" + poster +
+                ", name='" + name + '\'' +
+                ", weight=" + weight +
+                ", price=" + price +
+                ", minWeightForOrder=" + minWeightForOrder +
+                ", finalPrice=" + finalPrice +
+                ", dishes=" + dishes +
+                ", hit=" + hit +
+                '}';
     }
 }

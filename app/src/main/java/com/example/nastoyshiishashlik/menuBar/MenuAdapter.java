@@ -13,6 +13,7 @@ import com.example.nastoyshiishashlik.R;
 import com.example.nastoyshiishashlik.model.Menu;
 import com.example.nastoyshiishashlik.optimization.OptimizationImageBitmap;
 
+import java.io.File;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
