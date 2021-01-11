@@ -1,20 +1,16 @@
 package com.example.nastoyshiishashlik.sliderBar;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.nastoyshiishashlik.MainActivity;
 import com.example.nastoyshiishashlik.R;
 import com.example.nastoyshiishashlik.model.SliderItem;
 import com.example.nastoyshiishashlik.optimization.OptimizationImageBitmap;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;

@@ -1,5 +1,6 @@
 package com.example.nastoyshiishashlik.menuBar;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,17 +10,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.nastoyshiishashlik.App;
+import com.example.nastoyshiishashlik.SectionMenuActivity;
 import com.example.nastoyshiishashlik.R;
+import com.example.nastoyshiishashlik.dao.roomDao.RoomDB;
 import com.example.nastoyshiishashlik.model.Menu;
+import com.example.nastoyshiishashlik.model.Product;
 import com.example.nastoyshiishashlik.optimization.OptimizationImageBitmap;
 
-import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder> {
+    public static final String EXTRA_MESSAGE = "com.example.nastoyshiishashlik.menuBar.MenuAdapter";
     private final List<Menu> menus;
     private final int id;
+    private RoomDB database;
 
     public MenuAdapter(List<Menu> menus, int id) {
         this.menus = menus;
@@ -47,6 +54,24 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
     @Override
     public void onBindViewHolder(@NonNull MenuViewHolder menuViewHolder, int position) {
         menuViewHolder.bind(menus.get(position));
+
+        menuViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Initialize DB
+                database = RoomDB.getInstance(App.getContext());
+                //Initialization intent for creating activity for displaying list dishes
+                Intent intent = new Intent(App.getContext(), SectionMenuActivity.class);
+                //Get dishes of the product you have clicked on
+                String sDishes = menus.get(position).getDishes().getTitle();
+
+                //Get all products from DB where dishes equals our product
+                ArrayList<Product> products = (ArrayList<Product>) database.mainDao().getByDishes(sDishes);
+                intent.putExtra(EXTRA_MESSAGE, products);
+
+                database.close();
+            }
+        });
     }
 
     @Override

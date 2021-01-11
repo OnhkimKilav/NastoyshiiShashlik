@@ -1,6 +1,5 @@
 package com.example.nastoyshiishashlik.hitsProductsBar;
 
-import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.nastoyshiishashlik.App;
 import com.example.nastoyshiishashlik.R;
 import com.example.nastoyshiishashlik.model.Product;
+import com.example.nastoyshiishashlik.optimization.Convert;
 import com.example.nastoyshiishashlik.optimization.OptimizationImageBitmap;
 
-import java.io.File;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -62,7 +61,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         private void bind(@NonNull Product product){
             OptimizationImageBitmap optimizationImageBitmap = new OptimizationImageBitmap();
-            optimizationImageBitmap.execute(product.getPoster(), 400, 250);
+            optimizationImageBitmap.execute(product.getPoster(), 400, 200);
 
             try {
                 posterImageView.setImageBitmap(optimizationImageBitmap.get());

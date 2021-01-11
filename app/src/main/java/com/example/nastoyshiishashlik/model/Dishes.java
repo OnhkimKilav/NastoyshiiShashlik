@@ -1,20 +1,22 @@
 package com.example.nastoyshiishashlik.model;
 
 public enum Dishes {
-    STOCK(""),
-    SETS(""),
+    STOCK("STOCK"),
+    SETS("SETS"),
     KEBAB("KEBAB"),
-    LYULYAKEBAB(""),
+    LYULYAKEBAB("LYULYAKEBAB"),
     GRILLED_FISH("GRILLED_FISH"),
-    BEVERAGES(""),
-    COLD_SNACKS(""),
-    GARNISH(""),
-    GRILLED_VEGETABLES(""),
-    HOT_SNACK(""),
-    KHACHAPURI(""),
-    PICKLED_MEAT(""),
-    PITA(""),
-    SALAD("");
+    BEVERAGES("BEVERAGES"),
+    COLD_SNACKS("COLD_SNACKS"),
+    GARNISH("GARNISH"),
+    GRILLED_VEGETABLES("GRILLED_VEGETABLES"),
+    HOT_SNACK("HOT_SNACK"),
+    KHACHAPURI("KHACHAPURI"),
+    PICKLED_MEAT("PICKLED_MEAT"),
+    PITA("PITA"),
+    SALAD("SALAD"),
+    SAUCES("SAUCES"),
+    FIRST_MEAL("FIRST_MEAL");
 
     private String title;
 

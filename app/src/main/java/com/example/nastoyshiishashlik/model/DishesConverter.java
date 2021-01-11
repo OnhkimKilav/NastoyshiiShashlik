@@ -4,12 +4,12 @@ import androidx.room.TypeConverter;
 
 public class DishesConverter {
     @TypeConverter
-    public String fromHobbies(Dishes dishes) {
-        return dishes.getTitle();
+    public static Dishes fromStringToDishes(String strDishes) {
+        return strDishes == null ? null : Dishes.valueOf(strDishes);
     }
 
     @TypeConverter
-    public Dishes toHobbies(String data) {
-        return Dishes.valueOf(data);
+    public static String fromDishesToString (Dishes dishes) {
+        return dishes == null ? null : dishes.getTitle();
     }
 }

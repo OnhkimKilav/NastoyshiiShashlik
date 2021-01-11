@@ -1,32 +1,36 @@
 package com.example.nastoyshiishashlik.model;
 
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
 
-@Entity
+import java.io.Serializable;
+import java.util.Objects;
+
+@Entity(tableName = "products")
 public class Product {
-    @PrimaryKey
-    private int id;
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "_id")
+    private int ID;
     private int poster;
     private String name;
-    private int weight;
-    private double price;
+    private double weight;
+    private int price;
     @ColumnInfo(name = "min_weight_for_order")
-    private int minWeightForOrder;
+    private double minWeightForOrder;
     @ColumnInfo(name = "final_price")
-    private double finalPrice;
-    @TypeConverters({DishesConverter.class})
+    private int finalPrice;
     private Dishes dishes;
     private boolean hit;
+    private String description;
 
     public Product() {
     }
 
-    public Product(int id, int poster, String name, int weight, double price, int minWeightForOrder,
-                   double finalPrice, Dishes dishes, boolean hit) {
-        this.id = id;
+    public Product(int ID, int poster, String name, double weight, int price, double minWeightForOrder,
+                   int finalPrice, Dishes dishes, boolean hit, String description) {
+        this.ID = ID;
         this.poster = poster;
         this.name = name;
         this.weight = weight;
@@ -35,14 +39,28 @@ public class Product {
         this.finalPrice = finalPrice;
         this.dishes = dishes;
         this.hit = hit;
+        this.description = description;
     }
 
-    public int getId() {
-        return id;
+    public Product(int poster, String name, double weight, int price, double minWeightForOrder,
+                   int finalPrice, Dishes dishes, boolean hit, String description) {
+        this.poster = poster;
+        this.name = name;
+        this.weight = weight;
+        this.price = price;
+        this.minWeightForOrder = minWeightForOrder;
+        this.finalPrice = finalPrice;
+        this.dishes = dishes;
+        this.hit = hit;
+        this.description = description;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public int getPoster() {
@@ -61,35 +79,35 @@ public class Product {
         this.name = name;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
-    public int getMinWeightForOrder() {
+    public double getMinWeightForOrder() {
         return minWeightForOrder;
     }
 
-    public void setMinWeightForOrder(int minWeightForOrder) {
+    public void setMinWeightForOrder(double minWeightForOrder) {
         this.minWeightForOrder = minWeightForOrder;
     }
 
-    public double getFinalPrice() {
+    public int getFinalPrice() {
         return finalPrice;
     }
 
-    public void setFinalPrice(double finalPrice) {
+    public void setFinalPrice(int finalPrice) {
         this.finalPrice = finalPrice;
     }
 
@@ -109,10 +127,40 @@ public class Product {
         this.hit = hit;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return ID == product.ID &&
+                poster == product.poster &&
+                Double.compare(product.weight, weight) == 0 &&
+                price == product.price &&
+                Double.compare(product.minWeightForOrder, minWeightForOrder) == 0 &&
+                finalPrice == product.finalPrice &&
+                hit == product.hit &&
+                Objects.equals(name, product.name) &&
+                dishes == product.dishes &&
+                Objects.equals(description, product.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID, poster, name, weight, price, minWeightForOrder, finalPrice, dishes, hit, description);
+    }
+
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
+                "ID=" + ID +
                 ", poster=" + poster +
                 ", name='" + name + '\'' +
                 ", weight=" + weight +
@@ -121,6 +169,8 @@ public class Product {
                 ", finalPrice=" + finalPrice +
                 ", dishes=" + dishes +
                 ", hit=" + hit +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
+
