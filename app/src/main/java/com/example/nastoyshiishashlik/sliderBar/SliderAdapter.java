@@ -1,5 +1,7 @@
 package com.example.nastoyshiishashlik.sliderBar;
 
+import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,14 +10,17 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.nastoyshiishashlik.R;
 import com.example.nastoyshiishashlik.model.SliderItem;
-import com.example.nastoyshiishashlik.optimization.OptimizationImageBitmap;
+import com.example.nastoyshiishashlik.optimization.OptimizationBitmap;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapterVH> {
+    private static final String TAG = SliderAdapter.class.getCanonicalName();
     private List<SliderItem> mSliderItems = new ArrayList<>();
 
     public SliderAdapter(List<SliderItem> mSliderItems) {
@@ -44,20 +49,25 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
         return new SliderAdapterVH(inflate);
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void onBindViewHolder(SliderAdapterVH viewHolder, final int position) {
 
         SliderItem sliderItem = mSliderItems.get(position);
-        OptimizationImageBitmap optimizationImageBitmap = new OptimizationImageBitmap();
+        OptimizationBitmap optimizationBitmap = new OptimizationBitmap();
 
-        try {
-            Glide.with(viewHolder.itemView)
-                    .load(optimizationImageBitmap.execute(sliderItem.getPoster(), 400, 250).get())
-                    .fitCenter()
-                    .into(viewHolder.imageViewBackground);
-        } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
-        }
+        optimizationBitmap.optimizationBitmap(sliderItem.getPoster(), 400, 250)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(bitmap -> {
+                    Glide.with(viewHolder.itemView)
+                            .load(bitmap)
+                            .fitCenter()
+                            .into(viewHolder.imageViewBackground);
+                    Log.d(TAG, "bind: optimization poster for hits is successful");
+                }, throwable -> Log.e(TAG, "bind: optimization poster for hits isn't successful"));
+
+
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

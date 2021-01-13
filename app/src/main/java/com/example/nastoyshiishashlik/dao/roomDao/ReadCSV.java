@@ -1,4 +1,4 @@
-package com.example.nastoyshiishashlik.dao;
+package com.example.nastoyshiishashlik.dao.roomDao;
 
 import android.util.Log;
 

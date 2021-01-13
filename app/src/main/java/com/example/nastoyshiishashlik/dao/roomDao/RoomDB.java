@@ -35,9 +35,4 @@ public abstract class RoomDB extends RoomDatabase {
 
     //Create Dao
     public abstract MainDao mainDao();
-
-    //Insert data products to DB
-    private final void insertProductData(){
-
-    }
 }

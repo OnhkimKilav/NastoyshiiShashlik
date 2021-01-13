@@ -3,15 +3,16 @@
     package="com.example.nastoyshiishashlik">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="false"
-        android:largeHeap="true"
-        android:theme="@style/Theme.NastoyshiiShashlik"
-        android:name=".App">
+        android:theme="@style/Theme.NastoyshiiShashlik">
+        <activity android:name=".ListProductsByDishesActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SectionMenuActivity"/>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

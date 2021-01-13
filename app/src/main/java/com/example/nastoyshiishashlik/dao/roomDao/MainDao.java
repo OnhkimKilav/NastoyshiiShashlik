@@ -9,6 +9,9 @@ import com.example.nastoyshiishashlik.model.Product;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
+import io.reactivex.Single;
+
 import static androidx.room.OnConflictStrategy.REPLACE;
 
 @Dao
@@ -34,13 +37,13 @@ public interface MainDao {
 
     //Get all data query
     @Query("SELECT * FROM products")
-    List<Product> getAll();
+    Single<List<Product>> getAll();
 
     //Get product by hit
     @Query("SELECT * FROM products WHERE hit = :iHit")
-    List<Product> getByHit(int iHit);
+    Single<List<Product>> getByHit(int iHit);
 
     //Get product by dishes
     @Query("SELECT * FROM products WHERE dishes = :sDishes")
-    List<Product> getByDishes(String sDishes);
+    Single<List<Product>> getByDishes(String sDishes);
 }

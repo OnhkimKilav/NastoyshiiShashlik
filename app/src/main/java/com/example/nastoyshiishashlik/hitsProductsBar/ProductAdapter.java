@@ -1,5 +1,7 @@
 package com.example.nastoyshiishashlik.hitsProductsBar;
 
+import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +14,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.nastoyshiishashlik.App;
 import com.example.nastoyshiishashlik.R;
 import com.example.nastoyshiishashlik.model.Product;
-import com.example.nastoyshiishashlik.optimization.Convert;
-import com.example.nastoyshiishashlik.optimization.OptimizationImageBitmap;
+import com.example.nastoyshiishashlik.optimization.OptimizationBitmap;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
+    private final String TAG = ProductAdapter.class.getSimpleName();
     private final List<Product> products;
 
     public ProductAdapter(List<Product> products) {
@@ -44,6 +48,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
     static final class ProductViewHolder extends RecyclerView.ViewHolder{
+        private static final String TAG = ProductViewHolder.class.getCanonicalName();
         private final ImageView posterImageView;
         private final TextView nameTextView;
         private final TextView weightAndPriceTextView;
@@ -59,15 +64,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             this.priceTextView = itemView.findViewById(R.id.hits_products_tv_total_price);
         }
 
+        @SuppressLint("CheckResult")
         private void bind(@NonNull Product product){
-            OptimizationImageBitmap optimizationImageBitmap = new OptimizationImageBitmap();
-            optimizationImageBitmap.execute(product.getPoster(), 400, 200);
-
-            try {
-                posterImageView.setImageBitmap(optimizationImageBitmap.get());
-            }catch (ExecutionException | InterruptedException e) {
-                e.printStackTrace();
-            }
+            OptimizationBitmap optimizationBitmap = new OptimizationBitmap();
+            optimizationBitmap.optimizationBitmap(product.getPoster(), 400, 200)
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(bitmap -> {
+                        posterImageView.setImageBitmap(bitmap);
+                        Log.d(TAG, "bind: optimization poster for hits is successful");
+                    }, throwable -> Log.e(TAG, "bind: optimization poster for hits isn't successful"));
 
             nameTextView.setText(product.getName());
 
