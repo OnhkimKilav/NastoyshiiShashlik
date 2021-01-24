@@ -1,4 +1,4 @@
-package com.example.nastoyshiishashlik.sliderBar;
+package com.example.nastoyshiishashlik.service;
 
 import android.annotation.SuppressLint;
 import android.util.Log;
@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.nastoyshiishashlik.R;
 import com.example.nastoyshiishashlik.model.SliderItem;
-import com.example.nastoyshiishashlik.optimization.OptimizationBitmap;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.ArrayList;

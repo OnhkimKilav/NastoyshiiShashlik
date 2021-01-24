@@ -46,4 +46,8 @@ public interface MainDao {
     //Get product by dishes
     @Query("SELECT * FROM products WHERE dishes = :sDishes")
     Single<List<Product>> getByDishes(String sDishes);
+
+    //Get all product from db by _ID
+    @Query("SELECT * FROM products WHERE _id = :iId")
+    Single<Product> getById(int iId);
 }

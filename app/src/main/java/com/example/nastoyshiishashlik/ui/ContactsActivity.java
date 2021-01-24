@@ -1,14 +1,17 @@
-package com.example.nastoyshiishashlik;
+package com.example.nastoyshiishashlik.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ListProductsByDishesActivity extends AppCompatActivity {
+import com.example.nastoyshiishashlik.R;
+
+public class ContactsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_products_by_dishes);
+        setContentView(R.layout.activity_contacts);
+
     }
 }

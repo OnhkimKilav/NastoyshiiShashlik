@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="20dp"
+    android:background="@drawable/roundrect">
+
+
+
+    <ImageView
+        android:id="@+id/hits_products__iv_poster"
+        android:layout_width="280dp"
+        android:layout_height="120dp"
+        android:layout_margin="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/hits_products__tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/hits_products__iv_poster"
+        app:layout_constraintLeft_toLeftOf="@id/hits_products__iv_poster"
+        app:layout_constraintRight_toRightOf="@id/hits_products__iv_poster"
+        android:layout_marginTop="10dp"
+        style="@style/product_style"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/hits_products_tv_weight_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/hits_products__tv_name"
+        app:layout_constraintLeft_toLeftOf="@id/hits_products__iv_poster"
+        app:layout_constraintRight_toRightOf="@id/hits_products__quantity_view"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        style="@style/product_style.MENU"/>
+
+    <me.himanshusoni.quantityview.QuantityView
+        android:id="@+id/hits_products__quantity_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        app:layout_constraintLeft_toLeftOf="@id/hits_products_tv_weight_price"
+        app:layout_constraintTop_toBottomOf="@id/hits_products_tv_weight_price"
+        app:qv_addButtonBackground="#00000000"
+        app:qv_addButtonTextColor="@color/white"
+        app:qv_minQuantity="1"
+        app:qv_quantity="1"
+        app:qv_quantityBackground="#00000000"
+        app:qv_quantityTextColor="@color/white"
+        app:qv_removeButtonBackground="#00000000"
+        app:qv_removeButtonTextColor="@color/white" />
+
+    <TextView
+        android:id="@+id/hits_products_tv_weight"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/hits_products_tv_weight_price"
+        app:layout_constraintLeft_toRightOf="@id/hits_products_tv_weight_price"
+        app:layout_constraintLeft_toLeftOf="@id/hits_products_tv_total_price"
+        style="@style/product_style.MENU"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/hits_products_tv_total_price"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        app:layout_constraintLeft_toRightOf="@id/hits_products__quantity_view"
+        app:layout_constraintTop_toBottomOf="@id/hits_products_tv_weight"
+        app:layout_constraintBottom_toBottomOf="@id/hits_products__quantity_view"
+        android:layout_marginLeft="20dp"
+        style="@style/product_style"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/hits_products__but_order"
+        style="@style/product_style"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:text="ЗАКАЗАТЬ"
+        app:backgroundTint="#D50303"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hits_products_tv_total_price" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

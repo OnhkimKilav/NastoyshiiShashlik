@@ -1,7 +1,13 @@
-package com.example.nastoyshiishashlik.optimization;
+package com.example.nastoyshiishashlik.service;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 
 import com.example.nastoyshiishashlik.App;
 
@@ -9,7 +15,7 @@ import io.reactivex.Single;
 
 public class OptimizationBitmap {
 
-    public Single<Bitmap> optimizationBitmap(int idImage, int weight, int height){
+    public static Single<Bitmap> optimizationBitmap(int idImage, int weight, int height){
         return Single.create(emitter -> {
             // First decode with inJustDecodeBounds=true to check dimensions
             final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -21,11 +27,13 @@ public class OptimizationBitmap {
 
             // Decode bitmap with inSampleSize set
             options.inJustDecodeBounds = false;
-            emitter.onSuccess(BitmapFactory.decodeResource(App.getContext().getResources(), idImage, options));
+            Bitmap bitmap = BitmapFactory.decodeResource(App.getContext().getResources(), idImage, options);
+            bitmap = getRoundedCornerBitmap(bitmap, 30);
+            emitter.onSuccess(bitmap);
         });
     }
 
-    private int calculateInSampleSize(
+    private static int calculateInSampleSize(
             BitmapFactory.Options options, int reqWidth, int reqHeight) {
         // Raw height and width of image
         final int height = options.outHeight;
@@ -46,6 +54,28 @@ public class OptimizationBitmap {
         }
 
         return inSampleSize;
+    }
+
+    private static Bitmap getRoundedCornerBitmap(Bitmap bitmap, int pixels) {
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap
+                .getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+
+        final int color = 0xff424242;
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        final RectF rectF = new RectF(rect);
+        final float roundPx = pixels;
+
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+
+        return output;
     }
 
 }

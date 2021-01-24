@@ -1,6 +1,7 @@
-package com.example.nastoyshiishashlik.hitsProductsBar;
+package com.example.nastoyshiishashlik.service;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nastoyshiishashlik.App;
+import com.example.nastoyshiishashlik.ui.ProductActivity;
 import com.example.nastoyshiishashlik.R;
 import com.example.nastoyshiishashlik.model.Product;
-import com.example.nastoyshiishashlik.optimization.OptimizationBitmap;
 
 import java.util.List;
 
@@ -22,17 +23,19 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
-    private final String TAG = ProductAdapter.class.getSimpleName();
+    private final String TAG = ProductAdapter.class.getCanonicalName();
     private final List<Product> products;
+    private int idIForInflate;
 
-    public ProductAdapter(List<Product> products) {
+    public ProductAdapter(List<Product> products, int idIForInflate) {
         this.products = products;
+        this.idIForInflate = idIForInflate;
     }
 
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_main__hits_products,
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(idIForInflate,
                 viewGroup, false);
         return new ProductViewHolder(view);
     }
@@ -40,6 +43,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int position) {
         productViewHolder.bind(products.get(position));
+
+        productViewHolder.posterImageView.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("CheckResult")
+            @Override
+            public void onClick(View v) {
+                //Initialize list for products
+                Product product = products.get(position);
+                //Initialization intent for creating activity for displaying list dishes
+                Intent intent = new Intent(App.getContext(), ProductActivity.class);
+                intent.putExtra(TAG, product);
+                App.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -47,13 +63,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         return products.size();
     }
 
-    static final class ProductViewHolder extends RecyclerView.ViewHolder{
+
+    static final class ProductViewHolder extends RecyclerView.ViewHolder {
         private static final String TAG = ProductViewHolder.class.getCanonicalName();
         private final ImageView posterImageView;
         private final TextView nameTextView;
         private final TextView weightAndPriceTextView;
         private final TextView minWeightTextView;
         private final TextView priceTextView;
+
+
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -91,5 +110,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             ));
         }
     }
+
 
 }

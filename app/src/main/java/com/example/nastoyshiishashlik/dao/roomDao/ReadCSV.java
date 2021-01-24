@@ -38,36 +38,44 @@ public class ReadCSV {
                 Product product = new Product();
 
 
-                if(tokens[0].length()>0) {
-                    int resId=App.getContext().getResources().getIdentifier(tokens[0], "drawable",
+                if(tokens[0].length()>0)
+                    product.setID(Integer.parseInt(tokens[0]));
+                else product.setID(0);
+
+                if(tokens[1].length()>0) {
+                    int resId=App.getContext().getResources().getIdentifier(tokens[1], "drawable",
                             App.getContext().getPackageName());
                     product.setPoster(resId);
                 }
                 else product.setPoster(0);
 
-                product.setName(tokens[1]);
-
-                if(tokens[2].length()>0)
-                    product.setWeight(Double.parseDouble(tokens[2]));
-                else product.setWeight(0);
+                product.setName(tokens[2]);
 
                 if(tokens[3].length()>0)
-                    product.setPrice(Integer.parseInt(tokens[3]));
-                else product.setPrice(0);
+                    product.setWeight(Double.parseDouble(tokens[3]));
+                else product.setWeight(0);
 
                 if(tokens[4].length()>0)
-                    product.setMinWeightForOrder(Double.parseDouble(tokens[4]));
-                else product.setMinWeightForOrder(0);
+                    product.setPrice(Integer.parseInt(tokens[4]));
+                else product.setPrice(0);
 
                 if(tokens[5].length()>0)
-                    product.setFinalPrice(Integer.parseInt(tokens[5]));
+                    product.setMinWeightForOrder(Double.parseDouble(tokens[5]));
+                else product.setMinWeightForOrder(0);
+
+                if(tokens[6].length()>0)
+                    product.setFinalPrice(Integer.parseInt(tokens[6]));
                 else product.setFinalPrice(0);
 
-                product.setDishes(Dishes.valueOf(tokens[6]));
+                product.setDishes(Dishes.valueOf(tokens[7]));
 
-                product.setHit(Boolean.parseBoolean(tokens[7]));
+                product.setHit(Boolean.parseBoolean(tokens[8]));
 
-                product.setDescription(tokens[8]);
+                product.setDescription(tokens[9]);
+
+                product.setDishesName(tokens[10]);
+
+                product.setSentences(tokens[11]);
 
                 products.add(product);
 

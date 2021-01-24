@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/menu_item__menu_poster"
-        android:layout_width="@dimen/poster_size_menu"
-        android:layout_height="@dimen/poster_size_menu"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,13 +22,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/menu_item__menu_name"
-        style="@style/style_text"
+        style="@style/product_style.POPUP"
         android:layout_marginStart="10dp"
         app:layout_constraintLeft_toRightOf="@id/menu_item__menu_poster"
         app:layout_constraintTop_toTopOf="@id/menu_item__menu_poster"
         app:layout_constraintBottom_toBottomOf="@id/menu_item__menu_poster"
         tools:text="name"
-        android:textColor="@color/white"
-        android:textSize="15sp"/>
+        android:textColor="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

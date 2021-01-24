@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fragment
+    android:id="@+id/map"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    map:layout_constraintLeft_toLeftOf="parent"
+    map:layout_constraintRight_toRightOf="parent"
+    map:layout_constraintTop_toTopOf="parent"
+    tools:context=".fragments.MapsFragment"
+    />

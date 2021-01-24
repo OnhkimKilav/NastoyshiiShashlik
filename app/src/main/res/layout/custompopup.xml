@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="300dp"
+    android:layout_height="500dp"
+    android:background="@color/black"
+    android:padding="10dp"
+    android:paddingStart="15dp"
+    android:layout_gravity="end">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_exit"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/cancel"
+                android:layout_gravity="end"
+                />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:text="@string/menu"
+                style="@style/product_style.POPUP"
+                android:textSize="21sp"
+                />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/popup_menu__rv_dishes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                />
+
+            <TextView
+                android:id="@+id/popup__tv_payment_delivery"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="@string/payment_and_delivery"
+                style="@style/product_style.POPUP"
+                android:textSize="21sp"
+                />
+            <TextView
+                android:id="@+id/popup__tv_contacts"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="@string/contacts"
+                style="@style/product_style.POPUP"
+                android:textSize="21sp"
+                />
+            <TextView
+                android:id="@+id/popup__tv_catering"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="@string/catering"
+                style="@style/product_style.POPUP"
+                android:textSize="21sp"/>
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

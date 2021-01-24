@@ -10,7 +10,7 @@ import androidx.room.TypeConverters;
 import com.example.nastoyshiishashlik.model.DishesConverter;
 import com.example.nastoyshiishashlik.model.Product;
 
-@Database(entities = {Product.class}, version = 1, exportSchema = false)
+@Database(entities = {Product.class}, version = 3, exportSchema = false)
 @TypeConverters({DishesConverter.class})
 public abstract class RoomDB extends RoomDatabase {
     //Create database instance

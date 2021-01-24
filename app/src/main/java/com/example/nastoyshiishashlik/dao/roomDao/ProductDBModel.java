@@ -18,27 +18,11 @@ public class ProductDBModel extends AndroidViewModel {
     private static final String TAG = ProductDBModel.class.getCanonicalName();
     private RoomDB database;
 
+    @SuppressLint("CheckResult")
     public ProductDBModel() {
         super(App.getContext());
+
         database = RoomDB.getInstance(App.getContext());
-
-        database.mainDao().getAll()
-                .subscribeOn(Schedulers.io())
-                .subscribe(products -> {
-                            //Read data from CSV fail
-                            if (products.size() == 0) {
-                                ArrayList<Product> productsFromCSV = new ArrayList<>(new ReadCSV().readProducts());
-                                for (Product product : productsFromCSV) {
-                                    //Insert text in database
-                                    database.mainDao().insert(product);
-                                }
-                            }
-                            Log.d(TAG, "ProductDBModel: product's table length is " + products.size());
-                        },
-                        throwable -> Log.e(TAG, "ProductDBModel: Error! Getting all file from product's table didn't work")
-                );
-
-
     }
 
     public Single<List<Product>> getAll(){
@@ -50,4 +34,8 @@ public class ProductDBModel extends AndroidViewModel {
     }
 
     public Single<List<Product>> getByDishes(String sDishes){return database.mainDao().getByDishes(sDishes);}
+
+    public Single<Product> getById(int iId){
+        return database.mainDao().getById(iId);
+    }
 }

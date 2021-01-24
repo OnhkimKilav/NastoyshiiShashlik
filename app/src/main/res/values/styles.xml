@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="style_text">
-        <item name="android:textSize">13sp</item>
-        <item name="fontFamily">@font/montserrat</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="fontFamily">@font/montserrat_light</item>
         <item name="android:textColor">#fff</item>
-        <item name="android:gravity">center</item>
+        <item name="android:gravity">left</item>
         <item name="android:lines">2</item>
         <item name="android:maxLines">2</item>
     </style>
@@ -14,11 +13,76 @@
         <item name="android:textSize">24sp</item>
     </style>
 
-    <style name="style_text.MEAN">
-        <item name="android:textSize">18sp</item>
+    <style name="bottom_menu">
+        <item name="android:textSize">13sp</item>
+        <item name="fontFamily">@font/montserrat_light</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:gravity">center</item>
     </style>
     
     <style name="style_text.NOT_BOLD">
         <item name="android:textStyle">normal</item>
+    </style>
+    
+    <style name="product_style">
+        <item name="android:textSize">15sp</item>
+        <item name="fontFamily">@font/montserrat_light</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:lines">2</item>
+        <item name="android:maxLines">2</item>
+    </style>
+
+    <style name="product_style.POPUP">
+        <item name="android:gravity">left</item>
+    </style>
+
+    <style name="product_style.MENU">
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <!--style for activity-->
+    <style name="activity_style">
+        <item name="android:textSize">15sp</item>
+        <item name="fontFamily">@font/montserrat_light</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!--style for name's sections on the main's activities -->
+    <style name="activity_style.NAME_SECTION">
+        <item name="android:textSize">24sp</item>
+    </style>
+    <!--style for name's sections on the main's activities -->
+    <style name="activity_style.BOTTOM_MENU">
+        <item name="android:textSize">13sp</item>
+    </style>
+    <!--style for name's sections on the main's activities -->
+    <style name="activity_style.TEXT">
+        <item name="android:textSize">18sp</item>
+        <item name="android:gravity">left</item>
+    </style>
+
+
+    <!--Montserrat Light-->
+    <style name="montserrat_light">
+        <item name="android:textSize">15sp</item>
+        <item name="fontFamily">@font/montserrat_light</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!--Montserrat Medium-->
+    <style name="montserrat_medium">
+        <item name="android:textSize">15sp</item>
+        <item name="fontFamily">@font/montserrat_medium</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!--Montserrat Bold-->
+    <style name="montserrat_bold">
+        <item name="android:textSize">15sp</item>
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:gravity">center</item>
     </style>
 </resources>

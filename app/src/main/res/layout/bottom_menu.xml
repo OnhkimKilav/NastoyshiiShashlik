@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_activity__bottom_menu"
+    android:background="@android:color/black"
+    app:layout_constraintTop_toBottomOf="@id/main_activity__rv_hits">
+
+    <ImageView
+        android:id="@+id/imageBottomLogo"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/main_activity__bottom_menu"
+        app:layout_constraintTop_toTopOf="@id/main_activity__bottom_menu"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/main_activity__tv_time_work"
+        style="@style/activity_style.BOTTOM_MENU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10:00 - 23:00 без выходных"
+        android:textSize="8sp"
+        app:layout_constraintLeft_toLeftOf="@id/imageBottomLogo"
+        app:layout_constraintTop_toBottomOf="@id/imageBottomLogo" />
+
+    <TextView
+        android:id="@+id/main_activity__tv_phone_number"
+        style="@style/activity_style.BOTTOM_MENU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="067-251-59-45"
+        android:textSize="8sp"
+        app:layout_constraintLeft_toLeftOf="@id/main_activity__tv_time_work"
+        app:layout_constraintTop_toBottomOf="@id/main_activity__tv_time_work" />
+
+    <TextView
+        android:id="@+id/main_activity__tv_bottom_stock"
+        style="@style/activity_style.BOTTOM_MENU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="акции"
+        app:layout_constraintLeft_toLeftOf="@id/main_activity__tv_phone_number"
+        app:layout_constraintRight_toRightOf="@id/main_activity__tv_phone_number"
+        app:layout_constraintTop_toBottomOf="@id/main_activity__tv_phone_number" />
+
+    <TextView
+        android:id="@+id/main_activity__tv_bottom_contacts"
+        style="@style/activity_style.BOTTOM_MENU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="контакты"
+        app:layout_constraintLeft_toLeftOf="@id/main_activity__tv_bottom_stock"
+        app:layout_constraintTop_toBottomOf="@id/main_activity__tv_bottom_stock" />
+
+    <TextView
+        android:id="@+id/main_activity__tv_bottom_delivery"
+        style="@style/activity_style.BOTTOM_MENU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="доставка и оплата"
+        app:layout_constraintLeft_toLeftOf="@id/main_activity__tv_bottom_contacts"
+        app:layout_constraintTop_toBottomOf="@id/main_activity__tv_bottom_contacts" />
+
+    <TextView
+        android:id="@+id/main_activity__tv_bottom_delivery_keitering"
+        style="@style/activity_style.BOTTOM_MENU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="кейтеринг"
+        app:layout_constraintLeft_toLeftOf="@id/main_activity__tv_bottom_delivery"
+        app:layout_constraintTop_toBottomOf="@id/main_activity__tv_bottom_delivery" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_activity_cl_social_network"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/main_activity__tv_bottom_stock">
+
+        <TextView
+            android:id="@+id/main_activity__tv_social_network"
+            style="@style/activity_style.BOTTOM_MENU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="мы в соц. сетях"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/main_activity__iv_facebook"
+            android:layout_width="@dimen/menu_button_size"
+            android:layout_height="@dimen/menu_button_size"
+            app:srcCompat="@drawable/facebook"
+            android:layout_marginStart="15dp"
+            app:layout_constraintTop_toBottomOf="@id/main_activity__tv_social_network"
+            app:layout_constraintLeft_toLeftOf="@id/main_activity__tv_social_network"
+            />
+
+        <ImageView
+            android:id="@+id/main_activity__iv_instagram"
+            android:layout_width="@dimen/menu_button_size"
+            android:layout_height="@dimen/menu_button_size"
+            app:srcCompat="@drawable/instagram"
+            android:layout_marginStart="15dp"
+            app:layout_constraintTop_toBottomOf="@id/main_activity__tv_social_network"
+            app:layout_constraintLeft_toRightOf="@id/main_activity__iv_facebook"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_activity__cl_payment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/main_activity_cl_social_network"
+        app:layout_constraintLeft_toLeftOf="@id/main_activity_cl_social_network"
+        app:layout_constraintRight_toRightOf="@id/main_activity_cl_social_network">
+
+        <TextView
+            android:id="@+id/main_activity__tv_payment"
+            style="@style/activity_style.BOTTOM_MENU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="поддержка платежей"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/main_activity__iv_visa"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/visa"
+            android:layout_marginStart="25dp"
+            app:layout_constraintTop_toBottomOf="@id/main_activity__tv_payment"
+            app:layout_constraintLeft_toLeftOf="@id/main_activity__tv_payment"
+            />
+
+        <ImageView
+            android:id="@+id/main_activity__iv_mastercard"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/mastercard"
+            android:layout_marginStart="15dp"
+            app:layout_constraintTop_toBottomOf="@id/main_activity__tv_payment"
+            app:layout_constraintLeft_toRightOf="@id/main_activity__iv_visa"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/main_activity__tv_copyright_mark"
+        style="@style/activity_style.BOTTOM_MENU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/copyright_mark"
+        android:textSize="8sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_activity__cl_payment"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
