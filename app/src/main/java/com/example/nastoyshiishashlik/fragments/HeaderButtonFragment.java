@@ -21,7 +21,7 @@ public class HeaderButtonFragment extends Fragment implements View.OnClickListen
     private ImageView phone, menu, logo;
 
     public HeaderButtonFragment() {
-        super(R.layout.header_button);
+        super(R.layout.fragment_header_button);
     }
 
     @Override
@@ -64,9 +64,6 @@ public class HeaderButtonFragment extends Fragment implements View.OnClickListen
                 startActivity(intent);
                 break;
             }
-
-
-            //.... etc
         }
     }
 }

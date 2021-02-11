@@ -1,8 +1,7 @@
 package com.example.nastoyshiishashlik.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,46 +9,70 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.example.nastoyshiishashlik.R;
-import com.example.nastoyshiishashlik.service.ProductAdapter;
+import com.example.nastoyshiishashlik.dao.roomDao.ProductDBModel;
+import com.example.nastoyshiishashlik.fragments.BasketFragment;
+import com.example.nastoyshiishashlik.fragments.ProductFragment;
 import com.example.nastoyshiishashlik.service.MenuAdapter;
-import com.example.nastoyshiishashlik.model.Product;
+import com.example.nastoyshiishashlik.models.ProductModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class ListProductsByDishesActivity extends AppCompatActivity {
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
+public class ListProductsByDishesActivity extends BaseActivity implements BasketFragment.Communicator{
     private final String TAG = ListProductsByDishesActivity.class.getCanonicalName();
 
-    private List<Product> productListByDishes = new ArrayList<>();
     private TextView tvDishesName;
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
+    private ProductDBModel database = new ProductDBModel();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_products_by_dishes);
-
-        Intent i = getIntent();
-        productListByDishes = (List<Product>) i.getSerializableExtra(MenuAdapter.class.getCanonicalName());
-        Log.d(TAG, "onCreate: get from MenuAdapter class products list, when have size: " + productListByDishes.size());
-
-        tvDishesName = findViewById(R.id.list_product_activity__text_view_hits);
-        if(productListByDishes.size() != 0)
-            tvDishesName.setText(productListByDishes.get(0).getDishesName());
-
-        //connectToMenuBar();
-        connectToProductsBar();
+    public int getViewId() {
+        return R.layout.activity_list_products_by_dishes;
     }
 
-    /**
-     * create and handling list products
-     */
-    private void connectToProductsBar(){
-        RecyclerView recyclerView = findViewById(R.id.list_product_activity__rv_hits);
-        ProductAdapter productAdapter = new ProductAdapter(productListByDishes, R.layout.activity_main__hits_products);
-        recyclerView.setAdapter(productAdapter);
+    @Override
+    public void onCreateView() {
+        Intent intent = getIntent();
+        String fName = intent.getStringExtra(MenuAdapter.class.getCanonicalName());
+        generationProductList(fName);
 
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-        mLayoutManager.setOrientation(RecyclerView.VERTICAL);
-        recyclerView.setLayoutManager(mLayoutManager);
+        tvDishesName = findViewById(R.id.list_product_activity__text_view_hits);
+    }
+
+    private void generationProductList(String fName) {
+        ArrayList<ProductModel> productsList = new ArrayList<>();
+        database.getByDishes(fName)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(products -> {
+                    tvDishesName.setText(products.get(0).getDishesName());
+
+                    productsList.addAll(products);
+                    initFragmentProductList(productsList);
+                }, throwable -> Log.e(TAG, "onClick: get products from db by dishes is not successful"));
+    }
+
+    private void initFragmentProductList(ArrayList<ProductModel> productList){
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("productList", productList);
+
+        ProductFragment productFragment = new ProductFragment();
+        productFragment.setArguments(bundle);
+
+        fragmentTransaction.replace(R.id.conteiner, productFragment);
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void updateViewBasket() {
+        BasketFragment basketFragment = (BasketFragment) fragmentManager.findFragmentById(R.id.list_product_activity__header_button)
+                .getChildFragmentManager().findFragmentById(R.id.fragment_basket);
+        basketFragment.setupBadge();
     }
 }

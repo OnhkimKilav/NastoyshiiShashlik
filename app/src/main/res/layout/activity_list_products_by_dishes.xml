@@ -1,69 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ListProductsByDishesActivity"
     android:background="@drawable/background">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-
-        <androidx.fragment.app.FragmentContainerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/list_product_activity__frag_top_button"
+        <fragment
+            android:id="@+id/list_product_activity__header_button"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:name="com.example.nastoyshiishashlik.fragments.HeaderButtonFragment" />
+            android:layout_height="wrap_content"
+            android:name="com.example.nastoyshiishashlik.fragments.HeaderButtonFragment"
+            tools:layout="@layout/fragment_header_button" />
 
-        <androidx.fragment.app.FragmentContainerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/list_product_activity__frag_menu_icons"
+        <fragment
+            android:id="@+id/list_product_activity__menu"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/list_product_activity__frag_top_button"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:name="com.example.nastoyshiishashlik.fragments.MenuFragment" />
+            android:layout_height="wrap_content"
+            android:name="com.example.nastoyshiishashlik.fragments.MenuFragment"
+            tools:layout="@layout/fragment_menu" />
+
 
         <TextView
             android:id="@+id/list_product_activity__text_view_hits"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/list_product_activity__frag_menu_icons"
-            app:layout_constraintLeft_toLeftOf="@id/list_product_activity__frag_menu_icons"
-            app:layout_constraintRight_toRightOf="@id/list_product_activity__frag_menu_icons"
             android:layout_marginTop="10dp"
-            style="@style/activity_style.NAME_SECTION"
-            android:text="НАШИ ХИТЫ"
+            style="@style/montserrat_bold"
+            android:textSize="21dp"
+            android:text="название раздела"
+            android:layout_gravity="center_horizontal"
             />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_product_activity__rv_hits"
+        <LinearLayout
+            android:id="@+id/conteiner"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            android:background="#20FFFFFF"
-            app:layout_constraintTop_toBottomOf="@id/list_product_activity__text_view_hits"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             />
 
-        <androidx.fragment.app.FragmentContainerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <fragment
             android:id="@+id/list_product_activity__bottom_menu"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/list_product_activity__rv_hits"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:name="com.example.nastoyshiishashlik.fragments.BottomMenuFragment" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="wrap_content"
+            android:name="com.example.nastoyshiishashlik.fragments.BottomMenuFragment"
+            tools:layout="@layout/bottom_menu"/>
+    </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

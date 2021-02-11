@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:background="@drawable/sh_fr_white_back_transparent_radius_5dp"
+        android:padding="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="10dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/calendar__date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Дата"
+                android:textSize="12sp"
+                android:gravity="start"
+                style="@style/montserrat_light"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/calendar__button_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_calendar"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:background="@drawable/sh_fr_white_back_transparent_radius_5dp"
+        android:padding="5dp"
+        android:layout_marginEnd="20dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/calendar__time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ближайшее время"
+                style="@style/montserrat_light"
+                android:textSize="12sp"
+                android:gravity="start" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/calendar__button_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_clock"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,18 +1,14 @@
 package com.example.nastoyshiishashlik.dao.roomDao;
 
 import android.annotation.SuppressLint;
-import android.app.Application;
-import android.util.Log;
 
 import androidx.lifecycle.AndroidViewModel;
 
 import com.example.nastoyshiishashlik.App;
-import com.example.nastoyshiishashlik.model.Product;
+import com.example.nastoyshiishashlik.models.ProductModel;
 
-import java.util.ArrayList;
 import java.util.List;
 import io.reactivex.Single;
-import io.reactivex.schedulers.Schedulers;
 
 public class ProductDBModel extends AndroidViewModel {
     private static final String TAG = ProductDBModel.class.getCanonicalName();
@@ -25,17 +21,17 @@ public class ProductDBModel extends AndroidViewModel {
         database = RoomDB.getInstance(App.getContext());
     }
 
-    public Single<List<Product>> getAll(){
+    public Single<List<ProductModel>> getAll(){
         return database.mainDao().getAll();
     }
 
-    public Single<List<Product>> getByHit(int hit) {
+    public Single<List<ProductModel>> getByHit(int hit) {
         return database.mainDao().getByHit(hit);
     }
 
-    public Single<List<Product>> getByDishes(String sDishes){return database.mainDao().getByDishes(sDishes);}
+    public Single<List<ProductModel>> getByDishes(String sDishes){return database.mainDao().getByDishes(sDishes);}
 
-    public Single<Product> getById(int iId){
+    public Single<ProductModel> getById(int iId){
         return database.mainDao().getById(iId);
     }
 }

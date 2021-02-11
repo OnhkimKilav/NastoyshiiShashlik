@@ -1,4 +1,4 @@
-package com.example.nastoyshiishashlik.model;
+package com.example.nastoyshiishashlik.models;
 
 import androidx.room.TypeConverter;
 

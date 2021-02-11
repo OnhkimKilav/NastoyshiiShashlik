@@ -9,4 +9,20 @@
     <string name="payment_and_delivery">ОПЛАТА И ДОСТАВКА</string>
     <string name="menu">МЕНЮ</string>
     <string name="title_activity_maps">Map</string>
+    <string name="price.format" formatted="false">Цена %d грн</string>
+    <string name="price.cart.format" formatted="false">%d грн</string>
+    <string name="total.price.cart.format" formatted="false">%.0f грн</string>
+    <string name="weight.price.gramm.format" formatted="false">%dгрн / %.0fгр</string>
+    <string name="weight.price.litr05.format" formatted="false">%dгрн / %.1fл</string>
+    <string name="weight.price.litr025.format" formatted="false">%dгрн / %.2fл</string>
+    <string name="weight.price.shtuka.format" formatted="false">%dгрн / %.0fшт</string>
+    <string name="min.weight.format" formatted="false">мин. заказ %.0fгр</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="codes">
+        <item>Наличными</item>
+        <item>Картой курьеру</item>
+        <item>Картой на сайте</item>
+    </string-array>
 </resources>
+

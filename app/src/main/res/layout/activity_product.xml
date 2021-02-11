@@ -7,144 +7,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context=".ui.ProductActivity">
+    android:background="@drawable/background">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.ProductActivity">
+        android:orientation="vertical">
 
-        <androidx.fragment.app.FragmentContainerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <fragment
             android:id="@+id/product_activity__frag_top_button"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:name="com.example.nastoyshiishashlik.fragments.HeaderButtonFragment" />
-
-        <androidx.fragment.app.FragmentContainerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/product_activity__frag_menu_icons"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/product_activity__frag_top_button"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:name="com.example.nastoyshiishashlik.fragments.MenuFragment" />
-
-        <TextView
-            android:id="@+id/product_activity__tv_name_product"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/product_activity__frag_menu_icons"
-            app:layout_constraintLeft_toLeftOf="@id/product_activity__frag_menu_icons"
-            app:layout_constraintRight_toRightOf="@id/product_activity__frag_menu_icons"
-            android:layout_margin="10dp"
-            style="@style/activity_style.NAME_SECTION"
-            android:text="Name"
-            />
+            android:name="com.example.nastoyshiishashlik.fragments.HeaderButtonFragment"
+            tools:layout="@layout/fragment_header_button" />
 
-        <ImageView
-            android:id="@+id/product_activity__iv_poster"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            app:layout_constraintTop_toBottomOf="@id/product_activity__tv_name_product"
-            android:src="@color/white"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:layout_marginTop="10dp"
-            />
-        
-        <TextView
-            android:id="@+id/product_activity__tv_text"
+        <fragment
+            android:id="@+id/product_activity__frag_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/product_activity__iv_poster"
-            app:layout_constraintLeft_toLeftOf="@id/product_activity__iv_poster"
-            app:layout_constraintRight_toRightOf="@id/product_activity__iv_poster"
-            android:text="TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText"
-            style="@style/activity_style.TEXT"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            />
-
-        <TextView
-            android:id="@+id/product_activity__tv_weight_price"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/product_activity__tv_text"
-            app:layout_constraintLeft_toLeftOf="@id/product_activity__tv_text"
-            android:layout_marginTop="20dp"
-            style="@style/product_style"/>
-
-        <me.himanshusoni.quantityview.QuantityView
-            android:id="@+id/product_activity__quantity_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="12dp"
-            app:layout_constraintLeft_toLeftOf="@id/product_activity__tv_weight_price"
-            app:layout_constraintTop_toBottomOf="@id/product_activity__tv_weight_price"
-            app:qv_addButtonBackground="#00000000"
-            app:qv_addButtonTextColor="@color/white"
-            app:qv_minQuantity="1"
-            app:qv_quantity="1"
-            app:qv_quantityBackground="#00000000"
-            app:qv_quantityTextColor="@color/white"
-            app:qv_removeButtonBackground="#00000000"
-            app:qv_removeButtonTextColor="@color/white" />
-
-        <TextView
-            android:id="@+id/product_activity__tv_weight"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/product_activity__tv_weight_price"
-            app:layout_constraintLeft_toRightOf="@id/product_activity__tv_weight_price"
-            app:layout_constraintLeft_toLeftOf="@id/product_activity__tv_total_price"
-            style="@style/product_style"/>
-
-        <TextView
-            android:id="@+id/product_activity__tv_total_price"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintLeft_toRightOf="@id/product_activity__quantity_view"
-            app:layout_constraintTop_toBottomOf="@id/product_activity__tv_weight"
-            app:layout_constraintBottom_toBottomOf="@id/product_activity__quantity_view"
-            android:layout_marginLeft="20dp"
-            style="@style/product_style"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
-
-        <Button
-            android:id="@+id/product_activity__btn_order"
-            style="@style/product_style"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:paddingEnd="40dp"
-            android:paddingStart="40dp"
-            android:text="ЗАКАЗАТЬ"
-            app:backgroundTint="#D50303"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/product_activity__tv_total_price" />
-
-
+            android:name="com.example.nastoyshiishashlik.fragments.MenuFragment"
+            tools:layout="@layout/fragment_menu" />
 
         <LinearLayout
-            android:id="@+id/product_activity__ll_text_delivery"
-            android:layout_width="0dp"
+            android:id="@+id/conteiner"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/product_activity__btn_order"
-            app:layout_constraintLeft_toLeftOf="@id/product_activity__tv_text"
-            app:layout_constraintRight_toRightOf="@id/product_activity__tv_text"
+            android:orientation="vertical"
+            />
+
+       <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
             android:background="@drawable/frame"
@@ -153,12 +46,12 @@
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="35dp"
-                android:src="@drawable/basket"
+                android:src="@drawable/ic_basket"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/activity_style.BOTTOM_MENU"
+                style="@style/montserrat_light"
                 android:text="Бесплатная доставка при заказе от 500грн"/>
         </LinearLayout>
 
@@ -166,32 +59,37 @@
             android:id="@+id/product_activity__tv_sentence"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/product_activity__ll_text_delivery"
-            app:layout_constraintLeft_toLeftOf="@id/product_activity__ll_text_delivery"
-            app:layout_constraintRight_toRightOf="@id/product_activity__ll_text_delivery"
-            style="@style/activity_style.TEXT"
+            android:layout_gravity="center_horizontal"
+            style="@style/montserrat_light"
             android:text="СОВЕТУЕМ ДОБАВИТЬ К ЗАКАЗУ"
             android:layout_marginTop="20dp"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/product_activity__rv_sentences"
+        <LinearLayout
+            android:id="@+id/conteiner_sentences"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/product_activity__tv_sentence"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             android:orientation="horizontal"
             />
+        <!--
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/product_activity__rv_sentences"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/product_activity__tv_sentence"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:orientation="horizontal"
+                    />
 
-        <androidx.fragment.app.FragmentContainerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/product_activity__bottom_menu"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/product_activity__rv_sentences"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:name="com.example.nastoyshiishashlik.fragments.BottomMenuFragment" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.fragment.app.FragmentContainerView
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/product_activity__bottom_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toBottomOf="@id/product_activity__rv_sentences"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:name="com.example.nastoyshiishashlik.fragments.BottomMenuFragment" />
+        -->
+    </LinearLayout>
 </androidx.core.widget.NestedScrollView>

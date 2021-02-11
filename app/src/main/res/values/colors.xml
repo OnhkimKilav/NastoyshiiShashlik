@@ -7,7 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="red">#BF0000</color>
+    <color name="dark_red">#BF0000</color>
     <color name="translucent">#86FFFFFF</color>
+    <color name="black_translucent">#80000000</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="white_translucent">#80FFFFFF</color>
+    <color name="red">#FF0000</color>
+    <color name="red_button">#b40000</color>
 </resources>

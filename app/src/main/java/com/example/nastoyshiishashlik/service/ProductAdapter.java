@@ -13,9 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nastoyshiishashlik.App;
+import com.example.nastoyshiishashlik.models.ProductModel;
 import com.example.nastoyshiishashlik.ui.ProductActivity;
 import com.example.nastoyshiishashlik.R;
-import com.example.nastoyshiishashlik.model.Product;
+import com.example.nastoyshiishashlik.utils.OptimizationBitmap;
 
 import java.util.List;
 
@@ -24,11 +25,11 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     private final String TAG = ProductAdapter.class.getCanonicalName();
-    private final List<Product> products;
+    private final List<ProductModel> productModels;
     private int idIForInflate;
 
-    public ProductAdapter(List<Product> products, int idIForInflate) {
-        this.products = products;
+    public ProductAdapter(List<ProductModel> productModels, int idIForInflate) {
+        this.productModels = productModels;
         this.idIForInflate = idIForInflate;
     }
 
@@ -42,17 +43,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int position) {
-        productViewHolder.bind(products.get(position));
+        productViewHolder.bind(productModels.get(position));
 
         productViewHolder.posterImageView.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("CheckResult")
             @Override
             public void onClick(View v) {
                 //Initialize list for products
-                Product product = products.get(position);
+                ProductModel productModel = productModels.get(position);
                 //Initialization intent for creating activity for displaying list dishes
                 Intent intent = new Intent(App.getContext(), ProductActivity.class);
-                intent.putExtra(TAG, product);
+                intent.putExtra(TAG, productModel);
                 App.getContext().startActivity(intent);
             }
         });
@@ -60,7 +61,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     @Override
     public int getItemCount() {
-        return products.size();
+        return productModels.size();
     }
 
 
@@ -84,9 +85,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         }
 
         @SuppressLint("CheckResult")
-        private void bind(@NonNull Product product){
+        private void bind(@NonNull ProductModel productModel){
             OptimizationBitmap optimizationBitmap = new OptimizationBitmap();
-            optimizationBitmap.optimizationBitmap(product.getPoster(), 400, 200)
+            optimizationBitmap.optimizationBitmap(productModel.getPoster(), 400, 200)
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(bitmap -> {
@@ -94,19 +95,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                         Log.d(TAG, "bind: optimization poster for hits is successful");
                     }, throwable -> Log.e(TAG, "bind: optimization poster for hits isn't successful"));
 
-            nameTextView.setText(product.getName());
+            nameTextView.setText(productModel.getName());
 
             weightAndPriceTextView.setText(String.format(
                     App.getContext().getResources().getString(R.string.main_activity__weight_price),
-                    product.getPrice(), product.getWeight()
+                    productModel.getPrice(), productModel.getWeight()
             ));
             minWeightTextView.setText(String.format(
                     App.getContext().getResources().getString(R.string.main_activity__min_weight),
-                    product.getMinWeightForOrder()
+                    productModel.getMinWeightForOrder()
             ));
             priceTextView.setText(String.format(
                     App.getContext().getResources().getString(R.string.main_activity__total_price),
-                    product.getFinalPrice()
+                    productModel.getFinalPrice()
             ));
         }
     }

@@ -3,10 +3,9 @@ package com.example.nastoyshiishashlik;
 import android.app.Application;
 import android.util.Log;
 
-import com.example.nastoyshiishashlik.dao.roomDao.ProductDBModel;
 import com.example.nastoyshiishashlik.dao.roomDao.ReadCSV;
 import com.example.nastoyshiishashlik.dao.roomDao.RoomDB;
-import com.example.nastoyshiishashlik.model.Product;
+import com.example.nastoyshiishashlik.models.ProductModel;
 
 import java.util.ArrayList;
 
@@ -30,10 +29,10 @@ public class App extends Application {
                             if(products.size() != 0)
                                 database.mainDao().reset(products);
                             //Read data from CSV fail
-                            ArrayList<Product> productsFromCSV = new ArrayList<>(new ReadCSV().readProducts());
-                            for (Product product : productsFromCSV) {
+                            ArrayList<ProductModel> productsFromCSV = new ArrayList<>(new ReadCSV().readProducts());
+                            for (ProductModel productModel : productsFromCSV) {
                                 //Insert text in database
-                                database.mainDao().insert(product);
+                                database.mainDao().insert(productModel);
                             }
                             Log.d(TAG, "onCreate: product's table length is " + products.size());
                         },

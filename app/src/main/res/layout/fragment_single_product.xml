@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/single_product__name_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_gravity="center_horizontal"
+        style="@style/montserrat_bold"
+        android:textSize="21sp"
+        android:text="Name"
+        />
+
+    <ImageView
+        android:id="@+id/single_product__poster"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:src="@color/white"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/single_product__description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText"
+        style="@style/montserrat_medium"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/single_product__ll_weight_price_min_weignt"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginStart="10dp"
+            android:layout_weight="50">
+
+            <TextView
+                android:id="@+id/single_product__weight_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:gravity="center"
+                android:text="weight and price"
+                style="@style/montserrat_light"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:gravity="center">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:background="@drawable/sh_fr_white_back_transparent">
+
+                    <ImageButton
+                        android:id="@+id/single_product__minus"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/ic_baseline_horizontal_rule_24"
+                        android:backgroundTint="@color/transparent"/>
+
+
+                    <View
+                        android:layout_width="1sp"
+                        android:background="@color/white"
+                        android:layout_height="match_parent"
+                        android:paddingStart="10dp"/>
+
+                    <TextView
+                        android:id="@+id/single_product__quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:text="1"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="1sp"
+                        android:background="@color/white"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="10dp"/>
+
+                    <ImageButton
+                        android:id="@+id/single_product__plus"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/ic_baseline_add_24"
+                        android:backgroundTint="@color/transparent"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="50">
+
+            <TextView
+                android:id="@+id/single_product__min_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:gravity="start|center_vertical"
+                android:paddingStart="20dp"
+                android:text="min weight"
+                style="@style/montserrat_light"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/single_product__price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:gravity="start|center_vertical"
+                android:layout_gravity="bottom"
+                android:paddingStart="20dp"
+                android:text="TextView"
+                style="@style/montserrat_bold"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/single_product__buyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:paddingEnd="35dp"
+        android:paddingStart="35dp"
+        style="@style/style_button"
+        android:text="ЗАКАЗАТЬ"
+        />
+
+</LinearLayout>

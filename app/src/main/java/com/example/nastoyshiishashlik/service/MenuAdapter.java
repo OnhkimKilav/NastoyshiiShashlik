@@ -3,7 +3,6 @@ package com.example.nastoyshiishashlik.service;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,22 +13,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nastoyshiishashlik.App;
-import com.example.nastoyshiishashlik.ui.ListProductsByDishesActivity;
 import com.example.nastoyshiishashlik.R;
 import com.example.nastoyshiishashlik.dao.roomDao.ProductDBModel;
-import com.example.nastoyshiishashlik.model.Dishes;
-import com.example.nastoyshiishashlik.model.Menu;
+import com.example.nastoyshiishashlik.models.Dishes;
+import com.example.nastoyshiishashlik.models.Menu;
 
-import com.example.nastoyshiishashlik.model.Product;
+import com.example.nastoyshiishashlik.ui.ListProductsByDishesActivity;
 
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder> {
     private final String TAG = MenuAdapter.class.getCanonicalName();
@@ -47,22 +40,22 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
     private List<Menu> generationMenuList() {
         List<Menu> menus = new ArrayList<>();
 
-        menus.add(new Menu(R.drawable.stock, "акции", Dishes.STOCK));
-        menus.add(new Menu(R.drawable.sets, "сеты", Dishes.SETS));
-        menus.add(new Menu(R.drawable.kebab, "шашлык", Dishes.KEBAB));
-        menus.add(new Menu(R.drawable.lyulyakebab, "люля-кебаб", Dishes.LYULYAKEBAB));
-        menus.add(new Menu(R.drawable.grilled_fish, "рыба на\nмангале", Dishes.GRILLED_FISH));
-        menus.add(new Menu(R.drawable.beverages, "напитки", Dishes.BEVERAGES));
-        menus.add(new Menu(R.drawable.cold_snacks, "холодные\nзакуски", Dishes.COLD_SNACKS));
-        menus.add(new Menu(R.drawable.garnish, "гарниры", Dishes.GARNISH));
-        menus.add(new Menu(R.drawable.grilled_vegetables, "овощи на\nмангале", Dishes.GRILLED_VEGETABLES));
-        menus.add(new Menu(R.drawable.hot_snack, "горячие\nзакуски", Dishes.HOT_SNACK));
-        menus.add(new Menu(R.drawable.khachapuri, "хачапури", Dishes.KHACHAPURI));
-        menus.add(new Menu(R.drawable.pickled_meat, "маринованное\nмясо", Dishes.PICKLED_MEAT));
-        menus.add(new Menu(R.drawable.pita, "лаваш", Dishes.PITA));
-        menus.add(new Menu(R.drawable.salad, "салаты", Dishes.SALAD));
-        menus.add(new Menu(R.drawable.sauces, "соусы", Dishes.SAUCES));
-        menus.add(new Menu(R.drawable.first_meal, "первые блюда", Dishes.FIRST_MEAL));
+        menus.add(new Menu(R.drawable.ic_stock, "акции", Dishes.STOCK));
+        menus.add(new Menu(R.drawable.ic_set, "сеты", Dishes.SETS));
+        menus.add(new Menu(R.drawable.ic_kebab, "шашлык", Dishes.KEBAB));
+        menus.add(new Menu(R.drawable.ic_lulykebab, "люля-кебаб", Dishes.LYULYAKEBAB));
+        menus.add(new Menu(R.drawable.ic_grill_fish, "рыба на\nмангале", Dishes.GRILLED_FISH));
+        menus.add(new Menu(R.drawable.ic_beverages, "напитки", Dishes.BEVERAGES));
+        menus.add(new Menu(R.drawable.ic_cold_snacks, "холодные\nзакуски", Dishes.COLD_SNACKS));
+        menus.add(new Menu(R.drawable.ic_garnish, "гарниры", Dishes.GARNISH));
+        menus.add(new Menu(R.drawable.ic_grille_vegetables, "овощи на\nмангале", Dishes.GRILLED_VEGETABLES));
+        menus.add(new Menu(R.drawable.ic_hot_snacks, "горячие\nзакуски", Dishes.HOT_SNACK));
+        menus.add(new Menu(R.drawable.ic_hachapuri, "хачапури", Dishes.KHACHAPURI));
+        menus.add(new Menu(R.drawable.ic_pickeld_meat, "маринованное\nмясо", Dishes.PICKLED_MEAT));
+        menus.add(new Menu(R.drawable.ic_lavash, "лаваш", Dishes.PITA));
+        menus.add(new Menu(R.drawable.ic_salad, "салаты", Dishes.SALAD));
+        menus.add(new Menu(R.drawable.ic_sous, "соусы", Dishes.SAUCES));
+        menus.add(new Menu(R.drawable.ic_first, "первые\nблюда", Dishes.FIRST_MEAL));
 
         return menus;
     }
@@ -74,18 +67,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         View view;
 
         if(id == R.id.popup_menu__rv_dishes)
-            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_main__pop_up_menu_item, viewGroup, false);
+            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_pop_up, viewGroup, false);
         else view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_main__menu_item, viewGroup, false);
-        /*switch (id){
-            case R.id.popup_menu__rv_dishes:
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_main__pop_up_menu_item, viewGroup, false);
-                break;
-            case R.id.main_activity__rv_menu_icons:
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_main__menu_item, viewGroup, false);
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + id);
-        }*/
 
         return new MenuViewHolder(view);
     }
@@ -94,28 +77,30 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
     public void onBindViewHolder(@NonNull MenuViewHolder menuViewHolder, int position) {
         menuViewHolder.bind(menuList.get(position));
 
+        //TODO
         menuViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("CheckResult")
             @Override
             public void onClick(View v) {
-                //Initialize list for products
-                List<Product> productList = new ArrayList<>();
                 //Initialization intent for creating activity for displaying list dishes
                 Intent intent = new Intent(App.getContext(), ListProductsByDishesActivity.class);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 //Get dishes of the product you have clicked on
                 String sDishes = menuList.get(position).getDishes().getTitle();
+                intent.putExtra(TAG, sDishes);
+                App.getContext().startActivity(intent);
 
                 //Get all products from DB where dishes equals our product
-                database.getByDishes(sDishes)
+                /*database.getByDishes(sDishes)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(products -> {
-                            productList.addAll(products);
-                            intent.putExtra(TAG, (Serializable) products);
+                            Bundle bundle = new Bundle();
+                            bundle.putParcelableArrayList(TAG, (ArrayList<? extends Parcelable>) products);
                             //create intent and transfer to list products
-                            App.getContext().startActivity(intent);
+                            App.getContext().startActivity(intent, bundle);
                             Log.d(TAG, "onClick: get products from db by dishes is successful");
-                        }, throwable -> Log.e(TAG, "onClick: get products from db by dishes is not successful"));
+                        }, throwable -> Log.e(TAG, "onClick: get products from db by dishes is not successful"));*/
             }
         });
     }
@@ -137,15 +122,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         }
 
         private void bind(@NonNull Menu menu){
-            OptimizationBitmap optimizationBitmap = new OptimizationBitmap();
-            optimizationBitmap.optimizationBitmap(menu.getPoster(), 60, 60)
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(bitmap -> {
-                        posterImageView.setImageBitmap(bitmap);
-                        Log.d(TAG, "bind: optimization poster for menu is successful");
-                    }, throwable -> Log.e(TAG, "bind: optimization poster for menu isn't successful"));
-
+            posterImageView.setImageResource(menu.getPoster());
             nameTextView.setText(menu.getName());
         }
     }

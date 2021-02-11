@@ -1,4 +1,4 @@
-package com.example.nastoyshiishashlik.service;
+package com.example.nastoyshiishashlik.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

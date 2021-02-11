@@ -18,7 +18,6 @@ import com.example.nastoyshiishashlik.R;
 import com.example.nastoyshiishashlik.service.MenuAdapter;
 import com.example.nastoyshiishashlik.ui.ContactsActivity;
 import com.example.nastoyshiishashlik.ui.DeliveryPaymentActivity;
-import com.example.nastoyshiishashlik.ui.ListProductsByDishesActivity;
 
 public class PopupController {
     private TextView tvPaymentDelivery, tvContacts, tvCatering;
@@ -59,8 +58,9 @@ public class PopupController {
         tvCatering.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
-                //Toast.makeText(App.getContext(), )
+                Toast toast = Toast.makeText(App.getContext(),
+                        "Кейтеринг в данный момент не доступен", Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
 

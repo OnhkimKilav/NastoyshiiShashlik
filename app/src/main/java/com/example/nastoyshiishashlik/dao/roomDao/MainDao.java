@@ -5,11 +5,10 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.example.nastoyshiishashlik.model.Product;
+import com.example.nastoyshiishashlik.models.ProductModel;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 import static androidx.room.OnConflictStrategy.REPLACE;
@@ -18,15 +17,15 @@ import static androidx.room.OnConflictStrategy.REPLACE;
 public interface MainDao {
     //Insert query
     @Insert(onConflict = REPLACE)
-    void insert(Product product);
+    void insert(ProductModel productModel);
 
     //Delete query
     @Delete
-    void delete (Product product);
+    void delete (ProductModel productModel);
 
     //Delete all query
     @Delete
-    void reset(List<Product> mainData);
+    void reset(List<ProductModel> mainData);
 
     //Update query
     /*@Query("UPDATE products SET poster = :newPoster, name = :newName," +
@@ -37,17 +36,17 @@ public interface MainDao {
 
     //Get all data query
     @Query("SELECT * FROM products")
-    Single<List<Product>> getAll();
+    Single<List<ProductModel>> getAll();
 
     //Get product by hit
     @Query("SELECT * FROM products WHERE hit = :iHit")
-    Single<List<Product>> getByHit(int iHit);
+    Single<List<ProductModel>> getByHit(int iHit);
 
     //Get product by dishes
     @Query("SELECT * FROM products WHERE dishes = :sDishes")
-    Single<List<Product>> getByDishes(String sDishes);
+    Single<List<ProductModel>> getByDishes(String sDishes);
 
     //Get all product from db by _ID
     @Query("SELECT * FROM products WHERE _id = :iId")
-    Single<Product> getById(int iId);
+    Single<ProductModel> getById(int iId);
 }

@@ -1,19 +1,23 @@
-package com.example.nastoyshiishashlik.model;
+package com.example.nastoyshiishashlik.models;
 
-
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.RequiresApi;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.nastoyshiishashlik.Saleable;
+
 import java.io.Serializable;
-import java.util.List;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity(tableName = "products")
-public class Product implements Serializable {
+public class ProductModel implements Serializable {
+
     @PrimaryKey()
     @ColumnInfo(name = "_id")
     private int ID;
@@ -32,13 +36,14 @@ public class Product implements Serializable {
     private String dishesName;
     @ColumnInfo(name = "sentences")
     private String sentences;
+    private int quantity;
 
-    public Product() {
+    public ProductModel() {
     }
-
-    public Product(int ID, int poster, String name, double weight, int price, double minWeightForOrder,
-                   int finalPrice, Dishes dishes, boolean hit, String description, String dishesName,
-                   String sentences) {
+/*
+    public ProductModel(int ID, int poster, String name, double weight, int price, double minWeightForOrder,
+                        int finalPrice, Dishes dishes, boolean hit, String description, String dishesName,
+                        String sentences, int quantity) {
         this.ID = ID;
         this.poster = poster;
         this.name = name;
@@ -51,11 +56,12 @@ public class Product implements Serializable {
         this.description = description;
         this.dishesName = dishesName;
         this.sentences = sentences;
+        this.quantity = quantity;
     }
 
-    public Product(int poster, String name, double weight, int price, double minWeightForOrder,
-                   int finalPrice, Dishes dishes, boolean hit, String description, String dishesName,
-                   String sentences) {
+    public ProductModel(int poster, String name, double weight, int price, double minWeightForOrder,
+                        int finalPrice, Dishes dishes, boolean hit, String description, String dishesName,
+                        String sentences, int quantity) {
         this.poster = poster;
         this.name = name;
         this.weight = weight;
@@ -67,8 +73,36 @@ public class Product implements Serializable {
         this.description = description;
         this.dishesName = dishesName;
         this.sentences = sentences;
+        this.quantity = quantity;
+    }*/
+
+    /*protected ProductModel(Parcel in) {
+        ID = in.readInt();
+        poster = in.readInt();
+        name = in.readString();
+        weight = in.readDouble();
+        price = in.readInt();
+        minWeightForOrder = in.readDouble();
+        finalPrice = in.readInt();
+        hit = in.readByte() != 0;
+        description = in.readString();
+        dishesName = in.readString();
+        sentences = in.readString();
+        quantity = in.readInt();
     }
 
+    public static final Creator<ProductModel> CREATOR = new Creator<ProductModel>() {
+        @Override
+        public ProductModel createFromParcel(Parcel in) {
+            return new ProductModel(in);
+        }
+
+        @Override
+        public ProductModel[] newArray(int size) {
+            return new ProductModel[size];
+        }
+    };
+*/
     public int getID() {
         return ID;
     }
@@ -165,45 +199,34 @@ public class Product implements Serializable {
         this.sentences = sentences;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return ID == product.ID &&
-                poster == product.poster &&
-                Double.compare(product.weight, weight) == 0 &&
-                price == product.price &&
-                Double.compare(product.minWeightForOrder, minWeightForOrder) == 0 &&
-                finalPrice == product.finalPrice &&
-                hit == product.hit &&
-                Objects.equals(name, product.name) &&
-                dishes == product.dishes &&
-                Objects.equals(description, product.description) &&
-                Objects.equals(dishesName, product.dishesName);
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+   /* @Override
+    public int describeContents() {
+        return 0;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(ID, poster, name, weight, price, minWeightForOrder, finalPrice, dishes, hit, description, dishesName);
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "ID=" + ID +
-                ", poster=" + poster +
-                ", name='" + name + '\'' +
-                ", weight=" + weight +
-                ", price=" + price +
-                ", minWeightForOrder=" + minWeightForOrder +
-                ", finalPrice=" + finalPrice +
-                ", dishes=" + dishes +
-                ", hit=" + hit +
-                ", description='" + description + '\'' +
-                ", dishesName='" + dishesName + '\'' +
-                ", sentences='" + sentences + '\'' +
-                '}';
-    }
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(ID);
+        dest.writeInt(poster);
+        dest.writeString(name);
+        dest.writeDouble(weight);
+        dest.writeInt(price);
+        dest.writeDouble(minWeightForOrder);
+        dest.writeInt(finalPrice);
+        dest.writeString(dishes.getTitle());
+        dest.writeInt(hit ? 1 : 0);
+        dest.writeString(description);
+        dest.writeString(dishesName);
+        dest.writeString(sentences);
+        dest.writeInt(quantity);
+    }*/
 }
 

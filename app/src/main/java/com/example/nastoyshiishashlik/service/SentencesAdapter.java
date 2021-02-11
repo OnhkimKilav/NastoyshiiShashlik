@@ -1,3 +1,4 @@
+/*
 package com.example.nastoyshiishashlik.service;
 
 import android.annotation.SuppressLint;
@@ -14,8 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nastoyshiishashlik.App;
 import com.example.nastoyshiishashlik.R;
-import com.example.nastoyshiishashlik.model.Product;
+import com.example.nastoyshiishashlik.models.ProductModel;
 import com.example.nastoyshiishashlik.ui.ProductActivity;
+import com.example.nastoyshiishashlik.utils.OptimizationBitmap;
 
 import java.util.List;
 
@@ -24,10 +26,10 @@ import io.reactivex.schedulers.Schedulers;
 
 public class SentencesAdapter extends RecyclerView.Adapter<SentencesAdapter.SentencesViewHolder> {
     private final String TAG = ProductAdapter.class.getCanonicalName();
-    private final List<Product> products;
+    private final List<ProductModel> productModels;
 
-    public SentencesAdapter(List<Product> products) {
-        this.products = products;
+    public SentencesAdapter(List<ProductModel> productModels) {
+        this.productModels = productModels;
     }
 
     @NonNull
@@ -40,17 +42,17 @@ public class SentencesAdapter extends RecyclerView.Adapter<SentencesAdapter.Sent
 
     @Override
     public void onBindViewHolder(@NonNull SentencesViewHolder holder, int position) {
-        holder.bind(products.get(position));
+        holder.bind(productModels.get(position));
 
         holder.posterImageView.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("CheckResult")
             @Override
             public void onClick(View v) {
                 //Initialize list for products
-                Product product = products.get(position);
+                ProductModel productModel = productModels.get(position);
                 //Initialization intent for creating activity for displaying list dishes
                 Intent intent = new Intent(App.getContext(), ProductActivity.class);
-                intent.putExtra(TAG, product);
+                intent.putExtra(TAG, productModels);
                 App.getContext().startActivity(intent);
             }
         });
@@ -58,7 +60,7 @@ public class SentencesAdapter extends RecyclerView.Adapter<SentencesAdapter.Sent
 
     @Override
     public int getItemCount() {
-        return products.size();
+        return productModels.size();
     }
 
 
@@ -80,9 +82,9 @@ public class SentencesAdapter extends RecyclerView.Adapter<SentencesAdapter.Sent
         }
 
         @SuppressLint("CheckResult")
-        private void bind(@NonNull Product product){
+        private void bind(@NonNull ProductModel productModel){
             OptimizationBitmap optimizationBitmap = new OptimizationBitmap();
-            optimizationBitmap.optimizationBitmap(product.getPoster(), 400, 200)
+            optimizationBitmap.optimizationBitmap(productModel.getPoster(), 400, 200)
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(bitmap -> {
@@ -90,18 +92,19 @@ public class SentencesAdapter extends RecyclerView.Adapter<SentencesAdapter.Sent
                         Log.d(TAG, "bind: optimization poster for hits is successful");
                     }, throwable -> Log.e(TAG, "bind: optimization poster for hits isn't successful"));
 
-            nameTextView.setText(product.getName());
+            nameTextView.setText(productModel.getName());
 
             weightAndPriceTextView.setText(String.format(
                     App.getContext().getResources().getString(R.string.main_activity__weight_price),
-                    product.getPrice(), product.getWeight()
+                    productModel.getPrice(), productModel.getWeight()
             ));
             priceTextView.setText(String.format(
                     App.getContext().getResources().getString(R.string.main_activity__total_price),
-                    product.getFinalPrice()
+                    productModel.getFinalPrice()
             ));
         }
     }
 
 
 }
+*/

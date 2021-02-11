@@ -6,6 +6,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+                <fragment
+                    android:id="@+id/main_activity__frag_top_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:name="com.example.nastoyshiishashlik.fragments.HeaderButtonFragment"
+                    tools:layout="@layout/fragment_header_button" />
+
+                <fragment
+                    android:id="@+id/main_activity__frag_menu_icons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:name="com.example.nastoyshiishashlik.fragments.MenuFragment"
+                    tools:layout="@layout/fragment_menu" />
+
+                <fragment
+                    android:id="@+id/main_activity__slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:name="com.example.nastoyshiishashlik.fragments.SliderBarFragment"
+                    tools:layout="@layout/fragment_slider_bar" />
+
+
+
+                <TextView
+                    android:id="@+id/main_activity__text_view_hits"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    style="@style/activity_style.NAME_SECTION"
+                    android:text="НАШИ ХИТЫ"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/conteiner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    />
+
+                <fragment
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/main_activity__bottom_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:name="com.example.nastoyshiishashlik.fragments.BottomMenuFragment"
+                    tools:layout="@layout/bottom_menu"/>
+        </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
+<!--<androidx.core.widget.NestedScrollView
+    android:id="@+id/main_activity_ns_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/background"
     tools:context=".ui.MainActivity">
 
@@ -70,14 +134,22 @@
                     android:text="НАШИ ХИТЫ"
                     />
 
-                <androidx.recyclerview.widget.RecyclerView
+                &lt;!&ndash;<androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/main_activity__rv_hits"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
                     android:background="#20FFFFFF"
                     app:layout_constraintTop_toBottomOf="@id/main_activity__text_view_hits"
-                    />
+                    />&ndash;&gt;
+                <fragment
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/main_activity__rv_hits"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/main_activity__text_view_hits"
+                    android:name="com.example.nastoyshiishashlik.fragments.ProductFragment"
+                    tools:layout="@layout/fragment_product"/>
 
                 <androidx.fragment.app.FragmentContainerView
                     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -91,4 +163,4 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.core.widget.NestedScrollView>
+</androidx.core.widget.NestedScrollView>-->

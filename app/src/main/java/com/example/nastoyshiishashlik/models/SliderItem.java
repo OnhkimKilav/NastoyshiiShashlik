@@ -1,4 +1,4 @@
-package com.example.nastoyshiishashlik.model;
+package com.example.nastoyshiishashlik.models;
 
 public class SliderItem {
     private final int poster;
