@@ -120,18 +120,21 @@
         android:layout_margin="10dp">
 
         <TextView
+            android:id="@+id/cart__delivery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/frame_red_no_padding"
+            android:background="@drawable/frame_translucent_no_padding"
             android:text="ДОСТАВКА"
             style="@style/montserrat_light"
             android:textSize="18sp"
             android:layout_margin="10dp"
             android:paddingTop="5dp"
-            android:paddingBottom="5dp"/>
+            android:paddingBottom="5dp"
+            android:onClick="onDeliveryClick"/>
 
         <TextView
+            android:id="@+id/cart__pickup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -141,15 +144,66 @@
             android:textSize="18sp"
             android:layout_margin="10dp"
             android:paddingTop="5dp"
-            android:paddingBottom="5dp"/>
+            android:paddingBottom="5dp"
+            android:onClick="onPickupClick"/>
     </LinearLayout>
 
-    <fragment
+    <LinearLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+
+    <!--<fragment
         android:id="@+id/cart__delivery_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:name="com.example.nastoyshiishashlik.fragments.DeliveryFragment"
-        tools:layout="@layout/fragment_delivery"/>
+        tools:layout="@layout/fragment_delivery"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"/>
+
+    <fragment
+        android:id="@+id/cart__pickup_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.example.nastoyshiishashlik.fragments.PickupFragment"
+        tools:layout="@layout/fragment_pickup"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"
+        />-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Всего:"
+        style="@style/montserrat_light"
+        android:textSize="21sp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/cart__final_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Сумма"
+        style="@style/montserrat_bold"
+        android:textSize="21sp" />
+
+    <Button
+        android:id="@+id/buyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingEnd="35dp"
+        android:paddingStart="35dp"
+        style="@style/style_button"
+        android:text="ЗАКАЗАТЬ"
+        android:onClick="onBuyClick"
+        />
 
 
 

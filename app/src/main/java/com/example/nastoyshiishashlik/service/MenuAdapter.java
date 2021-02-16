@@ -84,23 +84,10 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
             public void onClick(View v) {
                 //Initialization intent for creating activity for displaying list dishes
                 Intent intent = new Intent(App.getContext(), ListProductsByDishesActivity.class);
-                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                //Get dishes of the product you have clicked on
-                String sDishes = menuList.get(position).getDishes().getTitle();
-                intent.putExtra(TAG, sDishes);
-                App.getContext().startActivity(intent);
 
-                //Get all products from DB where dishes equals our product
-                /*database.getByDishes(sDishes)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(products -> {
-                            Bundle bundle = new Bundle();
-                            bundle.putParcelableArrayList(TAG, (ArrayList<? extends Parcelable>) products);
-                            //create intent and transfer to list products
-                            App.getContext().startActivity(intent, bundle);
-                            Log.d(TAG, "onClick: get products from db by dishes is successful");
-                        }, throwable -> Log.e(TAG, "onClick: get products from db by dishes is not successful"));*/
+                String sDishes = menuList.get(position).getDishes().getTitle();
+                intent.putExtra("product", sDishes);
+                App.getContext().startActivity(intent);
             }
         });
     }

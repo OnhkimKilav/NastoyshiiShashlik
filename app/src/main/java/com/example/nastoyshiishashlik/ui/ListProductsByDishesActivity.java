@@ -36,7 +36,7 @@ public class ListProductsByDishesActivity extends BaseActivity implements Basket
     @Override
     public void onCreateView() {
         Intent intent = getIntent();
-        String fName = intent.getStringExtra(MenuAdapter.class.getCanonicalName());
+        String fName = intent.getStringExtra("product");
         generationProductList(fName);
 
         tvDishesName = findViewById(R.id.list_product_activity__text_view_hits);

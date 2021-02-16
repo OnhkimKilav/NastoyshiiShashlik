@@ -1,16 +1,23 @@
 package com.example.nastoyshiishashlik.fragments;
 
 
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.nastoyshiishashlik.App;
 import com.example.nastoyshiishashlik.R;
 import com.example.nastoyshiishashlik.adapters.CartRecyclerAdapter;
 import com.example.nastoyshiishashlik.models.CartHelper;
@@ -23,6 +30,7 @@ import butterknife.OnClick;
 
 
 public class CartFragment extends BaseFragment implements CartRecyclerAdapter.OnItemClickListener, BasketFragment.Communicator {
+    private final static String LOG = CartFragment.class.getCanonicalName();
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -34,8 +42,14 @@ public class CartFragment extends BaseFragment implements CartRecyclerAdapter.On
     TextView delivery;
     @BindView(R.id.cart__list_products)
     RelativeLayout relativeLayout;
+    @BindView(R.id.cart__delivery)
+    TextView buttonDelivery;
+    @BindView(R.id.cart__pickup)
+    TextView buttonPickup;
 
     private CartRecyclerAdapter productRecyclerAdapter;
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
 
     @Override
     public int getViewId() {
@@ -52,7 +66,6 @@ public class CartFragment extends BaseFragment implements CartRecyclerAdapter.On
         super.onViewCreated(view, savedInstanceState);
 
         entityCheckMethods();
-
     }
 
     public void entityCheckMethods(){
@@ -151,12 +164,37 @@ public class CartFragment extends BaseFragment implements CartRecyclerAdapter.On
         updateViewBasket();
     }
 
-    /*@OnClick(R.id.buyButton)
+    @OnClick(R.id.buyButton)
     public void onBuyClick() {
-        Toast.makeText(context, String.format(getString(R.string.cart_success_message), CartHelper.getCart().getTotalQuantity(), CartHelper.getCart().getTotalPrice()), Toast.LENGTH_LONG).show();
+        /*Toast.makeText(context, String.format(getString(R.string.cart_success_message),
+                CartHelper.getCart().getTotalQuantity(), CartHelper.getCart().getTotalPrice()), Toast.LENGTH_LONG).show();
         CartHelper.getCart().clear();
-        getActivity().finish();
-    }*/
+        getActivity().finish();*/
+    }
+
+    @OnClick(R.id.cart__delivery)
+    public void onDeliveryClick() {
+        buttonPickup.setBackgroundResource(R.drawable.frame_translucent_no_padding);
+        buttonDelivery.setBackgroundResource(R.drawable.frame_red_no_padding);
+
+        initializeDelivery(new DeliveryFragment());
+    }
+
+    @OnClick(R.id.cart__pickup)
+    public void onPickupClick() {
+        buttonDelivery.setBackgroundResource(R.drawable.frame_translucent_no_padding);
+        buttonPickup.setBackgroundResource(R.drawable.frame_red_no_padding);
+
+        initializeDelivery(new PickupFragment());
+    }
+
+    private void initializeDelivery(Fragment fragment){
+        fragmentManager = getChildFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
+    }
 
     @Override
     public void updateViewBasket() {
