@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="40"
         android:orientation="horizontal"
         android:background="@drawable/sh_fr_white_back_transparent_radius_5dp"
         android:padding="5dp"
@@ -23,7 +23,7 @@
                 android:id="@+id/calendar__date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Дата"
+                android:text="@string/cart_date"
                 android:textSize="12sp"
                 android:gravity="start"
                 style="@style/montserrat_light"/>
@@ -39,7 +39,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="50"
         android:orientation="horizontal"
         android:background="@drawable/sh_fr_white_back_transparent_radius_5dp"
         android:padding="5dp"
@@ -53,7 +53,7 @@
                 android:id="@+id/calendar__time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ближайшее время"
+                android:text="@string/cart_time"
                 style="@style/montserrat_light"
                 android:textSize="12sp"
                 android:gravity="start" />

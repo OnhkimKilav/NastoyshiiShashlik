@@ -5,12 +5,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.example.nastoyshiishashlik.App;
 import com.example.nastoyshiishashlik.R;
 import com.example.nastoyshiishashlik.models.Dishes;
 import com.example.nastoyshiishashlik.ui.ContactsActivity;
@@ -18,26 +14,11 @@ import com.example.nastoyshiishashlik.ui.DeliveryPaymentActivity;
 import com.example.nastoyshiishashlik.ui.ListProductsByDishesActivity;
 import com.example.nastoyshiishashlik.ui.MainActivity;
 
-import butterknife.BindView;
+import butterknife.OnClick;
 
 public class BottomMenuFragment extends BaseFragment {
 
     private static final String TAG = BottomMenuFragment.class.getCanonicalName();
-
-    @BindView(R.id.imageBottomLogo)
-    ImageView logo;
-    @BindView(R.id.bottom_menu__stock)
-    TextView stock;
-    @BindView(R.id.bottom_menu__contacts)
-    TextView contacts;
-    @BindView(R.id.bottom_menu__delivery)
-    TextView delivery;
-    @BindView(R.id.bottom_menu__ceitering)
-    TextView ceitering;
-    @BindView(R.id.bottom_menu__instagram)
-    ImageView instagram;
-    @BindView(R.id.bottom_menu__facebook)
-    ImageView facebook;
 
     @Override
     public int getViewId() {
@@ -47,36 +28,56 @@ public class BottomMenuFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view) {
 
-        logo.setOnClickListener(v -> {
-            Intent intent = new Intent(App.getContext(), MainActivity.class);
-            startActivity(intent);
-        });
-        stock.setOnClickListener(v -> {
-            Intent intent = new Intent(App.getContext(), ListProductsByDishesActivity.class);
+    }
 
-            intent.putExtra("product", Dishes.STOCK.getTitle());
-            App.getContext().startActivity(intent);
-        });
-        contacts.setOnClickListener(v -> {
-            Intent intent = new Intent(App.getContext(), ContactsActivity.class);
-            startActivity(intent);
-        });
-        delivery.setOnClickListener(v -> {
-            Intent intent = new Intent(App.getContext(), DeliveryPaymentActivity.class);
-            startActivity(intent);
-        });
-        ceitering.setOnClickListener(v -> {
-            Toast toast = Toast.makeText(App.getContext(),
-                    "Кейтеринг в данный момент не доступен", Toast.LENGTH_SHORT);
-            toast.show();
-        });
-        instagram.setOnClickListener(v -> {
-            startActivity(newInstagramProfileIntent(App.getContext().getPackageManager(),
-                    "https://www.instagram.com/nashashlyk_kyiv/"));
-        });
-        facebook.setOnClickListener(v -> {
-            startActivity(getOpenFacebookIntent(App.getContext()));
-        });
+    @OnClick(R.id.imageBottomLogo)
+    public void onClickLogo(){
+        Intent intent = new Intent(context, MainActivity.class);
+        context.finish();
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.bottom_menu__stock)
+    public void onClickStock(){
+        Intent intent = new Intent(context, ListProductsByDishesActivity.class);
+        context.finish();
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
+        intent.putExtra("product", Dishes.STOCK.getTitle());
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.bottom_menu__contacts)
+    public void onClickContacts(){
+        Intent intent = new Intent(context, ContactsActivity.class);
+        context.finish();
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.bottom_menu__delivery)
+    public void onClickDelivery(){
+        Intent intent = new Intent(context, DeliveryPaymentActivity.class);
+        context.finish();
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.bottom_menu__ceitering)
+    public void onClickCeitering(){
+        Toast toast = Toast.makeText(context, R.string.ceitering_toast, Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    @OnClick(R.id.bottom_menu__instagram)
+    public void onClickInstagram(){
+        startActivity(newInstagramProfileIntent(context.getPackageManager(),
+                "https://www.instagram.com/nashashlyk_kyiv/"));
+    }
+
+    @OnClick(R.id.bottom_menu__facebook)
+    public void onClickFacebook(){
+        startActivity(getOpenFacebookIntent(context));
     }
 
     public static Intent newInstagramProfileIntent(PackageManager pm, String url) {

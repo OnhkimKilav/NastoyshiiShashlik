@@ -2,8 +2,6 @@ package com.example.nastoyshiishashlik.models;
 
 import com.example.nastoyshiishashlik.Saleable;
 import com.example.nastoyshiishashlik.entities.CartEntity;
-import com.example.nastoyshiishashlik.models.CartItemsEntityModel;
-import com.example.nastoyshiishashlik.models.ProductEntityModel;
 
 import java.util.ArrayList;
 import java.util.List;

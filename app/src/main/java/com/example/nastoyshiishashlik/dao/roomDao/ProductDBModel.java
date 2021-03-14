@@ -14,6 +14,14 @@ public class ProductDBModel extends AndroidViewModel {
     private static final String TAG = ProductDBModel.class.getCanonicalName();
     private RoomDB database;
 
+    public static class ProductDBModelHolder {
+        public static final ProductDBModel HOLDER_INSTANCE = new ProductDBModel();
+    }
+
+    public static ProductDBModel getInstance() {
+        return ProductDBModelHolder.HOLDER_INSTANCE;
+    }
+
     @SuppressLint("CheckResult")
     public ProductDBModel() {
         super(App.getContext());

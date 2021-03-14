@@ -1,8 +1,5 @@
 package com.example.nastoyshiishashlik.models;
 
-import androidx.room.ColumnInfo;
-import androidx.room.PrimaryKey;
-
 import com.example.nastoyshiishashlik.Saleable;
 
 import java.io.Serializable;

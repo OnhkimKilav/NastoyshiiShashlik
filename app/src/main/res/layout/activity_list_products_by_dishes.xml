@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,38 +19,60 @@
             android:name="com.example.nastoyshiishashlik.fragments.HeaderButtonFragment"
             tools:layout="@layout/fragment_header_button" />
 
-        <fragment
-            android:id="@+id/list_product_activity__menu"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/list_product_activity__ns"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:name="com.example.nastoyshiishashlik.fragments.MenuFragment"
-            tools:layout="@layout/fragment_menu" />
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <fragment
+                    android:id="@+id/list_product_activity__menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:name="com.example.nastoyshiishashlik.fragments.MenuFragment"
+                    tools:layout="@layout/fragment_menu" />
 
 
-        <TextView
-            android:id="@+id/list_product_activity__text_view_hits"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            style="@style/montserrat_bold"
-            android:textSize="21dp"
-            android:text="название раздела"
-            android:layout_gravity="center_horizontal"
-            />
+                <TextView
+                    android:id="@+id/list_product_activity__text_view_hits"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    style="@style/montserrat_bold"
+                    android:textSize="21dp"
+                    android:text="название раздела"
+                    android:layout_gravity="center_horizontal"
+                    />
 
-        <LinearLayout
-            android:id="@+id/conteiner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            />
+                <LinearLayout
+                    android:id="@+id/conteiner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    />
 
-        <fragment
-            android:id="@+id/list_product_activity__bottom_menu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:name="com.example.nastoyshiishashlik.fragments.BottomMenuFragment"
-            tools:layout="@layout/bottom_menu"/>
+                <fragment
+                    android:id="@+id/list_product_activity__bottom_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:name="com.example.nastoyshiishashlik.fragments.BottomMenuFragment"
+                    tools:layout="@layout/bottom_menu"/>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 
-</androidx.core.widget.NestedScrollView>
+    <ImageView
+        android:id="@+id/toUp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/button_up"
+        android:src="@drawable/ic_baseline_keyboard_arrow_up_24"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        />
+</RelativeLayout>

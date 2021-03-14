@@ -1,69 +1,45 @@
 package com.example.nastoyshiishashlik.fragments;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import com.example.nastoyshiishashlik.App;
 import com.example.nastoyshiishashlik.R;
-import com.example.nastoyshiishashlik.controller.PopupController;
 import com.example.nastoyshiishashlik.ui.MainActivity;
 
-public class HeaderButtonFragment extends Fragment implements View.OnClickListener {
-    private Dialog dialog;
-    private ImageView phone, menu, logo;
+import butterknife.OnClick;
 
-    public HeaderButtonFragment() {
-        super(R.layout.fragment_header_button);
+public class HeaderButtonFragment extends BaseFragment {
+    private static final String TAG = HeaderButtonFragment.class.getCanonicalName();
+
+    @Override
+    public int getViewId() {
+        return R.layout.fragment_header_button;
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onViewCreated(View view) {
 
-        dialog = new Dialog(this.getContext());
-        phone = view.findViewById(R.id.header_button__iv_phone);
-        menu = view.findViewById(R.id.header_button__iv_menu);
-        logo = view.findViewById(R.id.header_button__iv_logo);
-
-        phone.setOnClickListener(this);
-        menu.setOnClickListener(this);
-        logo.setOnClickListener(this);
     }
 
+    @OnClick(R.id.header_button__iv_logo)
+    public void onClickLogo(){
+        Intent intent = new Intent(context, MainActivity.class);
+        context.finish();
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
+        startActivity(intent);
+    }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case  R.id.header_button__iv_phone: {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:+380672515945"));
-                startActivity(intent);
-                break;
-            }
-            /**
-             * Initialize popup menu
-             * This popup menu was realized using a dialog box
-             *
-             * @param v
-             */
-            case R.id.header_button__iv_menu: {
-                PopupController popupController = new PopupController();
-                popupController.createPopupMenu(dialog);
-                break;
-            }
-            case R.id.header_button__iv_logo: {
-                Intent intent = new Intent(App.getContext(), MainActivity.class);
-                startActivity(intent);
-                break;
-            }
-        }
+    @OnClick(R.id.header_button__iv_phone)
+    public void onClickPhone(){
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:+380672515945"));
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.header_button__iv_menu)
+    public void onClickMenu(){
+        PopupDialogFragment fragment = PopupDialogFragment.newInstance();
+        fragment.show(getChildFragmentManager(), "lol");
     }
 }

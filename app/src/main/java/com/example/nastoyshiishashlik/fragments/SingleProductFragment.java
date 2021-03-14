@@ -10,11 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.nastoyshiishashlik.App;
 import com.example.nastoyshiishashlik.R;
-import com.example.nastoyshiishashlik.adapters.ProductRecyclerAdapter;
 import com.example.nastoyshiishashlik.entities.CartEntity;
 import com.example.nastoyshiishashlik.models.CartHelper;
 import com.example.nastoyshiishashlik.models.ProductEntityModel;
@@ -24,12 +22,12 @@ import com.example.nastoyshiishashlik.utils.OptimizationBitmap;
 import java.math.BigDecimal;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class SingleProductFragment extends BaseFragment{
     private String TAG = SingleProductFragment.class.getCanonicalName();
+
     private ProductModel product;
     private BasketFragment.Communicator communicator;
 
@@ -83,6 +81,8 @@ public class SingleProductFragment extends BaseFragment{
     private void initializeData(){
         title.setText(product.getName());
 
+        description.setText(product.getDescription());
+
         switch (Double.toString(product.getWeight())){
             case ("0.5") :
                 weightPrice.setText(String.format(context.getString(R.string.weight_price_litr05_format),
@@ -113,14 +113,8 @@ public class SingleProductFragment extends BaseFragment{
 
         quantity.setText(String.valueOf(product.getQuantity()));
 
-        OptimizationBitmap.optimizationBitmap(
-                product.getPoster(), 400, 200)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(bitmap -> {
-                    image.setImageBitmap(bitmap);
-                    Log.d(TAG, "bind: optimization poster for hits is successful");
-                }, throwable -> Log.e(TAG, "bind: optimization poster for hits isn't successful"));
+        image.setImageDrawable(context.getResources().getDrawable(product.getPoster()));
+
     }
 
     public void onItemClick() {
@@ -138,7 +132,7 @@ public class SingleProductFragment extends BaseFragment{
         cart.add(product, this.product.getQuantity());
 
         Toast toast = Toast.makeText(App.getContext(),
-                product.getName()+" было добавленно в корзину", Toast.LENGTH_SHORT);
+                product.getName()+getString(R.string.set_product_to_basket), Toast.LENGTH_SHORT);
         toast.show();
 
         communicator.updateViewBasket();

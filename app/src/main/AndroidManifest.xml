@@ -26,14 +26,27 @@
             android:value="@string/google_maps_key" />
 
 
-        <activity android:name=".ui.CartActivity">
+        <activity android:name=".ui.CartActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.ContactsActivity" />
-        <activity android:name=".ui.DeliveryPaymentActivity">
+
+        <activity android:name=".ui.ContactsActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.DeliveryPaymentActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.ProductActivity" />
-        <activity android:name=".ui.ListProductsByDishesActivity" />
-        <activity android:name=".ui.MainActivity">
+
+        <activity android:name=".ui.ProductActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.ListProductsByDishesActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+
+        <activity android:name=".ui.MainActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

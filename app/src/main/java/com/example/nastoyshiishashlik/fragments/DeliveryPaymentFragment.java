@@ -1,45 +1,62 @@
 package com.example.nastoyshiishashlik.fragments;
 
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import com.example.nastoyshiishashlik.App;
 import com.example.nastoyshiishashlik.R;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
-public class DeliveryPaymentFragment extends BaseFragment {
-    @BindView(R.id.codeSpinner)
-    Spinner spin;
+public class DeliveryPaymentFragment extends BaseFragment{
+    @BindView(R.id.fragment_delivery_payment_test__ll_choice_delivery)
+    LinearLayout linLayChoiceDelivery;
+    @BindView(R.id.fragment_delivery_payment_test__ll_delivery)
+    LinearLayout linLayDelivery;
+    @BindView(R.id.fragment_delivery_payment_test__text)
+    TextView tvDelivery;
+    @BindView(R.id.fragment_delivery_payment_test__tv_cash)
+    TextView tvCash;
+    @BindView(R.id.fragment_delivery_payment_test__tv_card_delivery)
+    TextView tvCardDelivery;
+    @BindView(R.id.fragment_delivery_payment_test__tv_card_site)
+    TextView tvCardSite;
 
     @Override
     public int getViewId() {
-        return R.layout.fragment_delivery_payment;
+        return R.layout.fragment_delivery_payment_test;
     }
 
     @Override
     public void onViewCreated(View view) {
 
-        final String[] countryCodes = getResources().getStringArray(R.array.codes);
-        ArrayAdapter<String> countryCodeAdapter = new ArrayAdapter<String>(App.getContext(),
-                R.layout.item_delivery_payment,R.id.textView,countryCodes);
-        spin.setAdapter(countryCodeAdapter);
-        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String code = String.valueOf(spin.getSelectedItem());
-                if (position == 0) {
-                    spin.setSelection(0);
-                }
-            }
+    }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+    @OnClick(R.id.fragment_delivery_payment_test__ll_arrow)
+    public void OnClickArrow(){
+        linLayDelivery.setVisibility(View.INVISIBLE);
+        linLayChoiceDelivery.setVisibility(View.VISIBLE);
+    }
 
-            }
-        });
+    @OnClick(R.id.fragment_delivery_payment_test__tv_cash)
+    public void onClickCash(){
+        tvDelivery.setText(tvCash.getText());
+        linLayDelivery.setVisibility(View.VISIBLE);
+        linLayChoiceDelivery.setVisibility(View.GONE);
+    }
 
+    @OnClick(R.id.fragment_delivery_payment_test__tv_card_delivery)
+    public void OnClickCardDelivery(){
+        tvDelivery.setText(tvCardDelivery.getText());
+        linLayDelivery.setVisibility(View.VISIBLE);
+        linLayChoiceDelivery.setVisibility(View.GONE);
+    }
+
+    @OnClick(R.id.fragment_delivery_payment_test__tv_card_site)
+    public void OnClickCardSite(){
+        tvDelivery.setText(tvCardSite.getText());
+        linLayDelivery.setVisibility(View.VISIBLE);
+        linLayChoiceDelivery.setVisibility(View.GONE);
     }
 }

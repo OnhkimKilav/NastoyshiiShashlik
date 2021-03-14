@@ -36,7 +36,7 @@
                     style="@style/activity_style.BOTTOM_MENU"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10:00 - 23:00 без выходных"
+                    android:text="@string/bottom_time_work"
                     android:textSize="8sp"
                     />
 
@@ -45,7 +45,7 @@
                     style="@style/activity_style.BOTTOM_MENU"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="067-251-59-45"
+                    android:text="@string/bottom_phone"
                     android:textSize="8sp"
                     android:layout_marginTop="5dp"/>
 
@@ -59,7 +59,7 @@
                         style="@style/activity_style.BOTTOM_MENU"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="акции"
+                        android:text="@string/stock"
                         android:layout_marginTop="5dp"/>
 
                     <TextView
@@ -67,7 +67,7 @@
                         style="@style/activity_style.BOTTOM_MENU"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="контакты"
+                        android:text="@string/bottom_contacts"
                         android:layout_marginTop="5dp" />
 
                     <TextView
@@ -75,7 +75,7 @@
                         style="@style/activity_style.BOTTOM_MENU"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="доставка и оплата"
+                        android:text="@string/bottom_delivery"
                         android:layout_marginTop="5dp"/>
 
                     <TextView
@@ -83,7 +83,7 @@
                         style="@style/activity_style.BOTTOM_MENU"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="кейтеринг"
+                        android:text="@string/bottom_catering"
                         android:layout_marginTop="5dp" />
                 </LinearLayout>
 
@@ -110,7 +110,7 @@
                     android:textSize="12dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="мы в соц. сетях"
+                    android:text="@string/bottom_network"
                     android:layout_gravity="center_horizontal"
                     />
 
@@ -146,7 +146,7 @@
                     android:textSize="12dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="поддержка платежей" />
+                    android:text="@string/bottom_payment" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

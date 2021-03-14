@@ -1,210 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/background">
-    <fragment
-        android:id="@+id/fragment_container_view_menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:name="com.example.nastoyshiishashlik.fragments.HeaderButtonFragment"
-        tools:layout="@layout/fragment_header_button"/>
-
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/sh_fr_white_translucent_back_black_translucent"
-        android:layout_gravity="center"
-        android:layout_margin="20dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/cart__list_products"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/cart__empty_basket"
+        <fragment
+            android:id="@+id/fragment_container_view_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/montserrat_medium"
-                android:text="На данный момент корзина пуста"
-                android:layout_margin="10dp"/>
-            <View
-                android:id="@+id/cart__horizontal_line"
-                android:layout_width="match_parent"
-                android:background="@color/white_translucent"
-                android:layout_height="2sp" />
+            android:name="com.example.nastoyshiishashlik.fragments.HeaderButtonFragment"
+            tools:layout="@layout/fragment_header_button"/>
 
-        </LinearLayout>
-
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/cart_activity_ns"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="end"
-            android:paddingTop="10dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="10dp">
-
+            android:layout_height="match_parent">
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/sh_fr_white_translucent_back_black_translucent"
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp">
+
+                    <RelativeLayout
+                        android:id="@+id/cart__list_products"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/cart__empty_basket"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/montserrat_medium"
+                            android:text="@string/cart_empty_basket"
+                            android:layout_margin="10dp"/>
+                        <View
+                            android:id="@+id/cart__horizontal_line"
+                            android:layout_width="match_parent"
+                            android:background="@color/white_translucent"
+                            android:layout_height="2sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="end"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="20dp"
+                        android:paddingBottom="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/cart_delivery"
+                                style="@style/montserrat_light"/>
+
+                            <TextView
+                                android:id="@+id/delivery"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="70 грн"
+                                style="@style/montserrat_bold"
+                                android:layout_marginStart="5dp"/>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/cart_price"
+                                style="@style/montserrat_light"/>
+                            <TextView
+                                android:id="@+id/total_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0 грн"
+                                style="@style/montserrat_bold"
+                                android:layout_marginStart="5dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Доставка:"
-                    style="@style/montserrat_light"/>
+                    android:text="@string/cart_ordering"
+                    style="@style/montserrat_light"
+                    android:textSize="18sp"
+                    android:layout_gravity="center_horizontal"/>
 
-                <TextView
-                    android:id="@+id/delivery"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="70 грн"
-                    style="@style/montserrat_bold"
-                    android:layout_marginStart="5dp"/>
+                    android:orientation="horizontal"
+                    android:layout_margin="10dp">
 
+                    <TextView
+                        android:id="@+id/cart__delivery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/frame_translucent_no_padding"
+                        android:text="@string/cart_delivery1"
+                        style="@style/montserrat_light"
+                        android:textSize="18sp"
+                        android:layout_margin="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:onClick="onDeliveryClick"/>
+
+                    <TextView
+                        android:id="@+id/cart__pickup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/frame_translucent_no_padding"
+                        android:text="@string/cart_pickup"
+                        style="@style/montserrat_light"
+                        android:textSize="18sp"
+                        android:layout_margin="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:onClick="onPickupClick"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/fragment_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"/>
+
+                <fragment
+                    android:id="@+id/fragment_cart__bottom_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:name="com.example.nastoyshiishashlik.fragments.BottomMenuFragment"
+                    tools:layout="@layout/bottom_menu"/>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Всего:"
-                    style="@style/montserrat_light"/>
-                <TextView
-                    android:id="@+id/total_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0 грн"
-                    style="@style/montserrat_bold"
-                    android:layout_marginStart="5dp"/>
-            </LinearLayout>
-        </LinearLayout>
-
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Оформление заказа"
-        style="@style/montserrat_light"
-        android:textSize="18sp"
-        android:layout_gravity="center_horizontal"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
-
-        <TextView
-            android:id="@+id/cart__delivery"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/frame_translucent_no_padding"
-            android:text="ДОСТАВКА"
-            style="@style/montserrat_light"
-            android:textSize="18sp"
-            android:layout_margin="10dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:onClick="onDeliveryClick"/>
-
-        <TextView
-            android:id="@+id/cart__pickup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/frame_translucent_no_padding"
-            android:text="САМОВЫВОЗ"
-            style="@style/montserrat_light"
-            android:textSize="18sp"
-            android:layout_margin="10dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:onClick="onPickupClick"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"/>
-
-    <!--<fragment
-        android:id="@+id/cart__delivery_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:name="com.example.nastoyshiishashlik.fragments.DeliveryFragment"
-        tools:layout="@layout/fragment_delivery"
-        android:layout_marginStart="3dp"
-        android:layout_marginEnd="3dp"/>
-
-    <fragment
-        android:id="@+id/cart__pickup_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:name="com.example.nastoyshiishashlik.fragments.PickupFragment"
-        tools:layout="@layout/fragment_pickup"
-        android:layout_marginStart="3dp"
-        android:layout_marginEnd="3dp"
-        />-->
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Всего:"
-        style="@style/montserrat_light"
-        android:textSize="21sp"
-        android:layout_marginTop="10dp" />
-
-    <TextView
-        android:id="@+id/cart__final_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Сумма"
-        style="@style/montserrat_bold"
-        android:textSize="21sp" />
-
-    <Button
-        android:id="@+id/buyButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+    <ImageView
+        android:id="@+id/toUp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/button_up"
+        android:src="@drawable/ic_baseline_keyboard_arrow_up_24"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="10dp"
-        android:paddingEnd="35dp"
-        android:paddingStart="35dp"
-        style="@style/style_button"
-        android:text="ЗАКАЗАТЬ"
-        android:onClick="onBuyClick"
         />
-
-
-
-</LinearLayout>
+</RelativeLayout>

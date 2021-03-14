@@ -1,14 +1,11 @@
 package com.example.nastoyshiishashlik.fragments;
 
 import android.app.Activity;
-import android.content.Context;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nastoyshiishashlik.App;
@@ -18,10 +15,8 @@ import com.example.nastoyshiishashlik.entities.CartEntity;
 import com.example.nastoyshiishashlik.models.CartHelper;
 import com.example.nastoyshiishashlik.models.ProductEntityModel;
 import com.example.nastoyshiishashlik.models.ProductModel;
-import com.example.nastoyshiishashlik.ui.MainActivity;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -34,6 +29,7 @@ public class ProductFragment extends BaseFragment implements ProductRecyclerAdap
     private ProductRecyclerAdapter productRecyclerAdapter;
     private List<ProductModel> listProducts;
     private BasketFragment.Communicator communicator;
+    private String orientation = "";
 
     @Override
     public int getViewId() {
@@ -49,11 +45,19 @@ public class ProductFragment extends BaseFragment implements ProductRecyclerAdap
     @Override
     public void onViewCreated(View view) {
         listProducts = (List<ProductModel>) this.getArguments().getSerializable("productList");
+        orientation = this.getArguments().getString("orientation");
 
         productRecyclerAdapter = new ProductRecyclerAdapter(context,  listProducts);
         productRecyclerAdapter.setOnItemClickListener(this);
-        recyclerView.setLayoutManager(new GridLayoutManager(context, 1));
+        setLayoutManagerForRecView();
         recyclerView.setAdapter(productRecyclerAdapter);
+    }
+
+    private void setLayoutManagerForRecView(){
+        if(orientation.equals("vertical"))
+            recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
+        else if(orientation.equals("horizontal"))
+            recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
     }
 
     @Override
@@ -72,7 +76,7 @@ public class ProductFragment extends BaseFragment implements ProductRecyclerAdap
         cart.add(product, productModel.getQuantity());
 
         Toast toast = Toast.makeText(App.getContext(),
-                product.getName()+" было добавленно в корзину", Toast.LENGTH_SHORT);
+                product.getName() + getString(R.string.set_product_to_basket), Toast.LENGTH_SHORT);
         toast.show();
 
         communicator.updateViewBasket();

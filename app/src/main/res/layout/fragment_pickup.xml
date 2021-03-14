@@ -11,18 +11,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Контакты"
+        android:text="@string/cart_contacts"
         style="@style/montserrat_light"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"/>
 
     <EditText
+        android:id="@+id/fragment_pickup__name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:background="@drawable/sh_fr_white_back_transparent_radius_5dp"
-        android:hint="Имя"
+        android:hint="@string/cart_name"
         android:textColorHint="@color/white"
         style="@style/montserrat_light"
         android:textSize="12sp"
@@ -36,11 +37,12 @@
         />
 
     <EditText
+        android:id="@+id/fragment_pickup__phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="phone"
         android:background="@drawable/sh_fr_white_back_transparent_radius_5dp"
-        android:hint="Телефон"
+        android:hint="@string/cart_phone"
         android:textColorHint="@color/white"
         style="@style/montserrat_light"
         android:textSize="12sp"
@@ -55,7 +57,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Дата и время"
+        android:text="@string/cart_date_time"
         style="@style/montserrat_light"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
@@ -71,7 +73,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Оплата"
+        android:text="@string/cart_payment"
         style="@style/montserrat_light"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
@@ -83,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:name="com.example.nastoyshiishashlik.fragments.DeliveryPaymentFragment"
-        tools:layout="@layout/fragment_delivery_payment"/>
+        tools:layout="@layout/fragment_delivery_payment_test"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -93,6 +95,7 @@
         android:orientation="horizontal">
 
         <CheckBox
+            android:id="@+id/fragment_pickup__check_box_dishes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:theme="@style/MyCheckBox"/>
@@ -100,105 +103,92 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Одноразовая посуда"
+            android:text="@string/cart_dishes"
             style="@style/montserrat_light"
             android:textSize="12sp"
             android:layout_gravity="center_vertical"
             />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
+            android:id="@+id/fragment_pickup__ll_dishes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_marginStart="5dp"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/sh_fr_white_back_transparent_radius_5dp">
+            android:visibility="invisible">
 
-            <ImageButton
-                android:id="@+id/minus"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/ic_baseline_horizontal_rule_24"
-                android:backgroundTint="@color/transparent"/>
-
-
-            <View
-                android:layout_width="1sp"
-                android:background="@color/white"
-                android:layout_height="match_parent"
-                android:paddingStart="10dp"/>
-
-            <TextView
-                android:id="@+id/quantity"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:text="1"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginStart="5dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/sh_fr_white_back_transparent_radius_5dp">
 
-            <View
-                android:layout_width="1sp"
-                android:background="@color/white"
-                android:layout_height="match_parent"
-                android:paddingEnd="10dp"/>
+                <ImageButton
+                    android:id="@+id/fragment_pickup__minus"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_baseline_horizontal_rule_24"
+                    android:backgroundTint="@color/transparent"
+                    android:onClick="onClickMinus"/>
 
-            <ImageButton
-                android:id="@+id/plus"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/ic_baseline_add_24"
-                android:backgroundTint="@color/transparent"/>
+
+                <View
+                    android:layout_width="1sp"
+                    android:background="@color/white"
+                    android:layout_height="match_parent"
+                    android:paddingStart="10dp"/>
+
+                <TextView
+                    android:id="@+id/fragment_pickup__quantity_dishes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="1"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="1sp"
+                    android:background="@color/white"
+                    android:layout_height="match_parent"
+                    android:paddingEnd="10dp"/>
+
+                <ImageButton
+                    android:id="@+id/fragment_delivery__plus"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_baseline_add_24"
+                    android:backgroundTint="@color/transparent"
+                    android:onClick="onClickPlus"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cart_dishes2"
+                style="@style/montserrat_light"
+                android:textSize="12sp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="5dp"
+                />
+
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="персон"
-            style="@style/montserrat_light"
-            android:textSize="12sp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="5dp"
-            />
 
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="34dp"
-        >
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:theme="@style/MyCheckBox" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Перезвоните мне для уточнения деталей заказа"
-            style="@style/montserrat_light"
-            android:textSize="12sp"
-            android:layout_gravity="center_vertical"
-            />
 
     </LinearLayout>
 
     <EditText
+        android:id="@+id/fragment_pickup__message"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:inputType="text"
         android:background="@drawable/sh_fr_white_back_transparent_radius_5dp"
-        android:hint="Добавить коментарий к заказу"
+        android:hint="@string/cart_comment"
         android:textColorHint="@color/white"
         style="@style/montserrat_light"
         android:textSize="12sp"
@@ -212,5 +202,36 @@
         android:paddingEnd="10dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/cart_price"
+        style="@style/montserrat_light"
+        android:textSize="21sp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/fragment_pickup__final_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Сумма"
+        style="@style/montserrat_bold"
+        android:textSize="21sp" />
+
+    <Button
+        android:id="@+id/buyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingEnd="35dp"
+        android:paddingStart="35dp"
+        style="@style/style_button"
+        android:text="@string/cart_button_order"
         />
 </LinearLayout>

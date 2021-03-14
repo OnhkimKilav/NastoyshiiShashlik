@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.text.format.DateUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,8 +26,8 @@ public class CalendarFragment extends BaseFragment {
     ImageView buttonDate;
     @BindView(R.id.calendar__button_time)
     ImageView buttonTime;
-    private Calendar dateAndTime = Calendar.getInstance();
 
+    private Calendar dateAndTime;
 
     @Override
     public int getViewId() {
@@ -37,11 +36,21 @@ public class CalendarFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(View view) {
+        dateAndTime = Calendar.getInstance();
+
         setInitialDate();
         setInitialTime();
 
         buttonDate.setOnClickListener(v -> setDate());
         buttonTime.setOnClickListener(v -> setTime());
+    }
+
+    public String getDate(){
+        return date.getText().toString();
+    }
+
+    public String getTime(){
+        return time.getText().toString();
     }
 
     // отображаем диалоговое окно для выбора даты
@@ -63,6 +72,8 @@ public class CalendarFragment extends BaseFragment {
 
     // установка начальной даты
     private void setInitialTime() {
+        dateAndTime.add(Calendar.HOUR_OF_DAY,2);
+
         time.setText(DateUtils.formatDateTime(App.getContext(),
                 dateAndTime.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_TIME));

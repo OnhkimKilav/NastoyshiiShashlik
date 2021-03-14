@@ -26,41 +26,41 @@
                 />
 
             <TextView
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:text="@string/menu"
-                style="@style/product_style.POPUP"
+                style="@style/montserrat_light"
                 android:textSize="21sp"
                 />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/popup_menu__rv_dishes"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
+                android:layout_marginStart="30dp"
                 />
 
             <TextView
                 android:id="@+id/popup__tv_payment_delivery"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:text="@string/payment_and_delivery"
-                style="@style/product_style.POPUP"
+                style="@style/montserrat_light"
                 android:textSize="21sp"
                 />
             <TextView
                 android:id="@+id/popup__tv_contacts"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:text="@string/contacts"
-                style="@style/product_style.POPUP"
+                style="@style/montserrat_light"
                 android:textSize="21sp"
                 />
             <TextView
                 android:id="@+id/popup__tv_catering"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:text="@string/catering"
-                style="@style/product_style.POPUP"
+                style="@style/montserrat_light"
                 android:textSize="21sp"/>
         </LinearLayout>
 

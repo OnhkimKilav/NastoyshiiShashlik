@@ -14,4 +14,6 @@
     <color name="white_translucent">#80FFFFFF</color>
     <color name="red">#FF0000</color>
     <color name="red_button">#b40000</color>
+    <color name="menu_background">#0DFFFFFF</color>
+    <color name="button_up">#26FFFFFF</color>
 </resources>

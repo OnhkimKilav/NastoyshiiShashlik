@@ -19,8 +19,15 @@ public class CartEntity implements Serializable {
     private int totalQuantity = 0;
     private int delivery = 70;
 
-    public int getDelivery() {
-        if(totalPrice.compareTo( BigDecimal.valueOf(500)) > 0)
+    /**
+     * Метод для установки цены доставки
+     *
+     * @param pickup переменная для подсчета доставка, если pickup == true - тогда доставка равна 0,
+     *              если pickup == false - доставка учитывается
+     * @return возвращает цену доставки
+     */
+    public int getDelivery(boolean pickup) {
+        if(totalPrice.compareTo( BigDecimal.valueOf(500)) > 0 || pickup)
             delivery = 0;
         else delivery = 70;
         return delivery;
@@ -96,7 +103,12 @@ public class CartEntity implements Serializable {
     }
 
     public BigDecimal getTotalPrice() {
-        return totalPrice;
+        return totalPrice.add(BigDecimal.valueOf(getDelivery(false)));
+    }
+
+    public BigDecimal getTotalPriceWithDiscount() {
+        return (totalPrice.subtract(totalPrice.multiply(BigDecimal.valueOf(0.1))))
+                .add(BigDecimal.valueOf(getDelivery(true)));
     }
 
     public int getTotalQuantity() {

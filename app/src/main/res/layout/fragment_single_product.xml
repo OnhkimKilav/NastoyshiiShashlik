@@ -28,9 +28,10 @@
         android:id="@+id/single_product__description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText"
+        android:text="Text"
         style="@style/montserrat_medium"
-        android:layout_marginTop="20dp"
+        android:gravity="left"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
         />
@@ -156,7 +157,7 @@
         android:paddingEnd="35dp"
         android:paddingStart="35dp"
         style="@style/style_button"
-        android:text="ЗАКАЗАТЬ"
+        android:text="@string/cart_button_order"
         />
 
 </LinearLayout>

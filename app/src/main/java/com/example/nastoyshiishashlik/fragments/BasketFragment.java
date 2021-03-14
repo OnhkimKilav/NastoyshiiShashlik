@@ -14,31 +14,32 @@ import com.example.nastoyshiishashlik.App;
 import com.example.nastoyshiishashlik.R;
 import com.example.nastoyshiishashlik.models.CartHelper;
 import com.example.nastoyshiishashlik.ui.CartActivity;
+import com.example.nastoyshiishashlik.ui.MainActivity;
 
-public class BasketFragment extends Fragment {
+import butterknife.BindView;
+import butterknife.OnClick;
 
-    private TextView textCartItemCount;
-    private ImageView basket;
+public class BasketFragment extends BaseFragment {
 
-    public BasketFragment() {
-        super(R.layout.view_custom_action_cart);
+    @BindView(R.id.logo_cart_badge)
+    TextView textCartItemCount;
+
+    @Override
+    public int getViewId() {
+        return R.layout.view_custom_action_cart;
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        textCartItemCount = view.findViewById(R.id.logo_cart_badge);
-        basket = view.findViewById(R.id.basket);
-
+    public void onViewCreated(View view) {
         setupBadge();
-        basket.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setupBadge();
-                startActivity(new Intent(App.getContext(), CartActivity.class));
-            }
-        });
+    }
+
+    @OnClick(R.id.basket)
+    public void onClickBasket(){
+        setupBadge();
+        Intent intent = new Intent(context, CartActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
+        startActivity(intent);
     }
 
     public void setupBadge() {

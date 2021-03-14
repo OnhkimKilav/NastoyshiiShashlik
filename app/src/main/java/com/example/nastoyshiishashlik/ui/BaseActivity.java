@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.nastoyshiishashlik.dao.roomDao.ProductDBModel;
+
 import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -14,6 +16,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getViewId());
         ButterKnife.bind(this);
         onCreateView();
+    }
+
+    public ProductDBModel getDatabase(){
+        return ProductDBModel.getInstance();
     }
 
     public abstract int getViewId();

@@ -8,7 +8,6 @@
     <string name="contacts">КОНТАКТЫ</string>
     <string name="payment_and_delivery">ОПЛАТА И ДОСТАВКА</string>
     <string name="menu">МЕНЮ</string>
-    <string name="title_activity_maps">Map</string>
     <string name="price.format" formatted="false">Цена %d грн</string>
     <string name="price.cart.format" formatted="false">%d грн</string>
     <string name="total.price.cart.format" formatted="false">%.0f грн</string>
@@ -17,8 +16,126 @@
     <string name="weight.price.litr025.format" formatted="false">%dгрн / %.2fл</string>
     <string name="weight.price.shtuka.format" formatted="false">%dгрн / %.0fшт</string>
     <string name="min.weight.format" formatted="false">мин. заказ %.0fгр</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="token">725610:313515249327889e8be0cdece5a9dfff</string>
+
+    <string name="empty_basket">Для оформления заказа наполните корзину</string>
+    <string name="empty_name">Для оформления заказа введите имя</string>
+    <string name="mask_name">Для оформления заказа укажите только имя</string>
+    <string name="empty_phone">Для оформления заказа введите номер телефона</string>
+    <string name="ceitering_toast">Кейтеринг в данный момент не доступен</string>
+    <string name="empty_street">Для оформления заказа введите улицу</string>
+    <string name="empty_house">Для оформления заказа введите дом</string>
+    <string name="set_product_to_basket">&#160;было добавленно в корзину</string>
+
+    <!--Названия меню-->
+    <string name="stock">акции</string>
+    <string name="set">сеты</string>
+    <string name="kebab">шашлык</string>
+    <string name="lulykebab">люля-\nкебаб</string>
+    <string name="grill_fish">рыба на\nмангале</string>
+    <string name="beverages">напитки</string>
+    <string name="cold_snacks">холодные\nзакуски</string>
+    <string name="garnish">гарниры</string>
+    <string name="grille_vegetables">овощи на\nмангале</string>
+    <string name="hot_snacks">горячие\nзакуски</string>
+    <string name="hachapuri">хачапури</string>
+    <string name="pickeld_meat">маринованное\nмясо</string>
+    <string name="lavash">лаваш</string>
+    <string name="salad">салаты</string>
+    <string name="sous">соусы</string>
+    <string name="first">первые\nблюда</string>
+
+    <!--Текст для активити контакты-->
+    <string name="tv_contacts_name">Кафе «Настоящий шашлык»</string>
+    <string name="contacts_address">Украина, г. Киев, ул. Святошинская 23</string>
+    <string name="contacts_phone1">+38(067)251-59-45</string>
+    <string name="contacts_phone2">+38(095)114-88-28</string>
+    <string name="contacts_email">nashaslyk@gmail.com</string>
+    <string name="contacts_baner1_1">В нашем кафе есть уютная деревянная беседка\nрасчитанная на 8 персон. Это прекрасная\nвозможность провести время с друзьями и семьей в\nукромном местечке с вкусной едой прямиком с мангала.</string>
+    <string name="contacts_baner1_2">Беседку можно забронировать на\nопределенную дату и время. Для этого нужно просто\nпозвонить нам.</string>
+    <string name="contacts_baner1_3">Если Вы живете или работаете недалеко от метро\nСвятошин, заходите в гости!\nВкусно накормить и радушно встретить обещаем!</string>
+    <string name="contacts_baner2_1">У «Настоящего шашлыка» собственная служба доставки,\nблагодаря чему мы доставляем ваши заказы\nмаксимально быстро.</string>
+    <string name="contacts_baner2_2">Время доставки по Киеву:\nправый берег - 60-90 минут,\nлевый берег - 90-120 минут.</string>
+    <string name="contacts_baner2_3">Принимаем заказы на празднование\nДня рождения, вечеринки или корпоратива.</string>
+    <string name="contacts_message_1">ОТПРАВЬТЕ НАМ СООБЩЕНИЕ</string>
+    <string name="contacts_message_2">Мы обязательно ответим Вам в ближайшее время</string>
+    <string name="contacts_message_name">Ваше имя</string>
+    <string name="contacts_message_email">Ваш E-Mail</string>
+    <string name="contacts_message_text">Сообщение</string>
+    <string name="contacts_message_button">ОТПРАВИТЬ</string>
+
+    <!--Текст для активити корзина-->
+    <string name="cart_empty_basket">На данный момент корзина пуста</string>
+    <string name="cart_delivery">Доставка:</string>
+    <string name="cart_price">Всего:</string>
+    <string name="cart_ordering">Оформление заказа</string>
+    <string name="cart_delivery1">ДОСТАВКА</string>
+    <string name="cart_pickup">САМОВЫВОЗ</string>
+    <string name="cart_contacts">Контакты</string>
+    <string name="cart_name">Имя</string>
+    <string name="cart_phone">Телефон</string>
+    <string name="cart_address">Адрес</string>
+    <string name="cart_kyiv">г. Киев</string>
+    <string name="cart_street">Улица</string>
+    <string name="cart_house">Дом</string>
+    <string name="cart_apartment">Квартира</string>
+    <string name="cart_floor">Этаж</string>
+    <string name="cart_date_time">Дата и время</string>
+    <string name="cart_payment">Оплата</string>
+    <string name="cart_dishes">Одноразовая посуда</string>
+    <string name="cart_dishes2">персон</string>
+    <string name="cart_comment">Добавить коментарий к заказу</string>
+    <string name="cart_button_order">ЗАКАЗАТЬ</string>
+    <string name="cart_date">Дата</string>
+    <string name="cart_time">Ближайшее время</string>
+    <string name="cart_payment_cash">Наличными</string>
+    <string name="cart_payment_courier">Картой курьеру</string>
+    <string name="cart_payment_site">Картой на сайте</string>
+
+    <!--Текст для активити доставка и оплата-->
+    <string name="delivery_payment_banner1_tv">ДОСТАВКА И ОПЛАТА</string>
+    <string name="delivery_payment_banner1_tv2">Принимаем заказы с 8:00 утра до 22:00 вечера</string>
+    <string name="delivery_payment_delivery">ДОСТАВКА</string>
+    <string name="delivery_payment_banner2_tv">БЕСПЛАТНАЯ ДОСТАВКА</string>
+    <string name="delivery_payment_banner2_tv2">по Киеву при заказе от 500 грн.\nЦена доставки заказов на сумму\nдо 500 грн - 70 грн</string>
+    <string name="delivery_payment_banner3_tv">САМОВЫВОЗ</string>
+    <string name="delivery_payment_banner3_tv2">вы получите скидку 10%\nна заказ при самовывозе\nАдрес: ул. Святошинская, 23</string>
+    <string name="delivery_payment_time_delivery">ВРЕМЯ ДОСТАВКИ</string>
+    <string name="delivery_payment_time_delivery_right">ПРАВЫЙ БЕРЕГ КИЕВА</string>
+    <string name="delivery_payment_time_delivery_right2">60 - 90 минут</string>
+    <string name="delivery_payment_time_delivery_left">ЛЕВЫЙ БЕРЕГ КИЕВА</string>
+    <string name="delivery_payment_time_delivery_left2">90 - 120 минут</string>
+    <string name="delivery_payment_banner4_tv">БЫСТРО ДОСТАВИМ В ЛЮБУЮ ТОЧКУ КИЕВА\nИ ЕГО ОКРЕСТНОСТИ</string>
+    <string name="delivery_payment_banner4_tv2">Шашлык приедет к вам горячим, ведь у нас\nсобственная самая шустрая служба доставкив Киеве</string>
+    <string name="delivery_payment_banner4_tv3">ПРЕДВАРИТЕЛЬНЫЙ ЗАКАЗ</string>
+    <string name="delivery_payment_banner4_tv4">Вы можете осуществлять заказ на определенную\nдату и время</string>
+    <string name="delivery_payment_banner4_tv5">Наша доставка никогда не опаздывает!\nНе опоздайте и вы заказать</string>
+    <string name="delivery_payment_payment">ОПЛАТА</string>
+    <string name="delivery_payment_payment_cash">НАЛИЧНЫМИ</string>
+    <string name="delivery_payment_payment_cash_tv">курьеру при получении\nзаказа</string>
+    <string name="delivery_payment_payment_card">КАРТОЙ КУРЬЕРУ</string>
+    <string name="delivery_payment_payment_card_tv">при помощи мобильного терминала\nпри получении заказа</string>
+    <string name="delivery_payment_payment_online">КАРТОЙ ОНЛАЙН</string>
+    <string name="delivery_payment_payment_online_tv">с помощью платежных систем\nVisa и MasterCard</string>
+    <string name="delivery_payment_banner5_tv">УДОБНАЯ ОПЛАТА ЗАКАЗА</string>
+    <string name="delivery_payment_banner5_tv2">Выбирайте удобная способ оплата: банковской картой\nчерез терминал наличными при получении,\nоплата картой онлайн с помощью платежной\nсистемы. У нас доступны все виды оплаты и с нами\nможно договорится, если что-то пошло не по плану.</string>
+    <string name="delivery_payment_banner5_tv3">Спасибо, что вы выбираете нас!</string>
+
+    <!--Текст для фрагмента отвечающий за нижнюю панель-->
+    <string name="bottom_time_work">10:00 - 23:00 без выходных</string>
+    <string name="bottom_phone">(067) 251-59-45</string>
+    <string name="bottom_contacts">контакты</string>
+    <string name="bottom_delivery">доставка и оплата</string>
+    <string name="bottom_catering">кейтеринг</string>
+    <string name="bottom_network">мы в соц. сетях</string>
+    <string name="bottom_payment">поддержка платежей</string>
+
+    <!--Текст для страницы конкретного продукта-->
+    <string name="product_free_delivery">Бесплатная доставка при заказе от 500грн</string>
+    <string name="product_sentences">СОВЕТУЕМ ДОБАВИТЬ К ЗАКАЗУ</string>
+
+
+    <!--Вид доставки-->
     <string-array name="codes">
         <item>Наличными</item>
         <item>Картой курьеру</item>

@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.core.widget.NestedScrollView
-    android:id="@+id/main_activity_ns_main"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
 
         <fragment
             android:id="@+id/product_activity__frag_top_button"
@@ -21,75 +19,88 @@
             android:name="com.example.nastoyshiishashlik.fragments.HeaderButtonFragment"
             tools:layout="@layout/fragment_header_button" />
 
-        <fragment
-            android:id="@+id/product_activity__frag_menu"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/product_activity_ns_main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:name="com.example.nastoyshiishashlik.fragments.MenuFragment"
-            tools:layout="@layout/fragment_menu" />
+            android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/conteiner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-       <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:background="@drawable/frame"
-            android:layout_marginTop="20dp">
-
-            <ImageView
-                android:layout_width="45dp"
-                android:layout_height="35dp"
-                android:src="@drawable/ic_basket"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/montserrat_light"
-                android:text="Бесплатная доставка при заказе от 500грн"/>
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/product_activity__tv_sentence"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            style="@style/montserrat_light"
-            android:text="СОВЕТУЕМ ДОБАВИТЬ К ЗАКАЗУ"
-            android:layout_marginTop="20dp"/>
-
-        <LinearLayout
-            android:id="@+id/conteiner_sentences"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            />
-        <!--
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/product_activity__rv_sentences"
+                <fragment
+                    android:id="@+id/product_activity__frag_menu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/product_activity__tv_sentence"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
+                    android:name="com.example.nastoyshiishashlik.fragments.MenuFragment"
+                    tools:layout="@layout/fragment_menu" />
+
+                <LinearLayout
+                    android:id="@+id/conteiner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:background="@drawable/frame"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_basket"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/montserrat_light"
+                        android:textSize="12sp"
+                        android:text="@string/product_free_delivery"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/product_activity__tv_sentence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    style="@style/montserrat_light"
+                    android:text="@string/product_sentences"
+                    android:layout_marginTop="20dp"/>
+
+                <LinearLayout
+                    android:id="@+id/conteiner_sentences"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     />
 
-                <androidx.fragment.app.FragmentContainerView
-                    xmlns:android="http://schemas.android.com/apk/res/android"
+                <fragment
                     android:id="@+id/product_activity__bottom_menu"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintTop_toBottomOf="@id/product_activity__rv_sentences"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    android:name="com.example.nastoyshiishashlik.fragments.BottomMenuFragment" />
-        -->
+                    android:layout_height="wrap_content"
+                    android:name="com.example.nastoyshiishashlik.fragments.BottomMenuFragment"
+                    tools:layout="@layout/bottom_menu"/>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
     </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+
+    <ImageView
+        android:id="@+id/toUp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/button_up"
+        android:src="@drawable/ic_baseline_keyboard_arrow_up_24"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        />
+</RelativeLayout>

@@ -1,19 +1,10 @@
 package com.example.nastoyshiishashlik.models;
 
-import android.os.Build;
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import androidx.annotation.RequiresApi;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.nastoyshiishashlik.Saleable;
-
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Objects;
 
 @Entity(tableName = "products")
 public class ProductModel implements Serializable {
@@ -40,69 +31,8 @@ public class ProductModel implements Serializable {
 
     public ProductModel() {
     }
-/*
-    public ProductModel(int ID, int poster, String name, double weight, int price, double minWeightForOrder,
-                        int finalPrice, Dishes dishes, boolean hit, String description, String dishesName,
-                        String sentences, int quantity) {
-        this.ID = ID;
-        this.poster = poster;
-        this.name = name;
-        this.weight = weight;
-        this.price = price;
-        this.minWeightForOrder = minWeightForOrder;
-        this.finalPrice = finalPrice;
-        this.dishes = dishes;
-        this.hit = hit;
-        this.description = description;
-        this.dishesName = dishesName;
-        this.sentences = sentences;
-        this.quantity = quantity;
-    }
 
-    public ProductModel(int poster, String name, double weight, int price, double minWeightForOrder,
-                        int finalPrice, Dishes dishes, boolean hit, String description, String dishesName,
-                        String sentences, int quantity) {
-        this.poster = poster;
-        this.name = name;
-        this.weight = weight;
-        this.price = price;
-        this.minWeightForOrder = minWeightForOrder;
-        this.finalPrice = finalPrice;
-        this.dishes = dishes;
-        this.hit = hit;
-        this.description = description;
-        this.dishesName = dishesName;
-        this.sentences = sentences;
-        this.quantity = quantity;
-    }*/
 
-    /*protected ProductModel(Parcel in) {
-        ID = in.readInt();
-        poster = in.readInt();
-        name = in.readString();
-        weight = in.readDouble();
-        price = in.readInt();
-        minWeightForOrder = in.readDouble();
-        finalPrice = in.readInt();
-        hit = in.readByte() != 0;
-        description = in.readString();
-        dishesName = in.readString();
-        sentences = in.readString();
-        quantity = in.readInt();
-    }
-
-    public static final Creator<ProductModel> CREATOR = new Creator<ProductModel>() {
-        @Override
-        public ProductModel createFromParcel(Parcel in) {
-            return new ProductModel(in);
-        }
-
-        @Override
-        public ProductModel[] newArray(int size) {
-            return new ProductModel[size];
-        }
-    };
-*/
     public int getID() {
         return ID;
     }
@@ -207,26 +137,5 @@ public class ProductModel implements Serializable {
         this.quantity = quantity;
     }
 
-   /* @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(ID);
-        dest.writeInt(poster);
-        dest.writeString(name);
-        dest.writeDouble(weight);
-        dest.writeInt(price);
-        dest.writeDouble(minWeightForOrder);
-        dest.writeInt(finalPrice);
-        dest.writeString(dishes.getTitle());
-        dest.writeInt(hit ? 1 : 0);
-        dest.writeString(description);
-        dest.writeString(dishesName);
-        dest.writeString(sentences);
-        dest.writeInt(quantity);
-    }*/
 }
 

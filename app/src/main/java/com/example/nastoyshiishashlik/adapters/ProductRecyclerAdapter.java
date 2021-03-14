@@ -1,8 +1,9 @@
 package com.example.nastoyshiishashlik.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +21,6 @@ import com.example.nastoyshiishashlik.models.ProductModel;
 import com.example.nastoyshiishashlik.ui.ProductActivity;
 import com.example.nastoyshiishashlik.utils.OptimizationBitmap;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -30,12 +30,12 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ProductRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private static final String TAG = ProductRecyclerAdapter.class.getCanonicalName();
+    private final Activity context;
+    private final List<ProductModel> catalogModels;
 
-    private List<ProductModel> catalogModels;
     private OnItemClickListener onItemClickListener;
-    private Context context;
 
-    public ProductRecyclerAdapter(Context context, List<ProductModel> catalogModels) {
+    public ProductRecyclerAdapter(Activity context, List<ProductModel> catalogModels) {
         this.context = context;
         this.catalogModels = catalogModels;
     }
@@ -44,7 +44,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         if(productModel.getQuantity() > 0) {
             catalogModels.set(position, productModel);
         }
-        notifyDataSetChanged();
+        notifyItemChanged(position);
     }
 
     @Override
@@ -87,6 +87,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 catalogModels.get(position).getFinalPrice()));
 
         viewHolder.quantity.setText(String.valueOf(catalogModels.get(position).getQuantity()));
+
         OptimizationBitmap.optimizationBitmap(
                 catalogModels.get(position).getPoster(), 400, 200)
                 .subscribeOn(Schedulers.newThread())
@@ -137,9 +138,11 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 onItemClickListener.onItemPlusClicked(getAdapterPosition(), catalogModels.get(getAdapterPosition()));
             });
             image.setOnClickListener(v -> {
-                Intent intent = new Intent(App.getContext(), ProductActivity.class);
+                Intent intent = new Intent(context, ProductActivity.class);
+                context.finish();
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
                 intent.putExtra("product", catalogModels.get(getAdapterPosition()));
-                App.getContext().startActivity(intent);
+                context.startActivity(intent);
             });
         }
     }

@@ -1,7 +1,10 @@
 package com.example.nastoyshiishashlik;
 
 import android.app.Application;
+import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.nastoyshiishashlik.dao.roomDao.ReadCSV;
 import com.example.nastoyshiishashlik.dao.roomDao.RoomDB;
@@ -16,19 +19,19 @@ public class App extends Application {
     private static App mContext;
     private RoomDB database;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onCreate() {
         super.onCreate();
+
         mContext = this;
 
 
-        database = RoomDB.getInstance(App.getContext());
+        database = RoomDB.getInstance(mContext);
         database.mainDao().getAll()
                 .subscribeOn(Schedulers.io())
                 .subscribe(products -> {
-                            if(products.size() != 0)
-                                database.mainDao().reset(products);
-                            //Read data from CSV fail
+                            database.mainDao().reset(products);
                             ArrayList<ProductModel> productsFromCSV = new ArrayList<>(new ReadCSV().readProducts());
                             for (ProductModel productModel : productsFromCSV) {
                                 //Insert text in database

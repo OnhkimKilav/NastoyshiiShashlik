@@ -1,36 +1,33 @@
 package com.example.nastoyshiishashlik.fragments;
 
-
-import android.os.Build;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.nastoyshiishashlik.App;
 import com.example.nastoyshiishashlik.R;
 import com.example.nastoyshiishashlik.adapters.CartRecyclerAdapter;
+import com.example.nastoyshiishashlik.liveData.LiveDataOrder;
 import com.example.nastoyshiishashlik.models.CartHelper;
 import com.example.nastoyshiishashlik.models.CartItemsEntityModel;
 
 import java.math.BigDecimal;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
 
 public class CartFragment extends BaseFragment implements CartRecyclerAdapter.OnItemClickListener, BasketFragment.Communicator {
-    private final static String LOG = CartFragment.class.getCanonicalName();
+    private final static String TAG = CartFragment.class.getCanonicalName();
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -46,10 +43,16 @@ public class CartFragment extends BaseFragment implements CartRecyclerAdapter.On
     TextView buttonDelivery;
     @BindView(R.id.cart__pickup)
     TextView buttonPickup;
+    @BindView(R.id.cart_activity_ns)
+    NestedScrollView scrollView;
+    @BindView(R.id.toUp)
+    ImageView buttonUp;
 
     private CartRecyclerAdapter productRecyclerAdapter;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
+    private LiveDataOrder liveDataOrder;
+    private boolean pickup = false;
 
     @Override
     public int getViewId() {
@@ -58,15 +61,34 @@ public class CartFragment extends BaseFragment implements CartRecyclerAdapter.On
 
     @Override
     public void onViewCreated(View view) {
+        liveDataOrder = LiveDataOrder.getInstance();
         onUpdateList();
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
         entityCheckMethods();
+        onDeliveryClick();
+        checkButtonUpVisibility();
     }
+
+    @OnClick(R.id.toUp)
+    public void onClickToUp(){
+        scrollView.fullScroll(ScrollView.FOCUS_UP);
+    }
+
+    private void checkButtonUpVisibility(){
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                int scrollY = scrollView.getScrollY(); //for verticalScrollView
+                if (scrollY <= 300)
+                    buttonUp.setVisibility(View.INVISIBLE);
+                    //button visible
+                else
+                    buttonUp.setVisibility(View.VISIBLE);
+                //button invisible
+            }
+        });
+    }
+
 
     public void entityCheckMethods(){
         checkEmptyBasket();
@@ -96,21 +118,44 @@ public class CartFragment extends BaseFragment implements CartRecyclerAdapter.On
 
     private void setDelivery(){
         delivery.setText(String.format(context.getString(R.string.price_cart_format),
-                (CartHelper.getCart().getDelivery())));
+                (CartHelper.getCart().getDelivery(pickup))));
     }
 
-    private void setTotalPrice(){
-        if(CartHelper.getCartItems().size() == 0)
+    private void setTotalPrice() {
+        if (CartHelper.getCartItems().size() == 0){
             this.totalPrice.setText(String.format(context.getString(R.string.price_cart_format), 0));
-        else{
+            liveDataOrder.setLiveData(BigDecimal.valueOf(0));
+        } else{
             BigDecimal totalPrice = CartHelper.getCart().getTotalPrice();
             this.totalPrice.setText(String.format(context.getString(R.string.total_price_cart_format),totalPrice));
+            liveDataOrder.setLiveData(totalPrice);
         }
+        setDelivery();
+    }
+
+    /**
+     * Изменение текстовых полей при выборе самовывоза
+     */
+    private void setTotalPricePickup(){
+        //Если корзина пуста, тогда выставляем все по нулям
+        if (CartHelper.getCartItems().size() == 0) {
+            totalPrice.setText(String.format(context.getString(R.string.price_cart_format), 0));
+
+            liveDataOrder.setLiveData(BigDecimal.valueOf(0));
+        }else {
+            //При переключении на самовывоз передается новая цена со скидкой
+            BigDecimal totalPriceWithDiscount = CartHelper.getCart().getTotalPriceWithDiscount();
+            totalPrice.setText(String.format(context.getString(R.string.total_price_cart_format),
+                    totalPriceWithDiscount));
+            //Финальная цена передается в лайв дату для передачи во фрагмент
+            liveDataOrder.setLiveData(totalPriceWithDiscount);
+        }
+        setDelivery();
     }
 
     @Override
     public void onItemClick(CartItemsEntityModel cartItemsEntityModel) {
-        // open details of product
+
     }
 
     @Override
@@ -162,28 +207,37 @@ public class CartFragment extends BaseFragment implements CartRecyclerAdapter.On
         recyclerView.setAdapter(productRecyclerAdapter);
         entityCheckMethods();
         updateViewBasket();
+
     }
 
-    @OnClick(R.id.buyButton)
-    public void onBuyClick() {
-        /*Toast.makeText(context, String.format(getString(R.string.cart_success_message),
-                CartHelper.getCart().getTotalQuantity(), CartHelper.getCart().getTotalPrice()), Toast.LENGTH_LONG).show();
-        CartHelper.getCart().clear();
-        getActivity().finish();*/
-    }
+
 
     @OnClick(R.id.cart__delivery)
     public void onDeliveryClick() {
         buttonPickup.setBackgroundResource(R.drawable.frame_translucent_no_padding);
         buttonDelivery.setBackgroundResource(R.drawable.frame_red_no_padding);
 
+        //устанавливаем переменную в false для пересчета доставки
+        pickup = false;
+
+        //при переключении на доставку перепроверять финальную цену
+        setTotalPrice();
+        setDelivery();
+
         initializeDelivery(new DeliveryFragment());
     }
 
     @OnClick(R.id.cart__pickup)
     public void onPickupClick() {
+        //меняется цвет кнопки
         buttonDelivery.setBackgroundResource(R.drawable.frame_translucent_no_padding);
         buttonPickup.setBackgroundResource(R.drawable.frame_red_no_padding);
+
+        //устанавливаем переменную в true для пересчета доставки
+        pickup = true;
+
+        setTotalPricePickup();
+        setDelivery();
 
         initializeDelivery(new PickupFragment());
     }

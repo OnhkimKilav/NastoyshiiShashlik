@@ -1,5 +1,6 @@
 package com.example.nastoyshiishashlik.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +11,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.nastoyshiishashlik.App;
 import com.example.nastoyshiishashlik.R;
 import com.example.nastoyshiishashlik.models.CartHelper;
 import com.example.nastoyshiishashlik.models.CartItemsEntityModel;
 import com.example.nastoyshiishashlik.utils.CropSquareTransformation;
-import com.example.nastoyshiishashlik.utils.OptimizationBitmap;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -26,11 +25,12 @@ import butterknife.ButterKnife;
 public class CartRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private static final String TAG = CartRecyclerAdapter.class.getCanonicalName();
 
-    private List<CartItemsEntityModel> productEntityModel;
-    private OnItemClickListener onItemClickListener;
-    private Context context;
+    private final List<CartItemsEntityModel> productEntityModel;
+    private final Activity context;
 
-    public CartRecyclerAdapter(Context context, List<CartItemsEntityModel> productEntityModel) {
+    private OnItemClickListener onItemClickListener;
+
+    public CartRecyclerAdapter(Activity context, List<CartItemsEntityModel> productEntityModel) {
         this.context = context;
         this.productEntityModel = productEntityModel;
     }
@@ -61,7 +61,7 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 productEntityModel.get(position).getProduct().getFinalPrice()));
 
         viewHolder.quantity.setText(String.valueOf(productEntityModel.get(position).getQuantity()));
-        Picasso.with(App.getContext())
+        Picasso.with(context)
                 .load(productEntityModel.get(position).getProduct().getImage())
                 .transform(new CropSquareTransformation())
                 .into(viewHolder.image);
