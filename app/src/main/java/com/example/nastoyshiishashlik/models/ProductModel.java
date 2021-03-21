@@ -137,5 +137,23 @@ public class ProductModel implements Serializable {
         this.quantity = quantity;
     }
 
+    @Override
+    public String toString() {
+        return "ProductModel{" +
+                "ID=" + ID +
+                ", poster=" + poster +
+                ", name='" + name + '\'' +
+                ", weight=" + weight +
+                ", price=" + price +
+                ", minWeightForOrder=" + minWeightForOrder +
+                ", finalPrice=" + finalPrice +
+                ", dishes=" + dishes +
+                ", hit=" + hit +
+                ", description='" + description + '\'' +
+                ", dishesName='" + dishesName + '\'' +
+                ", sentences='" + sentences + '\'' +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
 

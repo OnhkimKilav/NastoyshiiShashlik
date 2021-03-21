@@ -30,6 +30,7 @@ public class ProductFragment extends BaseFragment implements ProductRecyclerAdap
     private List<ProductModel> listProducts;
     private BasketFragment.Communicator communicator;
     private String orientation = "";
+    private int idStyleLayout = R.layout.item_product;
 
     @Override
     public int getViewId() {
@@ -46,8 +47,10 @@ public class ProductFragment extends BaseFragment implements ProductRecyclerAdap
     public void onViewCreated(View view) {
         listProducts = (List<ProductModel>) this.getArguments().getSerializable("productList");
         orientation = this.getArguments().getString("orientation");
-
-        productRecyclerAdapter = new ProductRecyclerAdapter(context,  listProducts);
+        if(!(this.getArguments().getString("idStyleLayout")==null))
+            idStyleLayout = Integer.parseInt(this.getArguments().getString("idStyleLayout"));
+        
+        productRecyclerAdapter = new ProductRecyclerAdapter(context,  listProducts, idStyleLayout);
         productRecyclerAdapter.setOnItemClickListener(this);
         setLayoutManagerForRecView();
         recyclerView.setAdapter(productRecyclerAdapter);

@@ -16,6 +16,7 @@
     <string name="weight.price.litr025.format" formatted="false">%dгрн / %.2fл</string>
     <string name="weight.price.shtuka.format" formatted="false">%dгрн / %.0fшт</string>
     <string name="min.weight.format" formatted="false">мин. заказ %.0fгр</string>
+    <string name="star_text">&#x2a;</string>
     <string name="token">725610:313515249327889e8be0cdece5a9dfff</string>
 
     <string name="empty_basket">Для оформления заказа наполните корзину</string>
@@ -57,6 +58,8 @@
     <string name="contacts_baner2_1">У «Настоящего шашлыка» собственная служба доставки,\nблагодаря чему мы доставляем ваши заказы\nмаксимально быстро.</string>
     <string name="contacts_baner2_2">Время доставки по Киеву:\nправый берег - 60-90 минут,\nлевый берег - 90-120 минут.</string>
     <string name="contacts_baner2_3">Принимаем заказы на празднование\nДня рождения, вечеринки или корпоратива.</string>
+    <string name="contacts_baner2_4">Работаем с 09:00 до 22:00 БЕЗ ВЫХОДНЫХ.</string>
+    <string name="contacts_baner2_5">У нас ооочень вкусно, а цены демократичны!</string>
     <string name="contacts_message_1">ОТПРАВЬТЕ НАМ СООБЩЕНИЕ</string>
     <string name="contacts_message_2">Мы обязательно ответим Вам в ближайшее время</string>
     <string name="contacts_message_name">Ваше имя</string>
@@ -71,13 +74,15 @@
     <string name="cart_ordering">Оформление заказа</string>
     <string name="cart_delivery1">ДОСТАВКА</string>
     <string name="cart_pickup">САМОВЫВОЗ</string>
+    <string name="cart_pickup_txt">Мы находимся по адресу г.Киев, ул.Святошинская, 23</string>
+    <string name="cart_pickup_txt2">-10% на заказ</string>
     <string name="cart_contacts">Контакты</string>
-    <string name="cart_name">Имя</string>
-    <string name="cart_phone">Телефон</string>
+    <string name="cart_name">Имя&#x2a;</string>
+    <string name="cart_phone">Телефон&#x2a;</string>
     <string name="cart_address">Адрес</string>
     <string name="cart_kyiv">г. Киев</string>
-    <string name="cart_street">Улица</string>
-    <string name="cart_house">Дом</string>
+    <string name="cart_street">Улица&#x2a;</string>
+    <string name="cart_house">Дом&#x2a;</string>
     <string name="cart_apartment">Квартира</string>
     <string name="cart_floor">Этаж</string>
     <string name="cart_date_time">Дата и время</string>
@@ -94,10 +99,10 @@
 
     <!--Текст для активити доставка и оплата-->
     <string name="delivery_payment_banner1_tv">ДОСТАВКА И ОПЛАТА</string>
-    <string name="delivery_payment_banner1_tv2">Принимаем заказы с 8:00 утра до 22:00 вечера</string>
+    <string name="delivery_payment_banner1_tv2">Принимаем заказы с 9:00 до 22:00</string>
     <string name="delivery_payment_delivery">ДОСТАВКА</string>
     <string name="delivery_payment_banner2_tv">БЕСПЛАТНАЯ ДОСТАВКА</string>
-    <string name="delivery_payment_banner2_tv2">по Киеву при заказе от 500 грн.\nЦена доставки заказов на сумму\nдо 500 грн - 70 грн</string>
+    <string name="delivery_payment_banner2_tv2">по Киеву при заказе на сумму от 500грн</string>
     <string name="delivery_payment_banner3_tv">САМОВЫВОЗ</string>
     <string name="delivery_payment_banner3_tv2">вы получите скидку 10%\nна заказ при самовывозе\nАдрес: ул. Святошинская, 23</string>
     <string name="delivery_payment_time_delivery">ВРЕМЯ ДОСТАВКИ</string>

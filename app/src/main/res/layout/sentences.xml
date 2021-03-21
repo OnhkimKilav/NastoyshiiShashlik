@@ -1,101 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="300dp"
     android:layout_height="wrap_content"
-    android:layout_marginRight="5dp"
-    android:layout_marginLeft="5dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="20dp"
-    android:background="@drawable/roundrect">
-
-
+    android:background="@drawable/sh_back_translucent"
+    android:orientation="vertical"
+    android:layout_margin="10dp">
 
     <ImageView
-        android:id="@+id/hits_products__iv_poster"
-        android:layout_width="280dp"
-        android:layout_height="120dp"
-        android:layout_margin="10dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_gravity="center_horizontal"
         />
 
     <TextView
-        android:id="@+id/hits_products__tv_name"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/hits_products__iv_poster"
-        app:layout_constraintLeft_toLeftOf="@id/hits_products__iv_poster"
-        app:layout_constraintRight_toRightOf="@id/hits_products__iv_poster"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        style="@style/product_style"
-        android:textStyle="bold"
+        style="@style/montserrat_medium"
+        android:textSize="18sp"
         />
 
-    <TextView
-        android:id="@+id/hits_products_tv_weight_price"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/hits_products__tv_name"
-        app:layout_constraintLeft_toLeftOf="@id/hits_products__iv_poster"
-        app:layout_constraintRight_toRightOf="@id/hits_products__quantity_view"
-        android:layout_marginLeft="10dp"
+
+
+    <LinearLayout
+        android:id="@+id/product__ll_weight_price_min_weignt"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
         android:layout_marginTop="10dp"
-        style="@style/product_style.MENU"/>
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintLeft_toLeftOf="parent">
 
-    <me.himanshusoni.quantityview.QuantityView
-        android:id="@+id/hits_products__quantity_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        app:layout_constraintLeft_toLeftOf="@id/hits_products_tv_weight_price"
-        app:layout_constraintTop_toBottomOf="@id/hits_products_tv_weight_price"
-        app:qv_addButtonBackground="#00000000"
-        app:qv_addButtonTextColor="@color/white"
-        app:qv_minQuantity="1"
-        app:qv_quantity="1"
-        app:qv_quantityBackground="#00000000"
-        app:qv_quantityTextColor="@color/white"
-        app:qv_removeButtonBackground="#00000000"
-        app:qv_removeButtonTextColor="@color/white" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginStart="10dp"
+            android:layout_weight="50">
 
-    <TextView
-        android:id="@+id/hits_products_tv_weight"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/hits_products_tv_weight_price"
-        app:layout_constraintLeft_toRightOf="@id/hits_products_tv_weight_price"
-        app:layout_constraintLeft_toLeftOf="@id/hits_products_tv_total_price"
-        style="@style/product_style.MENU"
-        android:gravity="center_horizontal"/>
+            <TextView
+                android:id="@+id/weight_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:gravity="center"
+                android:text="weight and price"
+                style="@style/montserrat_light"
+                />
 
-    <TextView
-        android:id="@+id/hits_products_tv_total_price"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        app:layout_constraintLeft_toRightOf="@id/hits_products__quantity_view"
-        app:layout_constraintTop_toBottomOf="@id/hits_products_tv_weight"
-        app:layout_constraintBottom_toBottomOf="@id/hits_products__quantity_view"
-        android:layout_marginLeft="20dp"
-        style="@style/product_style"
-        android:textStyle="bold"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:gravity="center">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:background="@drawable/sh_fr_white_back_transparent">
+
+                    <ImageButton
+                        android:id="@+id/minus"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/ic_baseline_horizontal_rule_24"
+                        android:backgroundTint="@color/transparent"/>
+
+
+                    <View
+                        android:layout_width="1sp"
+                        android:background="@color/white"
+                        android:layout_height="match_parent"
+                        android:paddingStart="10dp"/>
+
+                    <TextView
+                        android:id="@+id/quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:text="1"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="1sp"
+                        android:background="@color/white"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="10dp"/>
+
+                    <ImageButton
+                        android:id="@+id/plus"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/ic_baseline_add_24"
+                        android:backgroundTint="@color/transparent"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="50">
+
+            <TextView
+                android:id="@+id/min_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:gravity="start|center_vertical"
+                android:paddingStart="20dp"
+                android:text="min weight"
+                style="@style/montserrat_light"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:gravity="start|center_vertical"
+                android:layout_gravity="bottom"
+                android:paddingStart="20dp"
+                android:text="TextView"
+                style="@style/montserrat_bold" />
+
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
-        android:id="@+id/hits_products__but_order"
-        style="@style/product_style"
-        android:textStyle="bold"
+        android:id="@+id/buyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp"
-        android:text="ЗАКАЗАТЬ"
-        app:backgroundTint="#D50303"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hits_products_tv_total_price" />
+        android:layout_marginBottom="10dp"
+        android:paddingEnd="35dp"
+        android:paddingStart="35dp"
+        style="@style/style_button"
+        android:text="@string/cart_button_order"
+        />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

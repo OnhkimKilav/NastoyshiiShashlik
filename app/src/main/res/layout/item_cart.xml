@@ -38,8 +38,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="TextView"
-                    style="@style/montserrat_bold"
+                    style="@style/montserrat_medium"
                     android:gravity="left"
+                    android:maxLines="2"
                     android:layout_gravity="center"/>
 
                 <ImageButton

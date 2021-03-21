@@ -1,5 +1,6 @@
 package com.example.nastoyshiishashlik.fragments;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.nastoyshiishashlik.R;
 import com.example.nastoyshiishashlik.models.CartHelper;
+import com.example.nastoyshiishashlik.ui.MainActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -44,6 +46,10 @@ public class CreateOrderDialogFragment extends AppCompatDialogFragment {
     @OnClick(R.id.create_oder_button)
     public void onClickButton(){
         CartHelper.getCart().clear();
+
+        Intent intent = new Intent(getContext(), MainActivity.class);
         getActivity().finish();
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
+        startActivity(intent);
     }
 }

@@ -2,6 +2,7 @@ package com.example.nastoyshiishashlik.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,14 +20,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.example.nastoyshiishashlik.App;
 import com.example.nastoyshiishashlik.R;
 import com.example.nastoyshiishashlik.api.NetworkService;
+import com.example.nastoyshiishashlik.api.model.ApiError;
 import com.example.nastoyshiishashlik.api.model.requestOrder.Order;
 import com.example.nastoyshiishashlik.api.model.responseOrder.Example;
 import com.example.nastoyshiishashlik.dao.roomDao.ReadCSV;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -35,6 +43,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.internal.framed.ErrorCode;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -135,8 +144,22 @@ public class DeliveryFragment extends BaseDeliveryFragment {
                     order).enqueue(new Callback<Example>() {
                 @Override
                 public void onResponse(Call<Example> call, Response<Example> response) {
-                    CreateOrderDialogFragment fragment = CreateOrderDialogFragment.newInstance();
-                    fragment.show(getChildFragmentManager(), "createOrder");
+
+                    if(response.isSuccessful()) {
+
+                        //ApiError message = new Gson().fromJson(response.errorBody().charStream(), ApiError.class);
+                        Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
+                        //CreateOrderDialogFragment fragment = CreateOrderDialogFragment.newInstance();
+                        //fragment.show(getChildFragmentManager(), "createOrder");
+                    }else{
+                        switch (response.code()){
+                            case 37:
+                                Toast.makeText(context, "Ошибка ввода данных", Toast.LENGTH_LONG).show();
+                                break;
+                            default:
+                                Toast.makeText(context, "Ошибка, тип ошибки не найден", Toast.LENGTH_LONG).show();
+                        }
+                    }
                 }
 
                 @Override
@@ -193,6 +216,7 @@ public class DeliveryFragment extends BaseDeliveryFragment {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint("CheckResult")
     private void initializeStreetsList(){
         ReadCSV readCSV = new ReadCSV();

@@ -1,6 +1,8 @@
 package com.example.nastoyshiishashlik.fragments;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -113,7 +115,8 @@ public class SingleProductFragment extends BaseFragment{
 
         quantity.setText(String.valueOf(product.getQuantity()));
 
-        image.setImageDrawable(context.getResources().getDrawable(product.getPoster()));
+        image.setImageBitmap(OptimizationBitmap.getRoundedCornerBitmap(
+                BitmapFactory.decodeResource(context.getResources(), product.getPoster()), 30));
 
     }
 

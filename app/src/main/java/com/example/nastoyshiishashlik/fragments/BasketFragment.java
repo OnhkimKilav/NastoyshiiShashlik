@@ -1,4 +1,4 @@
-package com.example.nastoyshiishashlik.fragments;
+    package com.example.nastoyshiishashlik.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,6 +38,7 @@ public class BasketFragment extends BaseFragment {
     public void onClickBasket(){
         setupBadge();
         Intent intent = new Intent(context, CartActivity.class);
+        context.finish();
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
         startActivity(intent);
     }

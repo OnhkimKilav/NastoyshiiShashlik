@@ -42,7 +42,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:background="@drawable/contacts_fon1"
-                    android:layout_marginTop="10dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -236,7 +235,7 @@
                 <LinearLayout
                     android:id="@+id/contacts_activity__ll_baner2"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="180dp"
                     android:background="@drawable/contacts_fon3"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical"
@@ -267,6 +266,26 @@
                         style="@style/montserrat_medium"
                         android:textSize="10dp"
                         android:text="@string/contacts_baner2_3"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/montserrat_medium"
+                        android:textSize="10dp"
+                        android:text="@string/contacts_baner2_4"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/montserrat_medium"
+                        android:textSize="10dp"
+                        android:text="@string/contacts_baner2_5"
                         android:layout_gravity="center"
                         android:layout_marginTop="5dp"
                         />
@@ -310,14 +329,27 @@
                             android:orientation="vertical"
                             android:paddingEnd="15dp">
 
-                            <TextView
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/contacts_message_name"
-                                style="@style/montserrat_light"
-                                android:textSize="12sp"/>
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/contacts_message_name"
+                                    style="@style/montserrat_light"
+                                    android:textSize="12sp"/>
 
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/star_text"
+                                    style="@style/montserrat_light"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/red"/>
+                            </LinearLayout>
                             <EditText
+                                android:id="@+id/contacts_activity__name"
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:inputType="textPersonName"
@@ -337,14 +369,30 @@
                             android:orientation="vertical"
                             android:paddingStart="15dp">
 
-                            <TextView
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/contacts_message_email"
-                                style="@style/montserrat_light"
-                                android:textSize="12sp"/>
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/contacts_message_email"
+                                    style="@style/montserrat_light"
+                                    android:textSize="12sp"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/star_text"
+                                    style="@style/montserrat_light"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/red"/>
+
+                            </LinearLayout>
 
                             <EditText
+                                android:id="@+id/contacts_activity__email"
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:inputType="textEmailAddress"
@@ -367,14 +415,30 @@
                         android:orientation="vertical"
                         android:layout_gravity="center">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/contacts_message_text"
-                            style="@style/montserrat_light"
-                            android:textSize="12sp"/>
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/contacts_message_text"
+                                style="@style/montserrat_light"
+                                android:textSize="12sp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/star_text"
+                                style="@style/montserrat_light"
+                                android:textSize="12sp"
+                                android:textColor="@color/red"/>
+
+                        </LinearLayout>
 
                         <EditText
+                            android:id="@+id/contacts_activity__message"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:inputType="textMultiLine"
@@ -390,6 +454,7 @@
                     </LinearLayout>
 
                     <Button
+                        android:id="@+id/contacts_activity__send_email"
                         android:textSize="12sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

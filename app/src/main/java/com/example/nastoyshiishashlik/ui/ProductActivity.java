@@ -17,10 +17,12 @@ import com.example.nastoyshiishashlik.fragments.ProductFragment;
 import com.example.nastoyshiishashlik.fragments.SingleProductFragment;
 import com.example.nastoyshiishashlik.models.ProductModel;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class ProductActivity extends BaseActivity implements BasketFragment.Communicator{
@@ -43,13 +45,17 @@ public class ProductActivity extends BaseActivity implements BasketFragment.Comm
 
 
     @Override
-    public void onCreateView() {
-        productModel = (ProductModel) getIntent().getSerializableExtra("product");
-        generationSentencesList();
-        Log.d(TAG, "onCreate: get from MenuAdapter class products list, when have size: " + productModel.toString());
+    protected void onStart() {
+        super.onStart();
 
         initFragmentProduct(productModel);
         initSentencesProductList();
+    }
+
+    @Override
+    public void onCreateView() {
+        productModel = (ProductModel) getIntent().getSerializableExtra("product");
+        generationSentencesList();
         checkButtonUpVisibility();
     }
 
@@ -94,12 +100,15 @@ public class ProductActivity extends BaseActivity implements BasketFragment.Comm
         Bundle bundle = new Bundle();
         bundle.putSerializable("productList", listSentencesProducts);
         bundle.putString("orientation", "horizontal");
+        bundle.putString("idStyleLayout", String.valueOf(R.layout.sentences));
 
         ProductFragment productFragment = new ProductFragment();
         productFragment.setArguments(bundle);
 
         fragmentTransaction.replace(R.id.conteiner_sentences, productFragment);
         fragmentTransaction.commit();
+
+        Log.d(TAG, "method initSentencesProductList is commit");
     }
 
     //Get list products for sentences
@@ -109,8 +118,10 @@ public class ProductActivity extends BaseActivity implements BasketFragment.Comm
             for (String s : res) {
                 getDatabase().getById(Integer.parseInt(s))
                         .subscribeOn(Schedulers.io())
+                        .subscribeOn(AndroidSchedulers.mainThread())
                         .subscribe(product1 -> {
                             listSentencesProducts.add(product1);
+                            Log.d(TAG, "generationSentencesList: read sentences's product (" + product1.toString() + ")");
                         });
             }
         }
@@ -123,12 +134,4 @@ public class ProductActivity extends BaseActivity implements BasketFragment.Comm
         basketFragment.setupBadge();
     }
 
-    @Override
-    protected void onStop() {
-        //fragmentTransaction.remove(Objects.requireNonNull(fragmentManager.findFragmentById(R.id.conteiner_sentences)));
-        //fragmentTransaction.remove(Objects.requireNonNull(fragmentManager.findFragmentById(R.id.conteiner)));
-
-        super.onStop();
-        Log.d(TAG, "onStop: method was called");
-    }
 }

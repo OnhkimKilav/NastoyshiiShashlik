@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout
+    android:id="@+id/fragment_cart__main_rel_lay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -161,6 +162,36 @@
                         android:paddingBottom="5dp"
                         android:onClick="onPickupClick"/>
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/pickup_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cart_pickup_txt"
+                        style="@style/montserrat_bold"
+                        android:textSize="11sp"
+                        android:gravity="left"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cart_pickup_txt2"
+                        style="@style/montserrat_bold"
+                        android:textSize="11sp"
+                        android:gravity="left" />
+
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:id="@+id/fragment_container"

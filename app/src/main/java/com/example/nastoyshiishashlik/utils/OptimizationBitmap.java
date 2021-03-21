@@ -56,7 +56,7 @@ public class OptimizationBitmap {
         return inSampleSize;
     }
 
-    private static Bitmap getRoundedCornerBitmap(Bitmap bitmap, int pixels) {
+    public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, int pixels) {
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap
                 .getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(output);

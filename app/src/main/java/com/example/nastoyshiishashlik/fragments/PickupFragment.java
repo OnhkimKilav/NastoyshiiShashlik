@@ -81,7 +81,8 @@ public class PickupFragment extends BaseDeliveryFragment {
                     order).enqueue(new Callback<Example>() {
                 @Override
                 public void onResponse(Call<Example> call, Response<Example> response) {
-                    Toast.makeText(context, "Заказ был произведен успешно", Toast.LENGTH_LONG).show();
+                    CreateOrderDialogFragment fragment = CreateOrderDialogFragment.newInstance();
+                    fragment.show(getChildFragmentManager(), "createOrder");
                 }
 
                 @Override
@@ -91,8 +92,6 @@ public class PickupFragment extends BaseDeliveryFragment {
             });
 
         }
-        /*CartHelper.getCart().clear();
-        getActivity().finish();*/
     }
 
     @OnClick(R.id.fragment_pickup__minus)

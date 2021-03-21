@@ -28,9 +28,6 @@ public interface MainDao {
     void reset(List<ProductModel> mainData);
 
     //Update query
-    /*@Query("UPDATE products SET poster = :newPoster, name = :newName," +
-            "weight = :newWeight, price = :newPrice, min_weight_for_order = :newMinWeightForOrder," +
-            "final_price = :newFinalPrice, dishes = :newDishes, hit = :newHit WHERE _id = :sID")*/
     @Query("UPDATE products SET name = :newName WHERE _id = :sID")
     void update(int sID, String newName);
 

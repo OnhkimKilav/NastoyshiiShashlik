@@ -32,12 +32,14 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private static final String TAG = ProductRecyclerAdapter.class.getCanonicalName();
     private final Activity context;
     private final List<ProductModel> catalogModels;
+    private final int idStyleLayout;
 
     private OnItemClickListener onItemClickListener;
 
-    public ProductRecyclerAdapter(Activity context, List<ProductModel> catalogModels) {
+    public ProductRecyclerAdapter(Activity context, List<ProductModel> catalogModels, int idStyleLayout) {
         this.context = context;
         this.catalogModels = catalogModels;
+        this.idStyleLayout = idStyleLayout;
     }
 
     public void updateItem(int position, ProductModel productModel) {
@@ -49,54 +51,71 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(idStyleLayout, parent, false);
         return new ReceiveViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         ReceiveViewHolder viewHolder = (ReceiveViewHolder) holder;
-        viewHolder.title.setText(catalogModels.get(position).getName());
 
-        switch (Double.toString(catalogModels.get(position).getWeight())){
-            case ("0.5") :
+        if(!(catalogModels.get(position) == null)) {
+            initializeDataProduct(viewHolder, catalogModels.get(position).getName(),
+                    catalogModels.get(position).getWeight(), catalogModels.get(position).getPrice(),
+                    catalogModels.get(position).getMinWeightForOrder(), catalogModels.get(position).getFinalPrice(),
+                    catalogModels.get(position).getQuantity(), catalogModels.get(position).getPoster());
+        }else{
+            initializeDataProduct(viewHolder, catalogModels.get(catalogModels.size()-1).getName(),
+                    catalogModels.get(catalogModels.size()-1).getWeight(), catalogModels.get(catalogModels.size()-1).getPrice(),
+                    catalogModels.get(catalogModels.size()-1).getMinWeightForOrder(), catalogModels.get(catalogModels.size()-1).getFinalPrice(),
+                    catalogModels.get(catalogModels.size()-1).getQuantity(), catalogModels.get(catalogModels.size()-1).getPoster());
+        }
+
+    }
+
+    private void initializeDataProduct(ReceiveViewHolder viewHolder, String name, Double weight, int price,
+                                       double minWeightForOrder, int finalPrice, int quantity, int poster){
+
+        viewHolder.title.setText(name);
+
+        switch (Double.toString(weight)) {
+            case ("0.5"):
                 viewHolder.weightPrice.setText(String.format(context.getString(R.string.weight_price_litr05_format),
-                        catalogModels.get(position).getPrice(), catalogModels.get(position).getWeight()));
+                        price, weight));
                 break;
-            case ("0.25") :
+            case ("0.25"):
                 viewHolder.weightPrice.setText(String.format(context.getString(R.string.weight_price_litr025_format),
-                        catalogModels.get(position).getPrice(), catalogModels.get(position).getWeight()));
+                        price, weight));
                 break;
-            case ("1.0") :
+            case ("1.0"):
                 viewHolder.weightPrice.setText(String.format(context.getString(R.string.weight_price_shtuka_format),
-                        catalogModels.get(position).getPrice(), catalogModels.get(position).getWeight()));
+                        price, weight));
                 break;
             default:
                 viewHolder.weightPrice.setText(String.format(context.getString(R.string.weight_price_gramm_format),
-                        catalogModels.get(position).getPrice(), catalogModels.get(position).getWeight()));
+                        price, weight));
                 break;
         }
 
-        if(catalogModels.get(position).getMinWeightForOrder() > catalogModels.get(position).getWeight()){
+        if (minWeightForOrder > weight) {
             viewHolder.minWeight.setText(String.format(context.getString(R.string.min_weight_format),
-                    catalogModels.get(position).getMinWeightForOrder()));
+                    minWeightForOrder));
             viewHolder.minWeight.setVisibility(View.VISIBLE);
         }
 
         viewHolder.price.setText(String.format(context.getString(R.string.price_format),
-                catalogModels.get(position).getFinalPrice()));
+                finalPrice));
 
-        viewHolder.quantity.setText(String.valueOf(catalogModels.get(position).getQuantity()));
+        viewHolder.quantity.setText(String.valueOf(quantity));
 
         OptimizationBitmap.optimizationBitmap(
-                catalogModels.get(position).getPoster(), 400, 200)
+                poster, 400, 200)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(bitmap -> {
                     viewHolder.image.setImageBitmap(bitmap);
                     Log.d(TAG, "bind: optimization poster for hits is successful");
                 }, throwable -> Log.e(TAG, "bind: optimization poster for hits isn't successful"));
-
     }
 
     @Override

@@ -2,14 +2,18 @@ package com.example.nastoyshiishashlik.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
@@ -39,6 +43,12 @@ public class ContactsActivity extends BaseActivity implements OnMapReadyCallback
     NestedScrollView scrollView;
     @BindView(R.id.toUp)
     ImageView buttonUp;
+    @BindView(R.id.contacts_activity__message)
+    EditText message;
+    @BindView(R.id.contacts_activity__email)
+    EditText email;
+    @BindView(R.id.contacts_activity__name)
+    EditText name;
 
     private SupportMapFragment mapFragment;
 
@@ -74,6 +84,24 @@ public class ContactsActivity extends BaseActivity implements OnMapReadyCallback
     @OnClick(R.id.toUp)
     public void onClickToUp(){
         scrollView.fullScroll(ScrollView.FOCUS_UP);
+    }
+
+    @OnClick(R.id.contacts_activity__send_email)
+    public void onClickSendEmail(){
+        if(name.getText().toString().equals(""))
+            Toast.makeText(this, "Поле \"Имя\" не должно быть пустым", Toast.LENGTH_SHORT).show();
+        else if(email.getText().toString().equals(""))
+            Toast.makeText(this, "Поле \"Email\" не должно быть пустым", Toast.LENGTH_SHORT).show();
+        else if(message.getText().toString().equals(""))
+            Toast.makeText(this, "Поле \"Сообщение\" не должно быть пустым", Toast.LENGTH_SHORT).show();
+        else {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:" + "nashashlyk@gmail.com"));
+            intent.putExtra(Intent.EXTRA_SUBJECT, "Доброго времени суток, меня зовут " + name.getText().toString());
+            intent.putExtra(Intent.EXTRA_TEXT, message.getText().toString() +
+                    "\n" + "Я хочу чтобы вы со мной связались по этому " + email.getText().toString());
+            startActivity(intent);
+        }
+
     }
 
     private void checkButtonUpVisibility(){
